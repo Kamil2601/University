@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <title>zad5</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #left {
+            float: left;
+            margin-right: 2%
+        }
+
+        h2:first-of-type {
+            color: red
+        }
+
+        p:nth-child(3) {
+            background-color: green
+        }
+
+        p:nth-last-child(3) {
+            background-color: blue
+        }
+
+        h3:nth-of-type(2) {
+            color: darkgreen
+        }
+
+        h3:nth-last-of-type(2) {
+            color: orange
+        }
+
+        h3:last-child {
+            background-color: orangered
+        }
+
+        :root {
+            background-color: aquamarine
+        }
+
+        :empty {
+            background-color: black !important;
+            width: 100px;
+            height: 20px;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nagłówek pierwszy</h2>
+    <h2>Nagłówek drugi</h2>
+    <table>
+        <tr>
+            <td>
+                <h2>nagłówek w tabeli</h2>
+                <br>
+                <h2>i jeszcze jeden</h2>
+            </td>
+            <td>
+                <h2>nagłówek w tabeli</h2>
+            </td>
+            <tr>
+                <td>
+                    <h2>nagłówek w tabeli</h2>
+                </td>
+                <td>
+                    <h2>nagłówek w tabeli</h2>
+                </td>
+            </tr>
+    </table>
+    <br/>
+    <table id="left">
+        <tr>
+            <td>
+                <p>Pierwszy</p>
+                <p>Drugi</p>
+                <p>Trzeci</p>
+                <p>Czwarty</p>
+            </td>
+        </tr>
+    </table>
+    <table id="left">
+        <tr>
+            <td>
+                <h3>Pierwszy</h3>
+                <h3>Drugi</h3>
+                <h3>Trzeci</h3>
+                <h3>Czwarty</h3>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <p></p>
+    <p>Akapit</p>
+</body>
+
+</html>
