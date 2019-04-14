@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Zadanie 7</title>
+    <style>
+        #main {
+            width: 350px;
+            height: 100px;
+            border: 1px solid grey;
+            display: flex;
+        }
+        #main div {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 100px;
+        }
+        #main div:nth-of-type(2) {
+            flex-shrink: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div style="background-color:green;"></div>
+        <div style="background-color:blue;"></div>
+        <div style="background-color:red;"></div>
+        <div style="background-color:brown;"></div>
+        <div style="background-color:violet;"></div>
+    </div>
+</body>
+
+</html>

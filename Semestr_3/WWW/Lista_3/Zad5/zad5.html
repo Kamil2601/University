@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Zadanie 5</title>
+    <style>
+        ul#lista_1{
+            list-style-image: url('dot.png');
+        }
+        #lista_2, #lista_3{
+            list-style-type: none;
+        }
+        #lista_2 li::before{
+            content: url('dot.png')
+        }
+        #lista_3 li{
+            background: url('dot2.png');
+            text-indent: 2%;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul id="lista_1">
+        <h3>Lista zakupów:</h3>
+        <li>mleko</li>
+        <li>jajka</li>
+        <li>chleb</li>
+        <li>szynka</li>
+        <li>ser</li>
+    </ul>
+    <ul id="lista_2">
+        <h3>Lista zakupów:</h3>
+        <li>mleko</li>
+        <li>jajka</li>
+        <li>chleb</li>
+        <li>szynka</li>
+        <li>ser</li>
+    </ul>
+    <ul id="lista_3">
+        <h3>Lista zakupów:</h3>
+        <li>mleko</li>
+        <li>jajka</li>
+        <li>chleb</li>
+        <li>szynka</li>
+        <li>ser</li>
+    </ul>
+</body>
+</html>
