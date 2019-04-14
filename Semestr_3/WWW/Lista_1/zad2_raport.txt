@@ -1,0 +1,17 @@
+Pierwsza kolumna - znacznik zewnętrzny
+Pierwszy wiersz - znacznik wewnętrzny
+X - nie można zagnieżdżać w sobie danych dwóch znaczników
+
+
+|       |article |aside|header|footer|address|section|nav|h1|h2|a|
+|-|-    |-       |-    |-     |-     |-      |-      |-  |- |- |
+|article|        |     |      |      |       |       |   |  |  |
+|aside  |        |     |      |      |       |       |   |  |  |
+|header |        |     |  X   |  X   |       |       |   |  |  |
+|footer |        |     |  X   |  X   |       |       |   |  |  |
+|address|   X    |     |  X   |  X   |  X    |   X   | X |X |X |
+|section|        |     |      |      |       |       |   |  |  |
+|nav    |        |     |      |      |       |       |   |  |  |
+|h1     |   X    |  X  |  X   |  X   |  X    | X     | X |X |X |
+|h2     |   X    |  X  |  X   |  X   |  X    | X     | X |X |X |
+|a      |        |     |      |      |       |       |   |  |  |X
