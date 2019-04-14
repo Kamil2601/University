@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Wstep}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Tresc zadania}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Dane techniczne}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Normy - definicje}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Norma wektorowa}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Norma macierzowa}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Dowody twierdzen}{}% 7
+\BOOKMARK [1][-]{section.4}{Implementacja metody Schulza w Julii}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Wyb\363r X0}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Dzia\233anie metody na przyk\233adowej macierzy.}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Por\363wnanie metody Schulza z bezposrednimi metodami odwracania macierzy, testy}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Eliminacja Gaussa - opis metody}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Implementacja metody eliminacji Gaussa}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{Testy}{section.5}% 14
+\BOOKMARK [1][-]{section.6}{Wnioski}{}% 15
+\BOOKMARK [1][-]{section.7}{Zr\363d\233a}{}% 16

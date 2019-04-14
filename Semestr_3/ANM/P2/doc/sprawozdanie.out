@@ -1,0 +1,17 @@
+\BOOKMARK [1][-]{section.1}{Wstep}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Opis zadania}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Dane techniczne}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Wyprowadzenie wzor\363w}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Metoda Halleya}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Metoda quasi-Halleya}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Rzedy zbieznosci metod}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Metoda Halleya}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Metoda quasi-Halleya}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Implementacja metod w Julii}{}% 10
+\BOOKMARK [1][-]{section.5}{Testy}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Funkcja f\(x\)=x2-2}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Funkcja sinx}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.3}{Funkcja f\(x\)=x3-8}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.4}{Funkcja f\(x\)=x-3}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Wnioski}{}% 16
+\BOOKMARK [1][-]{section.7}{Zr\363d\233a}{}% 17
