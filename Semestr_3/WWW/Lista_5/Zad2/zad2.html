@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zadanie 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div id="users-contain" class="ui-widget">
+        <h1>Osoby w bazie:</h1>
+        <table id="users" class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header ">
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Miasto</th>
+                    <th>Kod pocztowy</th>
+                    <th>Data urodzenia</th>
+                    <th>Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="dialog-form">
+        <form>
+            <fieldset>
+                <label for="name">Imię</label><br>
+                <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+                <br>
+                <label for="surname">Nazwisko</label><br>
+                <input type="text" name="surname" id="surname" class="text ui-widget-content ui-corner-all">
+                <br>
+                <label for="city">Miasto</label><br>
+                <input type="text" name="city" id="city" class="text ui-widget-content ui-corner-all">
+                <br>
+                <label for="code">Kod pocztowy</label><br>
+                <input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all">
+                <br>
+                <label for="date">Data urodzenia</label><br>
+                <input type="text" id="date" name="date">
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="dialog-confirm">
+        <form>
+        Usunąć osobę z bazy?<br>
+        </form>
+    </div>
+
+    <button id="add_person">Dodaj element</button>
+</body>
+
+</html>

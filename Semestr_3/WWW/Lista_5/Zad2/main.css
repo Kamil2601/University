@@ -1,0 +1,22 @@
+#users-contain{
+    margin-bottom: 15px;
+}
+
+table, th, td{
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+#dialog-confirm{
+    background-color: black;
+    color: white;
+}
+
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+.ui-datepicker {
+    display: none;
+    background-color: orange;
+    margin: 10px;
+}
