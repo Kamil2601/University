@@ -1,0 +1,3 @@
+mcs -target:library -out:slownik.dll Slownik.cs
+mcs -out:slownik -r:slownik.dll Program.cs
+

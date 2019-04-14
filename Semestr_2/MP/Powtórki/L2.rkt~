@@ -1,0 +1,11 @@
+#lang racket
+(define (compose f g)
+  (lambda (x)
+    (g (f args))))
+
+(define (f1 x)
+  (+ 2 x))
+
+(define (f2 x)
+  (* x x))
+

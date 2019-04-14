@@ -1,0 +1,5 @@
+/home/kamil/Programowanie/PO/Lista_3/Zad_2/Zad2/Zad2/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/kamil/Programowanie/PO/Lista_3/Zad_2/Zad2/Zad2/bin/Debug/Zad2.pdb
+/home/kamil/Programowanie/PO/Lista_3/Zad_2/Zad2/Zad2/bin/Debug/Zad2.exe
+/home/kamil/Programowanie/PO/Lista_3/Zad_2/Zad2/Zad2/obj/x86/Debug/Zad2.exe
+/home/kamil/Programowanie/PO/Lista_3/Zad_2/Zad2/Zad2/obj/x86/Debug/Zad2.pdb

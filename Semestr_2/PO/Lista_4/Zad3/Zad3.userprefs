@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Zad3.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+    <Files>
+      <File FileName="Program.cs" Line="6" Column="14" />
+      <File FileName="GrafMacierz.cs" Line="6" Column="14" />
+      <File FileName="GrafLista.cs" Line="1" Column="1" />
+      <File FileName="Kolejka.cs" Line="1" Column="1" />
+      <File FileName="Interfejs.cs" Line="7" Column="1" />
+      <File FileName="../Zad2/Program.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

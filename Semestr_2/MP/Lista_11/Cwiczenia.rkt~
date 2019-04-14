@@ -1,0 +1,44 @@
+#lang racket
+
+(define/contract (suffixes l)
+  (let ([a (new-∀/c 'a)])
+    (-> (listof a) (listof (listof a))))
+  (define (iter l res)
+    (if (null? l)
+        (cons '() res)
+        (iter (cdr l) (cons l res))))
+  (iter l '()))
+
+(define/contract (dist x y)
+  (-> number? number? number?)
+  (abs (- x y)))
+
+(define/contract (average x y)
+  (-> number? number? number?)
+  (/ (+ x y) 2))
+
+(define/contract (square x)
+  (-> number? number?)
+  (* x x))
+
+(define (ok? y x)
+  (< (dist (* y y) x) 0.001))
+ 
+(define/contract (sqrt x)
+  (->i ([x positive?])
+       [result (x) (ok? (sqrt x) x)])
+  ;; lokalne definicje
+  ;; poprawienie przybliżenia pierwiastka z x
+  (define (improve approx)
+    (average (/ x approx) approx))
+  ;; nazwy predykatów zwyczajowo kończymy znakiem zapytania
+  (define (good-enough? approx)
+    (< (dist x (square approx)) 0.0001))
+  ;; główna procedura znajdująca rozwiązanie
+  (define (iter approx)
+    (cond
+      [(good-enough? approx) approx]
+      [else                  (iter (improve approx))]))
+  
+  (iter 1.0))
+

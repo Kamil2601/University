@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1525296843 source:/home/kamil/Programowanie/C++/BST (kopia)/bst.cpp
+	"bst.h"
+
+1525296685 /home/kamil/Programowanie/C++/BST (kopia)/bst.h
+	<cstdlib>
+	<iostream>
+
+1525297210 source:/home/kamil/Programowanie/C++/BST (kopia)/main.cpp
+	"bst.h"
+

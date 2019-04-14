@@ -1,0 +1,31 @@
+Autor: Kamil Michalak
+Data 2018-03-16
+
+Pracownia w czwartek, s. 108
+Lista 3, zadanie 1
+
+Opis programu:
+    Program prezentujacy dzialanie biblioteki implementującej
+    listę dowolnego typu (w programie lista liczb całkowitych).
+
+1. Kompilacja (Linux)
+    Kompilacja wymaga zainstalowanego pakietu mono.
+
+    Kompilacja biblioteki
+    Należy wpisać w terminalu po kolei następujące komendy:
+
+    mcs -target:library -out:lista.dll Lista.cs
+
+    mcs -out:lista -r:lista.dll Program.cs
+
+2. Uruchomienie programu.
+    Wpisać w terminalu "./lista" (lub włączyć myszką powstały plik wykonywalny)
+
+3. Opis funkcji programu.
+
+    1.push_front() - dodaje element na początek listy
+    2.push_back() - dodaje element na koniec listy
+    3.pop_front() - usuwa pierwszy element z listy
+    4.pop_back() - usuwa ostatni element z listy
+    5.Zakończ - wyjśćie z programu
+

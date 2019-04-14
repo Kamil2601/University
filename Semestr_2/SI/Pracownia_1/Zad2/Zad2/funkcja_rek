@@ -1,0 +1,43 @@
+def podzial(linia, maxdl, slownik):
+    print(linia)
+    lewa = []
+    prawa = []
+    maks = []
+    lista = []
+    if len(linia)==0:
+        print("PRZYPADEK BAZOWY")
+        return ["|"]
+    elif len(linia)==1:
+        if linia in slownik:
+            return [linia,"|"]
+        else:
+            return []
+    print("petla")
+        
+    for i in range( min(maxdl,len(linia)), 0, -1):
+        print(i)
+        for j in range (0, len(linia)-i):
+            if linia[j:j+i] in slownik:
+                print("i=",i)
+                print("TU:",j,linia[j:j+i])
+                for k in range(j, min(j+i,len(linia)-i)):
+                    print("k=", k)
+                    print("k+i=",k+i)
+                    if linia[k:k+i] in slownik:
+                        lewa = podzial(linia[0:k], maxdl, slownik)
+                        prawa = podzial(linia[k+i:len(linia)], maxdl, slownik)
+                        print("LP: ",lewa, prawa)
+                        if len(lewa)==0 or len(prawa)==0:
+                            print("CONT")
+                            continue
+                        lista.clear()
+                        lista.extend(lewa)
+                        lista.append(linia[j:j+i])
+                        lista.extend(prawa)
+                        if (wartosc_podzialu(lista)>wartosc_podzialu(maks)):
+                            maks.clear();
+                            maks.extend(lista)
+                        lista.clear()
+                if len(maks)!=0:
+                    return maks
+    return []

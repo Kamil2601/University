@@ -1,0 +1,117 @@
+ pom = copy.deepcopy(pom2)
+        if poz.ck.x == 1 and poz.bk.x == 3 and poz.bw.y!=poz.ck.y-1 and poz.bw.y!=poz.ck.y and poz.bw.y!=poz.ck.y+1:
+            pom.bw.x = 1
+            if not pom in kolejka:
+                kolejka.append(pom)
+        elif poz.ck.x == 8 and poz.bk.x == 6 and poz.bw.y!=poz.ck.y-1 and poz.bw.y!=poz.ck.y and poz.bw.y!=poz.ck.y+1:
+            pom.bw.x = 8
+            if not pom in kolejka:
+                kolejka.append(pom)
+        elif poz.ck.y == 1 and poz.bk.y == 3 and poz.bw.x!=poz.ck.x-1 and poz.bw.x!=poz.ck.x and poz.bw.x!=poz.ck.x+1:
+            pom.bw.y = 1
+            if not pom in kolejka:
+                kolejka.append(pom)
+        elif poz.ck.y == 8 and poz.bk.y == 6 and poz.bw.x!=poz.ck.x-1 and poz.bw.x!=poz.ck.x and poz.bw.x!=poz.ck.x+1:
+            pom.bw.y = 8
+            if not pom in kolejka:          
+                kolejka.append(pom)
+        elif (poz.ck.x == 1 and poz.bk.x == 3) or (poz.ck.x == 8 and poz.bk.x == 6):
+            if poz.ck.y == 1 and poz.bk.y == 2 and poz.bw.y > 2:
+                pom.bw.x = poz.ck.x
+                if not pom in kolejka:
+                    kolejka.append(pom)
+            elif poz.ck.y == 8 and poz.bk.y == 7 and poz.bw.y < 7:
+                pom.bw.x = poz.ck.x
+                if not pom in kolejka:
+                    kolejka.append(pom)
+        elif (poz.ck.y == 1 and poz.bk.y == 3) or (poz.ck.y == 8 and poz.bk.y == 6):
+            if poz.ck.x == 1 and poz.bk.x == 2 and poz.bw.x > 2:
+                pom.bw.y = poz.ck.y
+                if not pom in kolejka:
+                    kolejka.append(pom)
+            elif poz.ck.x == 8 and poz.bk.x == 7 and poz.bw.x < 7:
+                pom.bw.y = poz.ck.y
+                if not pom in kolejka:
+                    kolejka.append(pom)
+
+
+      
+        else:#SZCZEGOLNE PRZYPADKI
+            if ((poz.ck.x == 1 and poz.bk.x == 3) or  (poz.ck.x == 8 and poz.bk.x == 6))  and (poz.ck.y == poz.bk.y+1 or poz.ck.y == poz.bk.y-1):
+                if poz.bk.x != poz.bw.x:
+                    pom.bw.y = 1
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                    pom.bw.y = 8
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                else:
+                    if (pom.bw.y==1 and pom.bk.y==2) or (pom.bw.y==8 and pom.bk.y==7):
+                        pom.bk.y=pom.ck.y
+                    elif pom.bw.y!=pom.bk.y+1 and pom.bw.y!=pom.bk.y-1:
+                        pom.bw.x = 4
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                    else:
+                        if pom.bw.y<pom.bk.y:
+                            pom.bw.y=1
+                        else:
+                            pom.bw.y=8
+                        if not pom in kolejka:
+                                kolejka.append(pom)
+            elif ((poz.ck.y == 1 and poz.bk.y == 3) or  (poz.ck.y == 8 and poz.bk.y == 6))  and (poz.ck.x == poz.bk.x+1 or poz.ck.x == poz.bk.x-1):
+                if poz.bk.y != poz.bw.y:
+                    pom.bw.x = 1
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                    pom.bw.x = 8
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                else:
+                    if (pom.bw.x==1 and pom.bk.x==2) or (pom.bw.x==8 and pom.bk.x==7):
+                        pom.bk.x=pom.ck.x
+                    elif pom.bw.x!=pom.bk.x+1 and pom.bw.x!=pom.bk.x-1:
+                        pom.bw.y = 4
+                    if not pom in kolejka:
+                        kolejka.append(pom)
+                    else:
+                        if pom.bw.x<pom.bk.x:
+                            pom.bw.x=1
+                        else:
+                            pom.bw.x=8
+                        if not pom in kolejka:
+                                kolejka.append(pom)#KONIEC SZCZEGOLNYCH PRZYPADKOW
+            else:
+
+
+ pom = copy.deepcopy(pom2)
+        if poz.bw.x==poz.bk.x:
+            if poz.bw.y>poz.bk.y:
+                p = poz.bk.y+1
+                k = 8
+            else:
+                p = 1
+                k = poz.bk.y-1
+        else:
+            p = 1
+            k = 8
+        pom = copy.deepcopy(pom2)
+        for i in range (p, k+1):
+            pom.bw.y = i
+            if (not pom in kolejka) and (not pom in lista):
+                kolejka.append(pom)
+
+        if poz.bw.y==poz.bk.y:
+            if poz.bw.x>poz.bk.x:
+                p = poz.bk.x+1
+                k = 8
+            else:
+                p = 1
+                k = poz.bk.x-1
+        else:
+            p = 1
+            k = 8
+        for i in range (p, k+1):
+            pom.bw.x = i
+            if (not pom in kolejka) and (not pom in lista):
+                kolejka.append(pom)

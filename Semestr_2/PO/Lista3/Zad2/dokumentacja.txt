@@ -1,0 +1,31 @@
+Autor: Kamil Michalak
+Data 2018-03-16
+
+Pracownia w czwartek, s. 108
+Lista 3, zadanie 2
+
+Opis programu:
+    Program prezentujacy dzialanie biblioteki implementuj¹cej
+    slownik z danymi o dowolnych kluczach i wartoœciach
+    (w programie napisy indeksowane liczbami typu double).
+
+1. Kompilacja (Linux)
+    Kompilacja wymaga zainstalowanego pakietu mono.
+
+    Kompilacja biblioteki
+    Nale¿y wpisaæ w terminalu po kolei nastêpuj¹ce komendy:
+
+    mcs -target:library -out:slownik.dll Slownik.cs
+
+    mcs -out:slownik -r:slownik.dll Program.cs
+
+2. Uruchomienie programu.
+    Wpisaæ w terminalu "./slownik" (lub w³¹czyæ myszk¹ powsta³y plik wykonywalny)
+
+3. Opis funkcji programu.
+
+    1.Dodaj obiekt - dodanie obiektu o podanym kluczu i wartoœæ
+    2.Usun obiekt - usuniecie obiektu o podanym kluczu
+    3.Znajdz obiekt - zwrócenie wartoœci obiektu o podanym kluczu
+    4.Wypisz slownik - wypisanie wszystkich elementów s³ownika
+    5.Wyjdz - wyjœcie z programu
