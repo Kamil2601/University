@@ -1,0 +1,26 @@
+cd Repozytorium
+git bisect start
+napis=`head -n1 log`
+wzorzec="Kolejne czasy:"
+komit=`git log | tail -n5 | head -n1 | cut -d ' ' -f 2`
+git bisect bad
+git bisect good $komit
+i=100
+j=0
+while test $i -gt 0; do
+napis=`head -n1 log`
+if  [$napis == $wzorzec]
+then
+	git bisect good
+else
+	git bisect bad
+fi
+i=`expr $i / 2`
+j=`expr $j + 1`
+done
+echo $j " krokow"
+
+
+
+
+

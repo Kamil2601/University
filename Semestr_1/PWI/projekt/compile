@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ add_rem_screen.cpp add_rem.cpp add_user_screen.cpp add_user.cpp quits.cpp remove_rem.cpp remove_user.cpp time_operations.cpp main_screen.cpp main.cpp -o res -std=c++11 -O2 `pkg-config --cflags --libs gtkmm-2.4`
