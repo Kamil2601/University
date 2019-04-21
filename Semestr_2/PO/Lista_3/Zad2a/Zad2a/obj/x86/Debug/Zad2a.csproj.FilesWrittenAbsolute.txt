@@ -1,5 +1,0 @@
-/home/kamil/Programowanie/PO/Lista_3/Zad2a/Zad2a/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/kamil/Programowanie/PO/Lista_3/Zad2a/Zad2a/bin/Debug/Zad2a.pdb
-/home/kamil/Programowanie/PO/Lista_3/Zad2a/Zad2a/bin/Debug/Zad2a.exe
-/home/kamil/Programowanie/PO/Lista_3/Zad2a/Zad2a/obj/x86/Debug/Zad2a.exe
-/home/kamil/Programowanie/PO/Lista_3/Zad2a/Zad2a/obj/x86/Debug/Zad2a.pdb
