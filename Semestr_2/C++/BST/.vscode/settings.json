@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.java": "java",
-        "ostream": "cpp",
-        "sstream": "cpp",
-        "iosfwd": "cpp",
-        "cstdlib": "cpp"
-    }
-}
