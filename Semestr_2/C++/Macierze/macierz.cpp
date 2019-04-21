@@ -136,7 +136,7 @@ Macierz::~Macierz()
     delete [] macierz;
 }
 
-Macierz Macierz::operator+(const Macierz &m) throw (Niewlasciwe_wymiary)
+Macierz Macierz::operator+(const Macierz &m) //throw (Niewlasciwe_wymiary)
 {
     if (this->wys!=m.wys || this->szer!=m.szer)
     {
@@ -156,7 +156,7 @@ Macierz Macierz::operator+(const Macierz &m) throw (Niewlasciwe_wymiary)
     return wynik;
  }
 
- Macierz obliczenia::operator+(const Macierz &m1, const Macierz &m2) throw(Niewlasciwe_wymiary)
+ Macierz obliczenia::operator+(const Macierz &m1, const Macierz &m2) //throw (Niewlasciwe_wymiary)
  {
     if (m1.wys!=m2.wys || m1.szer!=m2.szer)
     {
@@ -177,7 +177,7 @@ Macierz Macierz::operator+(const Macierz &m) throw (Niewlasciwe_wymiary)
  }
 
 
-Macierz Macierz::operator-(const Macierz &m) throw (Niewlasciwe_wymiary)
+Macierz Macierz::operator-(const Macierz &m) //throw (Niewlasciwe_wymiary)
 {
     if (this->wys!=m.wys || this->szer!=m.szer)
     {
@@ -197,7 +197,7 @@ Macierz Macierz::operator-(const Macierz &m) throw (Niewlasciwe_wymiary)
     return wynik;
  }
 
-Macierz obliczenia::operator-(const Macierz &m1, const Macierz &m2) throw(Niewlasciwe_wymiary)
+Macierz obliczenia::operator-(const Macierz &m1, const Macierz &m2) //throw (Niewlasciwe_wymiary)
 {
     if (m1.wys!=m2.wys || m1.szer!=m2.szer)
     {
@@ -248,7 +248,7 @@ Macierz obliczenia::operator*(const Macierz &m, double sk)
 }
 
 
-Macierz Macierz::operator*(const Macierz &m) throw (Niewlasciwe_wymiary)
+Macierz Macierz::operator*(const Macierz &m) //throw (Niewlasciwe_wymiary)
 {
     if (this->szer!=m.wys)
     {
@@ -273,7 +273,7 @@ Macierz Macierz::operator*(const Macierz &m) throw (Niewlasciwe_wymiary)
     return wynik;
 }
 
-Macierz obliczenia::operator*(const Macierz &m1, const Macierz &m2) throw(Niewlasciwe_wymiary)
+Macierz obliczenia::operator*(const Macierz &m1, const Macierz &m2) //throw (Niewlasciwe_wymiary)
 {
     if (m1.szer!=m2.wys)
     {
@@ -345,7 +345,7 @@ void Macierz::transpozycja()
     }
 }
 
-void Macierz::zamiana_wierszy(int i, int j) throw (Poza_zakresem)
+void Macierz::zamiana_wierszy(int i, int j) //throw (Poza_zakresem)
 {
     if (i<0 || j<0 || i>=wys || j>=wys)
     {
@@ -366,7 +366,7 @@ void Macierz::zamiana_wierszy(int i, int j) throw (Poza_zakresem)
     delete [] pom;
 }
 
-void Macierz::zamiana_kolumn(int i, int j) throw (Poza_zakresem)
+void Macierz::zamiana_kolumn(int i, int j) //throw (Poza_zakresem)
 {
     if (i<0 || j<0 || i>=szer || j>=szer)
     {
@@ -387,7 +387,7 @@ void Macierz::zamiana_kolumn(int i, int j) throw (Poza_zakresem)
     delete [] pom;
 }
 
-void Macierz::mnozenie_wiersza(int w, double st) throw(Poza_zakresem)
+void Macierz::mnozenie_wiersza(int w, double st) //throw (Poza_zakresem)
 {
 
 
@@ -402,7 +402,7 @@ void Macierz::mnozenie_wiersza(int w, double st) throw(Poza_zakresem)
     }
 }
 
-void Macierz::mnozenie_kolumny(int k, double st) throw(Poza_zakresem)
+void Macierz::mnozenie_kolumny(int k, double st) //throw (Poza_zakresem)
 {
     
     if (k<0 || k>=szer)
@@ -416,7 +416,7 @@ void Macierz::mnozenie_kolumny(int k, double st) throw(Poza_zakresem)
     }
 }
 
-void Macierz::dodanie_wierszy(int i, int j, int st) throw(Poza_zakresem)
+void Macierz::dodanie_wierszy(int i, int j, int st) //throw (Poza_zakresem)
 {
     if (i<0 || j<0 || i>=wys || j>=wys)
     {
@@ -429,7 +429,7 @@ void Macierz::dodanie_wierszy(int i, int j, int st) throw(Poza_zakresem)
     }
 }
 
-void Macierz::dodanie_kolumn(int i, int j, int st) throw(Poza_zakresem)
+void Macierz::dodanie_kolumn(int i, int j, int st) //throw (Poza_zakresem)
 {
     if (i<0 || j<0 || i>=wys || j>=wys)
     {
@@ -476,7 +476,7 @@ Macierz Macierz::minor_macierzy(int i, int j)
     return nowa;
 }
 
-Macierz Macierz::macierz_odwrotna() throw (Niewlasciwe_wymiary, Wyznacznik_rowny_0)
+Macierz Macierz::macierz_odwrotna() //throw (Niewlasciwe_wymiary, Wyznacznik_rowny_0)
 {
     if (this->wys!=this->szer)
     {
