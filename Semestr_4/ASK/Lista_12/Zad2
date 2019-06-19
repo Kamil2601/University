@@ -1,0 +1,39 @@
+0x027c
+
+TLBT        TBLI VPO
+00 0010     01   11 1100
+
+PPN = 17 = 10001
+
+CT----    CI    CO
+010001    1111  00
+PPN---    PPO------
+
+Cache miss
+Byte: Mem
+
+
+0x03a9
+
+TLBT    TBLI    VPO
+00 0011 10      10 1001
+
+TLB miss
+
+PPN = 11
+
+CT-----     CI--    CO
+00 1011     1010    01
+
+Cache miss
+Byte: Mem
+
+
+0x0040
+
+TLBT        TBLI    VPO
+00 0000     01      00 0000
+
+TLB miss
+
+Page Fault

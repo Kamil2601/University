@@ -1,0 +1,182 @@
+Rozmiar strony: 4kiB = 2^2*2^10 = 2^12
+12 bitów na offset
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     0B      0       0C
+  1     07      1       04
+  1     03      2       06
+  0     04      3       09
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   0   0   1   1   1   0   1   0   0   1   1   0  
+PPN     05  d   d   06  09  0B  d   04  d   d   03  0C  b
+-----------------------------------------------
+
+0x123d
+
+1 | 0010 0011 1011
+    offset
+
+virtual page number: 1
+W TLB nie ma strony o tagu 1 - TLB miss
+W tablicy stron - dysk
+Page fault
+
+Zmiany w tablicy stron:
+VPN: 1, valid: 1, PPN: 0D
+
+Zmiany w TLB: PPN 09 -> 0D
+
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     0B      1       0C
+  1     07      2       04
+  1     03      3       06
+  1     01      0       0D
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   0   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  d   d   03  0C  b
+
+
+----------------------------------
+
+0x08b3
+
+0  |  1000 1011 0011
+
+VPN: 0
+TLB miss, PT hit
+W tablicy stron PPN = 05
+
+Brak zmian w tablicy stron
+Zmiany w TLB: tag: 03->00, PPN: 06->05
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     0B      2       0C
+  1     07      3       04
+  1     00      0       05
+  1     01      1       0D
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   0   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  d   d   03  0C  b
+
+
+
+------------------------
+
+0x365c
+
+VPN: 3
+TLB miss, PT hit
+
+Zmiany w TLB: tag: 07->03, PPN: 04->06
+
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     0B      3       0C
+  1     03      0       06
+  1     00      1       05
+  1     01      2       0D
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   0   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  d   d   03  0C  b
+
+
+--------------------------
+
+0x871b
+
+VPN: 8
+TLB miss, Page fault
+
+Zmiany w tablicy stron:
+VPN: 8, valid: 1, PPN: 0E
+
+Zmiany w TLB: tag: 0B->08, PPN: 0C->0E
+
+
+valid   tag     LRU     PPN
+  1     08      0       0E
+  1     03      1       06
+  1     00      2       05
+  1     01      3       0D
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   1   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  0E   d   03  0C  b
+
+
+----------------------
+
+0xbee6
+
+VPN: B = 11
+TLB miss, PT hit
+
+Zmiany w TLB: tag: 01->0B, PPN: 0D->0C
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     08      1       0E
+  1     03      2       06
+  1     00      3       05
+  1     0B      0       0C
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   1   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  0E  d   03  0C  b
+
+
+----------------------
+
+0x3150
+
+VPN: 3
+TLB hit
+
+Zmiana tylko LRU
+
+TLB:
+
+valid   tag     LRU     PPN
+  1     08      2       0E
+  1     03      0       06
+  1     00      3       05
+  1     0B      1       0C
+
+Tablica stron:
+
+VPN     0   1   2   3   4   5   6   7   8   9   10  11  12
+valid   1   1   0   1   1   1   0   1   1   0   1   1   0  
+PPN     05  0D  d   06  09  0B  d   04  0E  d   03  0C  b
+
+
+0xc049
+
+VPN: C = 12
+
+Seg. fault
