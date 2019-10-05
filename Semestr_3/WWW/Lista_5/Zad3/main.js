@@ -10,5 +10,4 @@ function drag(color) {
 
 function drop(square) {
     document.getElementById(square).style.backgroundColor=dragged_color;
-    
 }
