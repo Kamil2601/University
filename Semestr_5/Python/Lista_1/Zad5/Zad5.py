@@ -17,3 +17,5 @@ def rozklad(n):
     return [(i,primes[i]) for i in primes.keys()]
 
 print(rozklad(120))
+print(rozklad(10))
+print(rozklad(88))

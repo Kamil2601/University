@@ -9,3 +9,5 @@ def romb(n):
 
 
 romb(4)
+romb(5)
+romb(3)

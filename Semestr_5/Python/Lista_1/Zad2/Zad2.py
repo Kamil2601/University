@@ -9,3 +9,5 @@ def rest(amount):
             print(" ",n,"*",c,"zł")
 
 rest(7)
+rest(107)
+rest(99)
