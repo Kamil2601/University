@@ -1,7 +1,0 @@
-wget --xattr -O kotek.jpg https://myapple.pl/uploads/image/file/4/f/8/big_b0f72a3c-2234-47db-9b33-bd84a2ef94f8.jpg
-
-getfattr img.jpg -d
-
-setfattr -n user.md5sum -v $(md5sum img.jpg) img.jpg
-
-getfattr img.jpg -d
