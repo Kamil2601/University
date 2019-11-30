@@ -1,3 +1,13 @@
 *.out
 *.o
 *.class
+*.cmi
+*.cmo
+*.zip
+*.vscode
+*target*
+*.txt
+*~
+out*
+in*
+*test*
