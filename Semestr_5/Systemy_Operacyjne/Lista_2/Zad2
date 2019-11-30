@@ -1,0 +1,13 @@
+Zmienne środowiskowe: cat environ | tr '\0' '\n'
+Argumenty programu: cat cmdline
+
+State: stan procesu (R-Running, K-Kileed, Z-Zombie...)
+Groups:
+VmPeak: maksymalny rozmiar pamięci wirtualnej
+VmSize: rozmiar pamięci wirtualnej
+VmRSS: rozmiar zbioru rezydentnego
+	In computing, resident set size (RSS) is the portion of memory occupied by a process that is held in main memory (RAM).
+Threads: Number of threads in process containing this thread.
+voluntary_ctxt_switches, nonvoluntary_ctxt_switches: Number of voluntary and involuntary context switches
+Przełączanie kontekstu, przełączanie zadań – proces zachowywania i odtwarzania stanu procesora/rdzenia (kontekstu), by wiele procesów mogło dzielić zasoby pojedynczego procesora/rdzenia. Za przełączanie kontekstu odpowiedzialny jest dyspozytor.
+

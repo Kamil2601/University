@@ -1,0 +1,14 @@
+Zad B
+BFS ze sprawdzeniem czy doszliśmy do danego wierzchołka przed zalaniem
+
+Zad C
+Algorytm Dijkstry, żeby policzyć dist(vi,vj)
+
+W nowym grafie istnieje krawędź z vi do vj jeśli dist(vi,vj) <= ti
+Teraz szukamy najmniejszej odległości z a do b
+
+Zad D
+LCA - najniższy wspólny przodek dwóch wierzchołków
+Policzyć numery preorder, żeby sprawdzać czy a jest potomkiem b
+
+

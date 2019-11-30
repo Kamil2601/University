@@ -1,0 +1,478 @@
+COMMAND  PID  USER   FD      TYPE             DEVICE  SIZE/OFF    NODE NAME
+firefox 2921 kamil  cwd       DIR                8,9      4096  523265 /home/kamil
+firefox 2921 kamil  rtd       DIR                8,5      4096       2 /
+firefox 2921 kamil  txt       REG                8,5    456944  149006 /usr/lib/firefox/firefox
+firefox 2921 kamil  DEL       REG               0,24               457 /dev/shm/org.mozilla.ipc.3046.17
+firefox 2921 kamil  DEL       REG               0,24               114 /dev/shm/org.mozilla.ipc.3046.19
+firefox 2921 kamil  mem       REG                8,9   5070473  655516 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/startupCache.8.little
+firefox 2921 kamil  mem       REG                8,5    191744  136652 /usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5    508912  136772 /usr/lib/x86_64-linux-gnu/liborc-0.4.so.0.28.0
+firefox 2921 kamil  mem       REG                8,5     43896  131388 /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5    186968  143590 /usr/lib/x86_64-linux-gnu/libsoxr.so.0.1.1
+firefox 2921 kamil  mem       REG                8,5    110776  143611 /usr/lib/x86_64-linux-gnu/libcrystalhd.so.3.6
+firefox 2921 kamil  mem       REG                8,5     51504  143613 /usr/lib/x86_64-linux-gnu/libgsm.so.1.0.12
+firefox 2921 kamil  mem       REG                8,5    301032  135450 /usr/lib/x86_64-linux-gnu/libmp3lame.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    144240  144570 /usr/lib/x86_64-linux-gnu/libopenjpeg.so.1.5.2
+firefox 2921 kamil  mem       REG                8,5    301288  144013 /usr/lib/x86_64-linux-gnu/libopus.so.0.5.2
+firefox 2921 kamil  mem       REG                8,5    869560  144537 /usr/lib/x86_64-linux-gnu/libschroedinger-1.0.so.0.11.0
+firefox 2921 kamil  mem       REG                8,5     43104  143615 /usr/lib/x86_64-linux-gnu/libshine.so.3.0.1
+firefox 2921 kamil  mem       REG                8,5     30928  143617 /usr/lib/x86_64-linux-gnu/libsnappy.so.1.1.7
+firefox 2921 kamil  mem       REG                8,5    104336  135489 /usr/lib/x86_64-linux-gnu/libspeex.so.1.5.0
+firefox 2921 kamil  mem       REG                8,5    121248  135440 /usr/lib/x86_64-linux-gnu/libtheoradec.so.1.1.4
+firefox 2921 kamil  mem       REG                8,5    256360  135441 /usr/lib/x86_64-linux-gnu/libtheoraenc.so.1.1.2
+firefox 2921 kamil  mem       REG                8,5    124840  135495 /usr/lib/x86_64-linux-gnu/libtwolame.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5   2230840  144376 /usr/lib/x86_64-linux-gnu/libvpx.so.3.0.0
+firefox 2921 kamil  mem       REG                8,5    170448  132729 /usr/lib/x86_64-linux-gnu/libwavpack.so.1.2.0
+firefox 2921 kamil  mem       REG                8,5    375168  144396 /usr/lib/x86_64-linux-gnu/libwebp.so.5.0.4
+firefox 2921 kamil  mem       REG                8,5   1216304  144867 /usr/lib/x86_64-linux-gnu/libx264.so.148
+firefox 2921 kamil  mem       REG                8,5  10558256  145075 /usr/lib/x86_64-linux-gnu/libx265.so.79
+firefox 2921 kamil  mem       REG                8,5    687176  143624 /usr/lib/x86_64-linux-gnu/libxvidcore.so.4.3
+firefox 2921 kamil  mem       REG                8,5    568728  143632 /usr/lib/x86_64-linux-gnu/libzvbi.so.0.13.2
+firefox 2921 kamil  mem       REG                8,5    113144  144836 /usr/lib/x86_64-linux-gnu/libva.so.1.3900.0
+firefox 2921 kamil  mem       REG                8,5    374808  135095 /usr/lib/x86_64-linux-gnu/libavutil-ffmpeg.so.54.31.100
+firefox 2921 kamil  mem       REG                8,5  12051384  134102 /usr/lib/x86_64-linux-gnu/libavcodec-ffmpeg.so.56.60.100
+firefox 2921 kamil  mem       REG                8,5   1863832  155404 /usr/lib/firefox/libmozavcodec.so
+firefox 2921 kamil  DEL       REG               0,24               132 /dev/shm/org.mozilla.ipc.3018.121
+firefox 2921 kamil  mem       REG                8,5     75872 1052051 /lib/x86_64-linux-gnu/libnss_myhostname.so.2
+firefox 2921 kamil  mem       REG                8,5    116728  131455 /usr/lib/x86_64-linux-gnu/libswresample-ffmpeg.so.1.2.101
+firefox 2921 kamil  DEL       REG               0,24               325 /dev/shm/org.mozilla.ipc.3018.117
+firefox 2921 kamil  mem       REG                8,5    207432  155762 /usr/lib/firefox/libmozavutil.so
+firefox 2921 kamil  DEL       REG               0,24                88 /dev/shm/org.chromium.RZadj8
+firefox 2921 kamil  DEL       REG                0,5             45566 /memfd:pulseaudio
+firefox 2921 kamil  DEL       REG                0,5             32455 /memfd:pulseaudio
+firefox 2921 kamil  DEL       REG                0,5             45564 /memfd:pulseaudio
+firefox 2921 kamil  mem       REG                8,5     30560  411603 /usr/lib/x86_64-linux-gnu/libcanberra-0.30/libcanberra-pulse.so
+firefox 2921 kamil  mem       REG                8,5  26904264  141200 /usr/lib/x86_64-linux-gnu/libicudata.so.60.2
+firefox 2921 kamil  mem       REG                8,5   1792008  158367 /usr/lib/x86_64-linux-gnu/libicuuc.so.60.2
+firefox 2921 kamil  mem       REG                8,5   1834232  132822 /usr/lib/x86_64-linux-gnu/libxml2.so.2.9.4
+firefox 2921 kamil  mem       REG                8,5    239712  131867 /usr/lib/x86_64-linux-gnu/libcroco-0.6.so.3.0.1
+firefox 2921 kamil  mem       REG                8,5    227448  135186 /usr/lib/x86_64-linux-gnu/librsvg-2.so.2.40.20
+firefox 2921 kamil  mem       REG                8,5     10264  411794 /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so
+firefox 2921 kamil  DEL       REG               0,24               419 /dev/shm/org.mozilla.ipc.3018.123
+firefox 2921 kamil  DEL       REG                0,5           1703953 /SYSV00000000
+firefox 2921 kamil  mem       REG                8,9   1968449  525497 /home/kamil/.mozilla/firefox/num5rdo8.default/extensions/jid1-NIfFY2CA8fy1tg@jetpack.xpi
+firefox 2921 kamil  mem       REG                8,5    648613  142573 /usr/lib/firefox/browser/features/formautofill@mozilla.org.xpi
+firefox 2921 kamil  mem       REG                8,5     26936 1054275 /lib/x86_64-linux-gnu/libnss_dns-2.27.so
+firefox 2921 kamil  mem       REG                8,5     10160 1050815 /lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+firefox 2921 kamil  mem       REG                8,5     52448  436120 /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+firefox 2921 kamil  mem       REG                8,5    540856  155769 /usr/lib/firefox/libnssckbi.so
+firefox 2921 kamil  mem       REG                8,5    518424  155095 /usr/lib/firefox/libfreeblpriv3.so
+firefox 2921 kamil  mem       REG                8,5    262232  155777 /usr/lib/firefox/libsoftokn3.so
+firefox 2921 kamil  DEL       REG                0,5            851975 /SYSV00000000
+firefox 2921 kamil  DEL       REG                0,5            884746 /SYSV00000000
+firefox 2921 kamil  mem       REG                8,5     14488  143113 /usr/lib/x86_64-linux-gnu/libXss.so.1.0.0
+firefox 2921 kamil  DEL       REG               0,24               169 /dev/shm/org.mozilla.ipc.2921.67
+firefox 2921 kamil  DEL       REG               0,24               168 /dev/shm/org.mozilla.ipc.3018.70
+firefox 2921 kamil  DEL       REG               0,24               167 /dev/shm/org.mozilla.ipc.3018.69
+firefox 2921 kamil  mem       REG                8,5     81888  131444 /usr/lib/x86_64-linux-gnu/libdbusmenu-gtk3.so.4.0.12
+firefox 2921 kamil  mem       REG                8,5    114112  140765 /usr/lib/x86_64-linux-gnu/libdbusmenu-glib.so.4.0.12
+firefox 2921 kamil  mem       REG                8,5     32263  536471 /usr/share/locale-langpack/pl/LC_MESSAGES/evince.mo
+firefox 2921 kamil  mem       REG                8,5     72936  533934 /usr/share/locale-langpack/pl/LC_MESSAGES/pulseaudio.mo
+firefox 2921 kamil  mem       REG                8,9     26292  525502 /home/kamil/.mozilla/firefox/num5rdo8.default/features/{36c487eb-fd5e-432a-9c15-6b105f7aab60}/doh-rollout@mozilla.org.xpi
+firefox 2921 kamil  mem       REG                8,5     93226  142618 /usr/lib/firefox/browser/features/webcompat@mozilla.org.xpi
+firefox 2921 kamil  mem       REG                8,5    323456  658006 /usr/share/glib-2.0/schemas/gschemas.compiled
+firefox 2921 kamil  DEL       REG               0,24                51 /dev/shm/org.chromium.tUgTga
+firefox 2921 kamil  mem       REG                8,5     26454  142576 /usr/lib/firefox/browser/features/fxmonitor@mozilla.org.xpi
+firefox 2921 kamil  mem       REG                8,5    353824  659174 /usr/share/fonts/truetype/ubuntu/Ubuntu-R.ttf
+firefox 2921 kamil  DEL       REG               0,24                90 /dev/shm/org.mozilla.ipc.2921.68
+firefox 2921 kamil  mem       REG                8,5    419816  132378 /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.517
+firefox 2921 kamil  DEL       REG               0,24               118 /dev/shm/org.mozilla.ipc.3046.0
+firefox 2921 kamil  DEL       REG               0,24               149 /dev/shm/org.mozilla.ipc.3018.64
+firefox 2921 kamil  DEL       REG               0,24               165 /dev/shm/org.mozilla.ipc.3092.0
+firefox 2921 kamil  DEL       REG               0,24               185 /dev/shm/org.chromium.ub4puG
+firefox 2921 kamil  DEL       REG               0,24               181 /dev/shm/org.chromium.7SKTc3
+firefox 2921 kamil  mem       REG                8,5     30752  395292 /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules/im-ibus.so
+firefox 2921 kamil  mem       REG                8,5    340712  657995 /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf
+firefox 2921 kamil  mem       REG                8,5     23176  411283 /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+firefox 2921 kamil  DEL       REG               0,24               102 /dev/shm/org.mozilla.ipc.3018.0
+firefox 2921 kamil  DEL       REG               0,24                97 /dev/shm/org.chromium.Yhz9fM
+firefox 2921 kamil  DEL       REG               0,24                68 /dev/shm/org.chromium.7M503G
+firefox 2921 kamil  DEL       REG               0,24               186 /dev/shm/org.chromium.Dpnryp
+firefox 2921 kamil  DEL       REG               0,24               184 /dev/shm/org.chromium.tl2zqX
+firefox 2921 kamil  DEL       REG               0,24               183 /dev/shm/org.chromium.B040me
+firefox 2921 kamil  DEL       REG               0,24               182 /dev/shm/org.chromium.ZErxjv
+firefox 2921 kamil  mem       REG                8,5    146816  403076 /usr/share/mime/mime.cache
+firefox 2921 kamil  mem       REG                8,5     91796  659020 /usr/share/icons/gnome/icon-theme.cache
+firefox 2921 kamil  mem       REG                8,5    327184  676533 /usr/share/icons/Humanity/icon-theme.cache
+firefox 2921 kamil  DEL       REG               0,24               177 /dev/shm/org.chromium.u3sW6R
+firefox 2921 kamil  DEL       REG               0,24               179 /dev/shm/org.chromium.6d269j
+firefox 2921 kamil  DEL       REG               0,24               178 /dev/shm/org.chromium.T3Cp8A
+firefox 2921 kamil  DEL       REG               0,24               176 /dev/shm/org.chromium.MYSP58
+firefox 2921 kamil  mem       REG                8,5     24122  542847 /usr/share/locale-langpack/pl/LC_MESSAGES/gdk-pixbuf.mo
+firefox 2921 kamil  mem       REG                8,5     21836  658411 /usr/share/icons/hicolor/icon-theme.cache
+firefox 2921 kamil  mem       REG                8,5     35776  677908 /usr/share/icons/Adwaita/icon-theme.cache
+firefox 2921 kamil  mem       REG                8,5     26816  677909 /usr/share/icons/Humanity-Dark/icon-theme.cache
+firefox 2921 kamil  mem       REG                8,5    380132  657997 /usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf
+firefox 2921 kamil  DEL       REG               0,24               175 /dev/shm/org.chromium.jt6R4p
+firefox 2921 kamil  DEL       REG               0,24               147 /dev/shm/org.chromium.Opt42e
+firefox 2921 kamil  mem       REG                8,5       524  543156 /usr/share/locale-langpack/pl/LC_MESSAGES/libdbusmenu.mo
+firefox 2921 kamil  mem       REG                8,9       532  793300 /home/kamil/.local/share/mime/mime.cache
+firefox 2921 kamil  mem       REG                8,5     54204  658046 /usr/share/icons/ubuntu-mono-dark/icon-theme.cache
+firefox 2921 kamil  mem       REG                8,9      1656  525124 /home/kamil/.cache/fontconfig/a41116dafaf8b233ac2c61cb73f2ea5f-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1616  437814 /var/cache/fontconfig/087e1975ba9a574b140bb1df193bf770-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     15080  438224 /var/cache/fontconfig/6aa41aa22e18b8fa06a12da28ea9c28b-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     44448  423045 /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     20408  423043 /var/cache/fontconfig/2300eef321c393bfd76478a5c0e95b23-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3424  423042 /var/cache/fontconfig/0d8c3b2ac0904cb8a57a757ad11a4a08-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     84440  423041 /var/cache/fontconfig/04aabc0a78ac019cf9454389977116d2-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3152  423040 /var/cache/fontconfig/1ac9eb803944fde146138c791f5cc56a-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     12400  423039 /var/cache/fontconfig/385c0604a188198f04d133e54aba7fe7-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1640  423038 /var/cache/fontconfig/dc05db6664285cc2f12bf69c139ae4c3-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      4608  423037 /var/cache/fontconfig/14a5e22175779b556eaa434240950366-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1744  423036 /var/cache/fontconfig/660208299946a285a940457d1287da33-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1848  418708 /var/cache/fontconfig/5d1cca7074f29429a8d18692746c2426-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      4176  423035 /var/cache/fontconfig/4f3e3037c9980c83b53a9351efadef62-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      6088  423034 /var/cache/fontconfig/767a8244fc0220cfb567a839d0392e0b-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2368  396158 /var/cache/fontconfig/4794a0821666d79190d59a36cb4f44b5-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      4576  401471 /var/cache/fontconfig/0bd3dc0958fa2205aaaa8ebb13e2872b-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     26592  423031 /var/cache/fontconfig/8801497958630a81b71ace7c5f9b32a8-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     17648  423030 /var/cache/fontconfig/def309198bfa603429122923fa2bb2d4-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1816  423029 /var/cache/fontconfig/b872e6e592da6075ffa4ab0a1fcc0c75-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1856  423028 /var/cache/fontconfig/f6d4eedfaab2589bde49f7a3ff831d22-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1920  423027 /var/cache/fontconfig/589f83ef4c36d296ce6e1c846f468f08-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1824  423026 /var/cache/fontconfig/bab58bb527bb656aaa9f116d68a48d89-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1736  423024 /var/cache/fontconfig/2171a34dccabdb6bcbbc728186263178-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1752  423023 /var/cache/fontconfig/c5c45a61289222e0d30b1a26ef4effbe-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1744  423021 /var/cache/fontconfig/aec30016f93e1b46d1a973dce0d74068-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1832  423020 /var/cache/fontconfig/3f589640d34b7dc9042c8d453f7c8b9c-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2080  423019 /var/cache/fontconfig/16c2fda60d1b4b719f4b3d06fd951d25-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1744  423018 /var/cache/fontconfig/a48eab177a16e4f3713381162db2f3e9-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     19400  398953 /var/cache/fontconfig/9d2451b1fd30e5bffe8383fd27c35478-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     24088  423014 /var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     21528  423010 /var/cache/fontconfig/b47c4e1ecd0709278f4910c18777a504-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     76688  423009 /var/cache/fontconfig/d52a8644073d54c13679302ca1180695-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5    690288  133193 /usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.11
+firefox 2921 kamil  mem       REG                8,5    485352  136640 /usr/lib/x86_64-linux-gnu/libFLAC.so.8.3.0
+firefox 2921 kamil  mem       REG                8,5     22368  135645 /usr/lib/x86_64-linux-gnu/libasyncns.so.0.3.1
+firefox 2921 kamil  mem       REG                8,5    487504  131739 /usr/lib/x86_64-linux-gnu/libsndfile.so.1.0.28
+firefox 2921 kamil  mem       REG                8,5     39784 1052654 /lib/x86_64-linux-gnu/libwrap.so.0.7.6
+firefox 2921 kamil  mem       REG                8,5    514216  395208 /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-11.1.so
+firefox 2921 kamil  mem       REG                8,5    326544  135682 /usr/lib/x86_64-linux-gnu/libpulse.so.0.20.2
+firefox 2921 kamil  mem       REG                8,5      1752  423017 /var/cache/fontconfig/564b2e68ac9bc4e36a6f7f6d6125ec1c-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2984  423012 /var/cache/fontconfig/56cf4f4769d0f4abc89a4895d7bd3ae1-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     46216  423000 /var/cache/fontconfig/d589a48862398ed80a3d6066f4f56f4c-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     44120  422988 /var/cache/fontconfig/83bf95040141907cd45bb53cf7c1c148-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5    139680  423044 /var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3192  423011 /var/cache/fontconfig/b9d506c9ac06c20b433354fa67a72993-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3128  423008 /var/cache/fontconfig/370e5b74bf5dafc30834de68e24a87a4-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1920  423007 /var/cache/fontconfig/6b2c5944714ca7831b25bed9e85cb5c8-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      8840  423004 /var/cache/fontconfig/f259c2cffa685e28062317905db73c4a-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      5248  423003 /var/cache/fontconfig/550f3886151c940c12a5ed35f6a00586-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     61112  403127 /var/cache/fontconfig/9b89f8e3dae116d678bbf48e5f21f69b-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     35904  437811 /var/cache/fontconfig/d0972c3d32f097851eb916381fc38920-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     52392  433200 /var/cache/fontconfig/8f02d4cb045bd6ce15663e43f347c9f8-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5    462459  133201 /usr/lib/firefox-addons/extensions/langpack-pl@firefox.mozilla.org.xpi
+firefox 2921 kamil  DEL       REG                0,5           1671177 /SYSV00000000
+firefox 2921 kamil  DEL       REG               0,24               144 /dev/shm/org.mozilla.ipc.3455.0
+firefox 2921 kamil  DEL       REG               0,24               420 /dev/shm/org.mozilla.ipc.3018.124
+firefox 2921 kamil  DEL       REG               0,24               137 /dev/shm/org.mozilla.ipc.3046.20
+firefox 2921 kamil  DEL       REG               0,24               133 /dev/shm/org.mozilla.ipc.3018.122
+firefox 2921 kamil  DEL       REG               0,24               458 /dev/shm/org.mozilla.ipc.3046.18
+firefox 2921 kamil  DEL       REG               0,24               415 /dev/shm/org.mozilla.ipc.3046.10
+firefox 2921 kamil  DEL       REG               0,24               414 /dev/shm/org.mozilla.ipc.3046.9
+firefox 2921 kamil  DEL       REG               0,24               413 /dev/shm/org.mozilla.ipc.3046.8
+firefox 2921 kamil  DEL       REG               0,24               411 /dev/shm/org.mozilla.ipc.3046.7
+firefox 2921 kamil  DEL       REG               0,24               333 /dev/shm/org.mozilla.ipc.3018.118
+firefox 2921 kamil  DEL       REG               0,24               404 /dev/shm/org.mozilla.ipc.3046.3
+firefox 2921 kamil  DEL       REG               0,24               367 /dev/shm/org.mozilla.ipc.3046.1
+firefox 2921 kamil  mem       REG                8,9     33224  524914 /home/kamil/.config/dconf/user
+firefox 2921 kamil  mem       REG                8,9   6783497  655444 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/scriptCache-current.bin
+firefox 2921 kamil  mem       REG                8,9    867807  655446 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/scriptCache-child-current.bin
+firefox 2921 kamil  mem       REG                8,5      1776  423006 /var/cache/fontconfig/d5178ab6d91b49bf20a416737dcea9e8-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      9840  423002 /var/cache/fontconfig/674d1711f2d1d2a09646eb0bdcadee49-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1824  423005 /var/cache/fontconfig/551ecf3b0e8b0bca0f25c0944f561853-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1616  437813 /var/cache/fontconfig/8a687c406b77f27d99abfeeba937fcce-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3320  423001 /var/cache/fontconfig/3f7329c5293ffd510edef78f73874cfd-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1960  418707 /var/cache/fontconfig/e7de81b01590fb7e12b38e274e17d0db-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      3792  422999 /var/cache/fontconfig/30829fa25452a46451e813d634d7f916-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2440  422998 /var/cache/fontconfig/0c9eb80ebd1c36541ebe2852d3bb0c49-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5    132088  423048 /var/cache/fontconfig/467c019e582ee353435ea5c21d137ef6-le64.cache-7
+firefox 2921 kamil  DEL       REG               0,24               407 /dev/shm/org.mozilla.ipc.3046.4
+firefox 2921 kamil  DEL       REG               0,24               148 /dev/shm/org.mozilla.ipc.3018.63
+firefox 2921 kamil  DEL       REG               0,24               396 /dev/shm/org.mozilla.ipc.3046.2
+firefox 2921 kamil  DEL       REG               0,24               110 /dev/shm/org.mozilla.ipc.2921.134
+firefox 2921 kamil  mem       REG               0,54         2      40 /run/user/1000/dconf/user
+firefox 2921 kamil  mem       REG                8,5  43043814  142619 /usr/lib/firefox/browser/omni.ja
+firefox 2921 kamil  mem       REG                8,5  18639197  155780 /usr/lib/firefox/omni.ja
+firefox 2921 kamil  mem       REG                8,5     97176 1054271 /lib/x86_64-linux-gnu/libnsl-2.27.so
+firefox 2921 kamil  mem       REG                8,5     47576 1054281 /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+firefox 2921 kamil  mem       REG                8,5     39744 1054273 /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+firefox 2921 kamil  mem       REG                8,5     47568 1054277 /lib/x86_64-linux-gnu/libnss_files-2.27.so
+firefox 2921 kamil  mem       REG                8,5     34624  144009 /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2
+firefox 2921 kamil  mem       REG                8,5    174360  133197 /usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.8
+firefox 2921 kamil  mem       REG                8,5     39272  140239 /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1
+firefox 2921 kamil  mem       REG                8,5     88072  133215 /usr/lib/x86_64-linux-gnu/libtdb.so.1.3.15
+firefox 2921 kamil  mem       REG                8,5     31056  133195 /usr/lib/x86_64-linux-gnu/libvorbisfile.so.3.3.7
+firefox 2921 kamil  mem       REG                8,5     71680  132276 /usr/lib/x86_64-linux-gnu/libcanberra.so.0.2.5
+firefox 2921 kamil  mem       REG                8,5     18272  135719 /usr/lib/x86_64-linux-gnu/libcanberra-gtk3.so.0.1.9
+firefox 2921 kamil  mem       REG                8,5     26536  422611 /usr/lib/x86_64-linux-gnu/gtk-3.0/modules/libcanberra-gtk3-module.so
+firefox 2921 kamil  mem       REG                8,5      1680  422997 /var/cache/fontconfig/22368d551a680bfe5a62c02760edf4ea-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2096  422996 /var/cache/fontconfig/4d9c95eba1cb85bbcf2878543262124a-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1640  422994 /var/cache/fontconfig/85e0a52ce643a7ba2ae53e5d6949cead-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      2072  422993 /var/cache/fontconfig/49f0de54bdd920fe4f0dfd4cbac43e6b-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1648  422992 /var/cache/fontconfig/f6e6e0a5c3d2f6ae0c0c2e0ecd42a997-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     10744  422989 /var/cache/fontconfig/75114ca45c98e8a441da0ff356701271-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     14872  403090 /var/cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5    247720  399660 /usr/lib/x86_64-linux-gnu/gvfs/libgvfscommon.so
+firefox 2921 kamil  mem       REG                8,5    211144  397144 /usr/lib/x86_64-linux-gnu/gio/modules/libgvfsdbus.so
+firefox 2921 kamil  mem       REG                8,5   4252752  132552 /usr/lib/locale/locale-archive
+firefox 2921 kamil  mem       REG                8,5     97952  140118 /usr/lib/x86_64-linux-gnu/libICE.so.6.3.0
+firefox 2921 kamil  mem       REG                8,5     30960  143062 /usr/lib/x86_64-linux-gnu/libSM.so.6.0.1
+firefox 2921 kamil  mem       REG                8,5     22744  144488 /usr/lib/x86_64-linux-gnu/libxcb-util.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5    425552  140120 /usr/lib/x86_64-linux-gnu/libXt.so.6.0.0
+firefox 2921 kamil  mem       REG                8,5     34744  135518 /usr/lib/x86_64-linux-gnu/libstartup-notification-1.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    157624  140218 /usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.2.3.4
+firefox 2921 kamil  mem       REG                8,5      5776  136751 /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5 115649216  155779 /usr/lib/firefox/libxul.so
+firefox 2921 kamil  mem       REG                8,5      9872  155766 /usr/lib/firefox/libmozwayland.so
+firefox 2921 kamil  mem       REG                8,5     84032 1054732 /lib/x86_64-linux-gnu/libgpg-error.so.0.22.0
+firefox 2921 kamil  mem       REG                8,5     27112 1052849 /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+firefox 2921 kamil  mem       REG                8,5   1155768 1054737 /lib/x86_64-linux-gnu/libgcrypt.so.20.2.1
+firefox 2921 kamil  mem       REG                8,5    112672  140020 /usr/lib/x86_64-linux-gnu/liblz4.so.1.7.1
+firefox 2921 kamil  mem       REG                8,5    153984 1054339 /lib/x86_64-linux-gnu/liblzma.so.5.2.2
+firefox 2921 kamil  mem       REG                8,5     80104 1054307 /lib/x86_64-linux-gnu/libbsd.so.0.8.7
+firefox 2921 kamil  mem       REG                8,5    311720 1050670 /lib/x86_64-linux-gnu/libblkid.so.1.1.0
+firefox 2921 kamil  mem       REG                8,5     26544  131661 /usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.3
+firefox 2921 kamil  mem       REG                8,5    182424  141228 /usr/lib/x86_64-linux-gnu/libgraphite2.so.3.0.1
+firefox 2921 kamil  mem       REG                8,5    536648 1052049 /lib/x86_64-linux-gnu/libsystemd.so.0.21.0
+firefox 2921 kamil  mem       REG                8,5     22616  136713 /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+firefox 2921 kamil  mem       REG                8,5     14456  143076 /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+firefox 2921 kamil  mem       REG                8,5    464824 1054719 /lib/x86_64-linux-gnu/libpcre.so.3.13.3
+firefox 2921 kamil  mem       REG                8,5     31032  143736 /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+firefox 2921 kamil  mem       REG                8,5    340232 1050823 /lib/x86_64-linux-gnu/libmount.so.1.1.0
+firefox 2921 kamil  mem       REG                8,5    101168 1054289 /lib/x86_64-linux-gnu/libresolv-2.27.so
+firefox 2921 kamil  mem       REG                8,5    154832 1052507 /lib/x86_64-linux-gnu/libselinux.so.1
+firefox 2921 kamil  mem       REG                8,5    202880 1050690 /lib/x86_64-linux-gnu/libexpat.so.1.6.7
+firefox 2921 kamil  mem       REG                8,5     36904  131663 /usr/lib/x86_64-linux-gnu/libthai.so.0.3.0
+firefox 2921 kamil  mem       REG                8,5    646064  141230 /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10702.0
+firefox 2921 kamil  mem       REG                8,5    194728  140130 /usr/lib/x86_64-linux-gnu/libatspi.so.0.0.1
+firefox 2921 kamil  mem       REG                8,5    313496 1050718 /lib/x86_64-linux-gnu/libdbus-1.so.3.19.4
+firefox 2921 kamil  mem       REG                8,5    116960 1054722 /lib/x86_64-linux-gnu/libz.so.1.2.11
+firefox 2921 kamil  mem       REG                8,5     39448  139985 /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+firefox 2921 kamil  mem       REG                8,5     51288  139654 /usr/lib/x86_64-linux-gnu/libxcb-render.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5     10312  139667 /usr/lib/x86_64-linux-gnu/libxcb-shm.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    202672  131449 /usr/lib/x86_64-linux-gnu/libpng16.so.16.34.0
+firefox 2921 kamil  mem       REG                8,5    673808  139999 /usr/lib/x86_64-linux-gnu/libpixman-1.so.0.34.0
+firefox 2921 kamil  mem       REG                8,5    162232  132572 /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+firefox 2921 kamil  mem       REG                8,5    735704  141198 /usr/lib/x86_64-linux-gnu/libfreetype.so.6.15.0
+firefox 2921 kamil  mem       REG                8,5     73640  143089 /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+firefox 2921 kamil  mem       REG                8,5     60552  139209 /usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0
+firefox 2921 kamil  mem       REG                8,5      6024  137261 /usr/lib/x86_64-linux-gnu/libwayland-egl.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5     31104  139214 /usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    256424  140145 /usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5     10272  136758 /usr/lib/x86_64-linux-gnu/libXdamage.so.1.1.0
+firefox 2921 kamil  mem       REG                8,5     10288  140077 /usr/lib/x86_64-linux-gnu/libXcomposite.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5     39240  131894 /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+firefox 2921 kamil  mem       REG                8,5     43320  140138 /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+firefox 2921 kamil  mem       REG                8,5     10376  143101 /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+firefox 2921 kamil  mem       REG                8,5   1137968  136913 /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.5600.4
+firefox 2921 kamil  mem       REG                8,5    342072  139563 /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.5600.4
+firefox 2921 kamil  mem       REG                8,5   1690808  135686 /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.5600.4
+firefox 2921 kamil  mem       REG                8,5    281984  141203 /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.10.1
+firefox 2921 kamil  mem       REG                8,5    313264  141238 /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.4000.14
+firefox 2921 kamil  mem       REG                8,5     87904  142590 /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4000.14
+firefox 2921 kamil  mem       REG                8,5   1053560  133506 /usr/lib/x86_64-linux-gnu/libepoxy.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    198312  140134 /usr/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0.0.0
+firefox 2921 kamil  mem       REG                8,5    153520  140045 /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.22810.1
+firefox 2921 kamil  mem       REG                8,5    146776  133390 /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3611.0
+firefox 2921 kamil  mem       REG                8,5   1161648  132012 /usr/lib/x86_64-linux-gnu/libcairo.so.2.11510.0
+firefox 2921 kamil  mem       REG                8,5     34720  139089 /usr/lib/x86_64-linux-gnu/libcairo-gobject.so.2.11510.0
+firefox 2921 kamil  mem       REG                8,5     22640  136756 /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+firefox 2921 kamil  mem       REG                8,5     63944  133017 /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+firefox 2921 kamil  mem       REG                8,5   1277384  140763 /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+firefox 2921 kamil  mem       REG                8,5     51096  142594 /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4000.14
+firefox 2921 kamil  mem       REG                8,5     14232  139561 /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.5600.4
+firefox 2921 kamil  mem       REG                8,5   1003808  140768 /usr/lib/x86_64-linux-gnu/libgdk-3.so.0.2200.30
+firefox 2921 kamil  mem       REG                8,5   7350712  145031 /usr/lib/x86_64-linux-gnu/libgtk-3.so.0.2200.30
+firefox 2921 kamil  mem       REG                8,5      5776  155763 /usr/lib/firefox/libmozgtk.so
+firefox 2921 kamil  mem       REG                8,5    365488  155778 /usr/lib/firefox/libssl3.so
+firefox 2921 kamil  mem       REG                8,5    900136  155765 /usr/lib/firefox/libmozsqlite3.so
+firefox 2921 kamil  mem       REG                8,5    159936  155775 /usr/lib/firefox/libsmime3.so
+firefox 2921 kamil  mem       REG                8,5    616760  155768 /usr/lib/firefox/libnss3.so
+firefox 2921 kamil  mem       REG                8,5    191368  155772 /usr/lib/firefox/libnssutil3.so
+firefox 2921 kamil  mem       REG                8,5     14488  155774 /usr/lib/firefox/libplds4.so
+firefox 2921 kamil  mem       REG                8,5     39008  155403 /usr/lib/firefox/liblgpllibs.so
+firefox 2921 kamil  mem       REG                8,5     18680  155773 /usr/lib/firefox/libplc4.so
+firefox 2921 kamil  mem       REG                8,5     31680 1054291 /lib/x86_64-linux-gnu/librt-2.27.so
+firefox 2921 kamil  mem       REG                8,5    125704  155764 /usr/lib/firefox/libmozsandbox.so
+firefox 2921 kamil  mem       REG                8,5    235280  155767 /usr/lib/firefox/libnspr4.so
+firefox 2921 kamil  mem       REG                8,5      1824  422991 /var/cache/fontconfig/4b2eda6bb976bda485cb2176619421d5-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5   1700792 1054265 /lib/x86_64-linux-gnu/libm-2.27.so
+firefox 2921 kamil  mem       REG                8,5   2030544 1054257 /lib/x86_64-linux-gnu/libc-2.27.so
+firefox 2921 kamil  mem       REG                8,5     96616 1052911 /lib/x86_64-linux-gnu/libgcc_s.so.1
+firefox 2921 kamil  mem       REG                8,5   1594864  132912 /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25
+firefox 2921 kamil  mem       REG                8,5     14560 1054263 /lib/x86_64-linux-gnu/libdl-2.27.so
+firefox 2921 kamil  mem       REG                8,5    144976 1054287 /lib/x86_64-linux-gnu/libpthread-2.27.so
+firefox 2921 kamil  mem       REG                8,5    170960 1052510 /lib/x86_64-linux-gnu/ld-2.27.so
+firefox 2921 kamil  mem       REG                8,5      5288  401161 /var/cache/fontconfig/6afa1bb216ce958c1589e297e8008489-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      1600  437810 /var/cache/fontconfig/c277e94e32b20404286a1ddafa5a80f0-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5      8648  438150 /var/cache/fontconfig/16326683038b281783a0ef8c680e3a10-le64.cache-7
+firefox 2921 kamil  DEL       REG               0,24                38 /dev/shm/org.chromium.cAz90U
+firefox 2921 kamil  mem       REG                8,5    131282  536682 /usr/share/locale-langpack/pl/LC_MESSAGES/glib20.mo
+firefox 2921 kamil  mem       REG                8,5    212308  536944 /usr/share/locale-langpack/pl/LC_MESSAGES/gtk30-properties.mo
+firefox 2921 kamil  mem       REG                8,5    149560  544448 /usr/share/locale-langpack/pl/LC_MESSAGES/libc.mo
+firefox 2921 kamil  mem       REG                8,5      2552  423049 /var/cache/fontconfig/e0aa53bcfa504e64f87823c16bc01eb6-le64.cache-7
+firefox 2921 kamil  mem       REG                8,5     10436  542741 /usr/share/locale-langpack/pl/LC_MESSAGES/atk10.mo
+firefox 2921 kamil  mem       REG                8,5     26376  397608 /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+firefox 2921 kamil  mem       REG                8,5     92149  536947 /usr/share/locale-langpack/pl/LC_MESSAGES/gtk30.mo
+firefox 2921 kamil    0r      CHR                1,3       0t0       6 /dev/null
+firefox 2921 kamil    1u     unix 0x0000000000000000       0t0   34196 type=STREAM
+firefox 2921 kamil    2u     unix 0x0000000000000000       0t0   34197 type=STREAM
+firefox 2921 kamil    3u     unix 0x0000000000000000       0t0   45132 type=STREAM
+firefox 2921 kamil    4u     unix 0x0000000000000000       0t0   44095 type=STREAM
+firefox 2921 kamil    5u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil    6u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil    7u     unix 0x0000000000000000       0t0   43114 type=STREAM
+firefox 2921 kamil    8u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil    9r      REG               0,24       408     147 /dev/shm/org.chromium.Opt42e (deleted)
+firefox 2921 kamil   10u     unix 0x0000000000000000       0t0   43118 type=STREAM
+firefox 2921 kamil   11wW     REG                8,9         0  523467 /home/kamil/.mozilla/firefox/num5rdo8.default/.parentlock
+firefox 2921 kamil   12u  a_inode               0,13         0   10597 [eventpoll]
+firefox 2921 kamil   13r     FIFO               0,12       0t0   44096 pipe
+firefox 2921 kamil   14w     FIFO               0,12       0t0   44096 pipe
+firefox 2921 kamil   15r     FIFO               0,12       0t0   44097 pipe
+firefox 2921 kamil   16w     FIFO               0,12       0t0   44097 pipe
+firefox 2921 kamil   17r      REG                8,5  18639197  155780 /usr/lib/firefox/omni.ja
+firefox 2921 kamil   18r      REG                8,5  43043814  142619 /usr/lib/firefox/browser/omni.ja
+firefox 2921 kamil   19r     FIFO               0,12       0t0   44098 pipe
+firefox 2921 kamil   20w     FIFO               0,12       0t0   44098 pipe
+firefox 2921 kamil   21r     FIFO               0,12       0t0   44099 pipe
+firefox 2921 kamil   22w     FIFO               0,12       0t0   44099 pipe
+firefox 2921 kamil   23u  netlink                          0t0   41570 ROUTE
+firefox 2921 kamil   24r     FIFO               0,12       0t0   45125 pipe
+firefox 2921 kamil   25w     FIFO               0,12       0t0   45125 pipe
+firefox 2921 kamil   26r      CHR                1,9       0t0      11 /dev/urandom
+firefox 2921 kamil   27u  a_inode               0,13         0   10597 [eventpoll]
+firefox 2921 kamil   28r     FIFO               0,12       0t0   45127 pipe
+firefox 2921 kamil   29w     FIFO               0,12       0t0   45127 pipe
+firefox 2921 kamil   30u  a_inode               0,13         0   10597 [eventpoll]
+firefox 2921 kamil   31r     FIFO               0,12       0t0   44100 pipe
+firefox 2921 kamil   32w     FIFO               0,12       0t0   44100 pipe
+firefox 2921 kamil   33r      REG                8,9    867807  655446 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/scriptCache-child-current.bin
+firefox 2921 kamil   34r      REG               0,24       308      38 /dev/shm/org.chromium.cAz90U (deleted)
+firefox 2921 kamil   35r      REG                8,9   6783497  655444 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/scriptCache-current.bin
+firefox 2921 kamil   36r      REG                8,9   5070473  655516 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/startupCache/startupCache.8.little
+firefox 2921 kamil   37r     FIFO               0,12       0t0   45128 pipe
+firefox 2921 kamil   38w     FIFO               0,12       0t0   45128 pipe
+firefox 2921 kamil   39r      REG               0,24    657528      88 /dev/shm/org.chromium.RZadj8 (deleted)
+firefox 2921 kamil   40uw     REG                8,9     98304  523485 /home/kamil/.mozilla/firefox/num5rdo8.default/permissions.sqlite
+firefox 2921 kamil   41r      REG                8,5    462459  133201 /usr/lib/firefox-addons/extensions/langpack-pl@firefox.mozilla.org.xpi
+firefox 2921 kamil   42r  a_inode               0,13         0   10597 inotify
+firefox 2921 kamil   43uw     REG                8,9    524288  523502 /home/kamil/.mozilla/firefox/num5rdo8.default/cookies.sqlite
+firefox 2921 kamil   44u     unix 0x0000000000000000       0t0   44102 type=STREAM
+firefox 2921 kamil   45u     sock                0,9       0t0   45219 protocol: UNIX
+firefox 2921 kamil   46u      REG                8,9    590288  523694 /home/kamil/.mozilla/firefox/num5rdo8.default/cookies.sqlite-wal
+firefox 2921 kamil   48u     IPv4              62056       0t0     TCP k150-187.eduroam.uni.wroc.pl:33936->ec2-52-42-202-210.us-west-2.compute.amazonaws.com:https (ESTABLISHED)
+firefox 2921 kamil   49uw     REG                8,9     65536  524824 /home/kamil/.mozilla/firefox/num5rdo8.default/protections.sqlite
+firefox 2921 kamil   50r      REG               0,24     25778      68 /dev/shm/org.chromium.7M503G (deleted)
+firefox 2921 kamil   51r      REG               0,24      1786     175 /dev/shm/org.chromium.jt6R4p (deleted)
+firefox 2921 kamil   52r      REG               0,24      1272     176 /dev/shm/org.chromium.MYSP58 (deleted)
+firefox 2921 kamil   53r      REG               0,24      5892     177 /dev/shm/org.chromium.u3sW6R (deleted)
+firefox 2921 kamil   54r      REG               0,24      2810     178 /dev/shm/org.chromium.T3Cp8A (deleted)
+firefox 2921 kamil   55r      REG               0,24      2908     179 /dev/shm/org.chromium.6d269j (deleted)
+firefox 2921 kamil   56r      REG               0,24     62118     181 /dev/shm/org.chromium.7SKTc3 (deleted)
+firefox 2921 kamil   57r      REG               0,24     23718      97 /dev/shm/org.chromium.Yhz9fM (deleted)
+firefox 2921 kamil   58r      REG               0,24       206     182 /dev/shm/org.chromium.ZErxjv (deleted)
+firefox 2921 kamil   59r      REG               0,24      2018     183 /dev/shm/org.chromium.B040me (deleted)
+firefox 2921 kamil   60r      REG               0,24      2074     184 /dev/shm/org.chromium.tl2zqX (deleted)
+firefox 2921 kamil   61r      REG               0,24     22026     185 /dev/shm/org.chromium.ub4puG (deleted)
+firefox 2921 kamil   62r      REG               0,24      5762     186 /dev/shm/org.chromium.Dpnryp (deleted)
+firefox 2921 kamil   63r      REG               0,24    197201      51 /dev/shm/org.chromium.tUgTga (deleted)
+firefox 2921 kamil   64u     sock                0,9       0t0   45225 protocol: UNIX
+firefox 2921 kamil   65r      REG                8,5    648613  142573 /usr/lib/firefox/browser/features/formautofill@mozilla.org.xpi
+firefox 2921 kamil   66u     unix 0x0000000000000000       0t0   44158 type=SEQPACKET
+firefox 2921 kamil   67u     unix 0x0000000000000000       0t0   44159 type=SEQPACKET
+firefox 2921 kamil   68r     FIFO               0,12       0t0   44160 pipe
+firefox 2921 kamil   69w     FIFO               0,12       0t0   44160 pipe
+firefox 2921 kamil   70u     unix 0x0000000000000000       0t0   44161 type=SEQPACKET
+firefox 2921 kamil   71u     unix 0x0000000000000000       0t0   44162 type=SEQPACKET
+firefox 2921 kamil   72u     sock                0,9       0t0   44249 protocol: UNIX
+firefox 2921 kamil   73u     unix 0x0000000000000000       0t0   45228 type=STREAM
+firefox 2921 kamil   74u     unix 0x0000000000000000       0t0   43220 type=STREAM
+firefox 2921 kamil   75u     unix 0x0000000000000000       0t0   45220 type=STREAM
+firefox 2921 kamil   76r     FIFO               0,12       0t0   45182 pipe
+firefox 2921 kamil   77u     unix 0x0000000000000000       0t0   45222 type=STREAM
+firefox 2921 kamil   78u     sock                0,9       0t0   43234 protocol: UNIX
+firefox 2921 kamil   79u     unix 0x0000000000000000       0t0   43222 type=STREAM
+firefox 2921 kamil   80u     sock                0,9       0t0   43339 protocol: UNIX
+firefox 2921 kamil   81u     unix 0x0000000000000000       0t0   43224 type=STREAM
+firefox 2921 kamil   82u     sock                0,9       0t0   41689 protocol: UNIX
+firefox 2921 kamil   83u     unix 0x0000000000000000       0t0   43226 type=STREAM
+firefox 2921 kamil   84u     unix 0x0000000000000000       0t0   45256 type=STREAM
+firefox 2921 kamil   85r      REG                8,5     93226  142618 /usr/lib/firefox/browser/features/webcompat@mozilla.org.xpi
+firefox 2921 kamil   86u     unix 0x0000000000000000       0t0   43232 type=SEQPACKET
+firefox 2921 kamil   87u     unix 0x0000000000000000       0t0   43233 type=SEQPACKET
+firefox 2921 kamil   88u     unix 0x0000000000000000       0t0   41685 type=STREAM
+firefox 2921 kamil   89u      REG                8,9    327680  527205 /home/kamil/.mozilla/firefox/num5rdo8.default/cert9.db
+firefox 2921 kamil   90r     FIFO               0,12       0t0   44257 pipe
+firefox 2921 kamil   91u      REG                8,9    294912  527699 /home/kamil/.mozilla/firefox/num5rdo8.default/key4.db
+firefox 2921 kamil   93u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil   94u     unix 0x0000000000000000       0t0   44403 type=STREAM
+firefox 2921 kamil   95u     sock                0,9       0t0   44390 protocol: UNIX
+firefox 2921 kamil   96rw     REG                8,9   5242880  523486 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite
+firefox 2921 kamil   97u     sock                0,9       0t0   45253 protocol: UNIX
+firefox 2921 kamil   98u     unix 0x0000000000000000       0t0   44392 type=STREAM
+firefox 2921 kamil   99u     unix 0x0000000000000000       0t0   44405 type=STREAM
+firefox 2921 kamil  100u     unix 0x0000000000000000       0t0   44394 type=STREAM
+firefox 2921 kamil  101r      REG                8,9   1968449  525497 /home/kamil/.mozilla/firefox/num5rdo8.default/extensions/jid1-NIfFY2CA8fy1tg@jetpack.xpi
+firefox 2921 kamil  102u     unix 0x0000000000000000       0t0   44396 type=STREAM
+firefox 2921 kamil  103u     sock                0,9       0t0   41738 protocol: UNIX
+firefox 2921 kamil  104u     sock                0,9       0t0   44412 protocol: UNIX
+firefox 2921 kamil  105u     unix 0x0000000000000000       0t0   44401 type=SEQPACKET
+firefox 2921 kamil  106u     unix 0x0000000000000000       0t0   44402 type=SEQPACKET
+firefox 2921 kamil  107uw     REG                8,9    327680  788961 /home/kamil/.cache/mozilla/firefox/num5rdo8.default/OfflineCache/index.sqlite
+firefox 2921 kamil  108uw     REG                8,9    557056  523505 /home/kamil/.mozilla/firefox/num5rdo8.default/webappsstore.sqlite
+firefox 2921 kamil  110u      REG                8,9         0  525411 /home/kamil/.mozilla/firefox/num5rdo8.default/webappsstore.sqlite-wal
+firefox 2921 kamil  111rw     REG                8,9    557056  523505 /home/kamil/.mozilla/firefox/num5rdo8.default/webappsstore.sqlite
+firefox 2921 kamil  112u      REG                8,9         0  525411 /home/kamil/.mozilla/firefox/num5rdo8.default/webappsstore.sqlite-wal
+firefox 2921 kamil  113r      REG               0,24    657528      88 /dev/shm/org.chromium.RZadj8 (deleted)
+firefox 2921 kamil  114uw     REG                8,9   5242880  523483 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite
+firefox 2921 kamil  115u     sock                0,9       0t0   43360 protocol: UNIX
+firefox 2921 kamil  118u     sock                0,9       0t0   45529 protocol: UNIX
+firefox 2921 kamil  119uw     REG                8,9   5242880  523486 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite
+firefox 2921 kamil  120u     unix 0x0000000000000000       0t0   45262 type=STREAM
+firefox 2921 kamil  122r     FIFO               0,12       0t0   41697 pipe
+firefox 2921 kamil  123u     sock                0,9       0t0   49473 protocol: UNIX
+firefox 2921 kamil  124u     sock                0,9       0t0   43777 protocol: UNIX
+firefox 2921 kamil  125u     sock                0,9       0t0   49476 protocol: UNIX
+firefox 2921 kamil  126r     FIFO               0,12       0t0   50275 pipe
+firefox 2921 kamil  127u     unix 0x0000000000000000       0t0   50273 type=STREAM
+firefox 2921 kamil  128u     unix 0x0000000000000000       0t0   41722 type=STREAM
+firefox 2921 kamil  129u     unix 0x0000000000000000       0t0   50501 type=STREAM
+firefox 2921 kamil  130u     unix 0x0000000000000000       0t0   41724 type=STREAM
+firefox 2921 kamil  131u     sock                0,9       0t0   43357 protocol: UNIX
+firefox 2921 kamil  132u     unix 0x0000000000000000       0t0   41726 type=STREAM
+firefox 2921 kamil  133u     unix 0x0000000000000000       0t0   41734 type=STREAM
+firefox 2921 kamil  134u     unix 0x0000000000000000       0t0   43363 type=STREAM
+firefox 2921 kamil  135u     unix 0x0000000000000000       0t0   41732 type=SEQPACKET
+firefox 2921 kamil  136u     unix 0x0000000000000000       0t0   41733 type=SEQPACKET
+firefox 2921 kamil  137u      REG                8,9    557496  525415 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite-wal
+firefox 2921 kamil  138u      REG                8,9    327952  525416 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite-wal
+firefox 2921 kamil  139u     unix 0x0000000000000000       0t0   41736 type=STREAM
+firefox 2921 kamil  140u      REG                8,9    557496  525415 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite-wal
+firefox 2921 kamil  141rw     REG                8,9   5242880  523483 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite
+firefox 2921 kamil  142u      REG                8,9    327952  525416 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite-wal
+firefox 2921 kamil  143u     sock                0,9       0t0   48017 protocol: UNIX
+firefox 2921 kamil  144u     unix 0x0000000000000000       0t0   48000 type=STREAM
+firefox 2921 kamil  145r      REG                8,5     26454  142576 /usr/lib/firefox/browser/features/fxmonitor@mozilla.org.xpi
+firefox 2921 kamil  147r      REG                8,9     26292  525502 /home/kamil/.mozilla/firefox/num5rdo8.default/features/{36c487eb-fd5e-432a-9c15-6b105f7aab60}/doh-rollout@mozilla.org.xpi
+firefox 2921 kamil  148u     sock                0,9       0t0   50502 protocol: UNIX
+firefox 2921 kamil  149u     unix 0x0000000000000000       0t0   48002 type=STREAM
+firefox 2921 kamil  151rw     REG                8,9   5242880  523486 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite
+firefox 2921 kamil  152u      REG                8,9    557496  525415 /home/kamil/.mozilla/firefox/num5rdo8.default/places.sqlite-wal
+firefox 2921 kamil  153u     unix 0x0000000000000000       0t0   48004 type=STREAM
+firefox 2921 kamil  154r     FIFO               0,12       0t0   45562 pipe
+firefox 2921 kamil  155uw     REG                8,9    229376  523491 /home/kamil/.mozilla/firefox/num5rdo8.default/content-prefs.sqlite
+firefox 2921 kamil  156rw     REG                8,9   5242880  523483 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite
+firefox 2921 kamil  157w     FIFO               0,12       0t0   45562 pipe
+firefox 2921 kamil  158u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil  159u     unix 0x0000000000000000       0t0   45565 type=STREAM
+firefox 2921 kamil  160u  a_inode               0,13         0   10597 [eventfd]
+firefox 2921 kamil  161u      REG                8,9     12288  523803 /home/kamil/.cache/event-sound-cache.tdb.d902090d446e4e4bad7cdc3a58a36ce9.x86_64-pc-linux-gnu
+firefox 2921 kamil  163u      REG                8,9    327952  525416 /home/kamil/.mozilla/firefox/num5rdo8.default/favicons.sqlite-wal
+firefox 2921 kamil  164u     unix 0x0000000000000000       0t0   48012 type=STREAM
+firefox 2921 kamil  168u     unix 0x0000000000000000       0t0   48010 type=SEQPACKET
+firefox 2921 kamil  169u     unix 0x0000000000000000       0t0   48011 type=SEQPACKET
+firefox 2921 kamil  175u     unix 0x0000000000000000       0t0   48014 type=STREAM
+firefox 2921 kamil  181u     unix 0x0000000000000000       0t0   44710 type=SEQPACKET
+firefox 2921 kamil  184u     unix 0x0000000000000000       0t0   44968 type=SEQPACKET

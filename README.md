@@ -22,4 +22,12 @@ Semestr_3:
  Semestr_4:
   - AISD - Algorytmy i Struktury Danych (M); języki: C, C++
   - ASK - Architektury Systemów Komputerowych; języki: C, Assembler
+
+Semestr_5:
+  - Python - Kurs rozszerzony języka Python
+  - Rust - Kurs języka Rust
+  - Systemy Operacyjne
+  - PIZZO - Podstawy i Zastosowania Złożoności Obliczeniowej
+  - MIA - Metody Implementacji Algorytmów
+  - AI_Seminarium - Seminarium: Sztuczna Inteligencja
   
