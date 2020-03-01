@@ -1,0 +1,2 @@
+sudo apt-get install python3
+sudo pip install z3-solver
