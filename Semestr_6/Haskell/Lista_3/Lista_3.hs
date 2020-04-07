@@ -1,4 +1,6 @@
--- Kamil Michalak --
+-- Kamil Michalak      --
+-- Kurs języka Haskell --
+-- Lista 3, 27.03.2020 --
 
 {-# LANGUAGE ViewPatterns #-}
 {-# LANGUAGE FlexibleInstances #-}
@@ -138,8 +140,56 @@ wbsize :: WBTree a -> Int
 wbsize (WBNode _ _ n _) = n
 wbsize WBLeaf = 0
 
----------- Zadanie 6 -----------
+---------- Zadanie 7 -----------
 
 instance BT WBTree where
     toTree WBLeaf = Leaf
     toTree (WBNode l v _ r) = Node l v r
+
+wbNode' :: WBTree a -> a -> WBTree a -> WBTree a
+wbNode' l v r = WBNode l v (wbsize l + wbsize r + 1) r
+
+wbRotateLeft :: WBTree a -> a -> WBTree a -> WBTree a
+wbRotateLeft left val right@(WBNode rleft _ _ rright)
+    | wbsize rleft < wbsize rright = singleLeft left val right
+    | otherwise = doubleLeft left val right
+  where
+    singleLeft x a (WBNode y b _ z) = wbNode' (wbNode' x a y) b z
+    doubleLeft x a (WBNode (WBNode y1 b _ y2) c _ z) =
+        wbNode' (wbNode' x a y1) b (wbNode' y2 c z)
+
+wbRotateRight :: WBTree a -> a -> WBTree a -> WBTree a
+wbRotateRight left@(WBNode lleft _ _ lright) val right
+    | wbsize lright < wbsize lleft = singleRight left val right
+    | otherwise = doubleRight left val right
+  where
+    singleRight (WBNode x a _ y) b z = wbNode' x a (wbNode' y b z)
+    doubleRight (WBNode x a _ (WBNode y1 b _ y2)) c z =
+        wbNode' (wbNode' x a y1) b (wbNode' y2 c z)
+
+instance BST WBTree where
+    leaf = WBLeaf
+    node l a r
+        | lSize + rSize < 2 = wbNode' l a r
+        | rSize > ratio * lSize = wbRotateLeft l a r
+        | lSize > ratio * rSize = wbRotateRight l a r
+        | otherwise = wbNode' l a r
+      where
+        ratio = 5
+        lSize = wbsize l
+        rSize = wbsize r
+
+---------- Zadanie 8 -----------
+
+data HBTree a = HBNode (HBTree a) a Int (HBTree a) | HBLeaf
+
+instance BT HBTree where
+    toTree HBLeaf = Leaf
+    toTree (HBNode l v _ r) = Node l v r
+
+hbheight :: HBTree a -> Int 
+hbheight HBLeaf = 0
+hbheight (HBNode _ _ h _) = h
+
+-- instance BST HBTree where
+--     leaf = HBLeaf
