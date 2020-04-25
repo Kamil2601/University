@@ -24,7 +24,7 @@ instance Num a => NFData a where
     rnf !n = n `seq` ()
 
 instance NFData a => NFData [a] where
-    rnf ![] = ()
+    rnf [] = ()
     rnf (!x:(!xs)) = rnf x `seq` rnf xs
 
 instance (NFData a, NFData b) => NFData (a, b) where
@@ -51,8 +51,7 @@ ipermM (x:xs) = ipermM xs >>= insert x
     insert :: MonadPlus m => a -> [a] -> m [a]
     insert x [] = return [x]
     insert x ys'@(y:ys) = return (x:ys') `mplus` do
-        zs <- (y :) <$> insert x ys
-        return zs
+        (y :) <$> insert x ys
 
 spermM :: MonadPlus m => [a] -> m [a]
 spermM [] = return mzero
@@ -239,7 +238,7 @@ instance ListView RAList where
                 (One (LLeaf z):zs) = cutTree t
                 cutTree :: LTree a -> [Digit a]
                 cutTree x@(LLeaf x') = [One x]
-                cutTree (left :/\: right) = (cutTree left) ++ [One right] 
+                cutTree (left :/\: right) = (cutTree left) ++ [One right]
                 consZeroIf [] = []
                 consZeroIf zs = Zero:zs
 
@@ -269,10 +268,10 @@ toRAList xs = RAList (aux xs (length xs) 1) where
 
 instance Applicative RAList where
     pure x = RAList [One (LLeaf x)]
-    xs <*> ys = toRAList $ (toList xs) <*> (toList ys)    
-    
+    xs <*> ys = toRAList $ (toList xs) <*> (toList ys)
+
 instance Monad RAList where
-    xs >>= f = let ys = concatMap toList $ map f (toList xs) in 
+    xs >>= f = let ys = concatMap toList $ map f (toList xs) in
         toRAList ys
 
 instance Alternative RAList where
