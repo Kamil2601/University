@@ -1,17 +1,23 @@
 CC = g++
 CFLAGS = -std=c++11 -Wall -Wextra
 
-all: main.o #send.o receive.o
-	$(CC) $(CFLAGS) main.o -o router
+all: main.o udp.o table.o ip.o
+	$(CC) $(CFLAGS) main.o udp.o table.o ip.o -o router
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp -c -o main.o
 
-# send.o: includes.h send.h send.cpp
-# 	$(CC) $(CFLAGS) send.cpp -c -o send.o
+table.o: table.h table.cpp
+	$(CC) $(CFLAGS) table.cpp -c -o table.o
 
-# receive.o: includes.h receive.h receive.cpp
-# 	$(CC) $(CFLAGS) receive.cpp -c -o receive.o
+udp.o: udp.h table.h udp.cpp
+	$(CC) $(CFLAGS) udp.cpp -c -o udp.o
+
+ip.o: udp.h	ip.h ip.cpp
+	$(CC) $(CFLAGS) ip.cpp -c -o ip.o
 
 clean:
-	rm -f router *.o
+	rm -f *.o
+
+distclean:
+	rm -f *.o router
