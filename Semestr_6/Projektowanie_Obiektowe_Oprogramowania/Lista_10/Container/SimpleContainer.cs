@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 
 namespace Container
 {
@@ -64,12 +66,45 @@ namespace Container
         {
             Type type = typeof(T);
             registered[type] = new TypeInfo(true, type, instance);
-            Console.WriteLine(registered.Count);
         }
 
-        public T Resolve<T>()
+        private Object CreateObject(Type type, HashSet<Type> dependencies)
         {
-            Type type = typeof(T);
+
+            if (dependencies.Contains(type))
+            {
+                throw new Exception(String.Format(
+                    "Cycle in dependency tree! Repeated type: {0}",
+                    type));
+            }
+
+            dependencies.Add(type);
+
+            ConstructorInfo[] constructors = type.GetConstructors();
+
+            Console.WriteLine(constructors.Count());
+
+            ConstructorInfo constructor = constructors.Aggregate(
+                (cons1, cons2) => 
+                    cons1.GetParameters().Length >= cons2.GetParameters().Length ? cons1 : cons2
+                );
+
+
+            ParameterInfo[] parameters = constructor.GetParameters();
+
+
+            var arguments = parameters.Select((param) =>
+                Resolve(param.ParameterType, dependencies)
+            ).ToArray();
+
+            dependencies.Remove(type);
+
+            return constructor.Invoke(arguments);
+        }
+
+        private Object Resolve(Type type, HashSet<Type> dependencies)
+        {
+            Console.WriteLine(String.Format("Resolve {0}",type));
             while (registered.ContainsKey(type) && registered[type].implementBy != type)
             {
                 type = registered[type].implementBy;
@@ -80,33 +115,32 @@ namespace Container
 
             if (!registered.ContainsKey(type))
             {
-                var constructor = type.GetConstructor(Type.EmptyTypes);
-                if (constructor == null)
-                    throw new Exception(
-                        String.Format("Argumentless constructor for type {0} doesn't exist!",type)
-                    );
-                return (T)constructor.Invoke(Type.EmptyTypes);
+                return CreateObject(type, dependencies);
             }
             else
             {
                 var info = registered[type];
                 if (info.isSingleton)
                 {
+                    Console.WriteLine("Singleton");
                     if (info.instance == null)
                     {
-                        var constructor = type.GetConstructor(Type.EmptyTypes);
-                        info.instance = constructor.Invoke(Type.EmptyTypes);
+                        info.instance = CreateObject(type, dependencies);
                     }
 
-                    return (T)info.instance;
+                    return info.instance;
                 }
                 else
                 {
-                    var constructor = type.GetConstructor(Type.EmptyTypes);
-                    return (T)constructor.Invoke(Type.EmptyTypes);
+                    return CreateObject(type, dependencies);
                 }
             }
-           
+        }
+
+        public T Resolve<T>()
+        {
+            Type type = typeof(T);
+            return (T)Resolve(type, new HashSet<Type>());
         }
     }
 }
