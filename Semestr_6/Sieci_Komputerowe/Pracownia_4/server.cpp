@@ -33,7 +33,7 @@ Server::Server(int port, char *dir)
 
 Server::~Server()
 {
-    delete[] reply_buf;
+    delete [] reply_buf;
 }
 
 void Server::Connection(int connected_sockfd)

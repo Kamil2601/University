@@ -1,3 +1,5 @@
+
+// Kamil Michalak 299089
 #include <string>
 #include <strings.h>
 #include <string.h>
