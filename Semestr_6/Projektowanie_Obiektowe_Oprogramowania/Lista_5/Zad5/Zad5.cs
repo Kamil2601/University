@@ -2,6 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+public class PersonRegistry
+{
+    /// Pierwszy stopień swobody - różne wczytywanie
+    public List<Person> GetPersons()
+    {
+        // ...
+    }
+
+    /// Drugi stopień swobody - różne użycie
+    public void NotifyPersons()
+    {
+        foreach (Person person in _persons)
+            Console.WriteLine(person);
+    }
+}
+
 public class Person { }
 abstract class PersonRegistry1
 {
