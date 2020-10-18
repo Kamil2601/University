@@ -6,18 +6,17 @@ namespace Simple_Tic_Tac_Toe
 {
     class Game
     {
-        const int size = 3;
-        int player = 1;
+        public const int size = 3;
+        public int player = 1;
         public int[,] board = new int[size, size];
-        Random rnd = new Random();
 
         public Game()
-        {}
+        { }
 
         public Game(int[,] board, int player)
         {
             this.player = player;
-            Array.Copy(board, this.board, size*size);
+            Array.Copy(board, this.board, size * size);
         }
 
         public void Reset()
@@ -26,13 +25,49 @@ namespace Simple_Tic_Tac_Toe
             player = 1;
         }
 
-        public void Reset(int[,] board, int player)
+        public void Set(int[,] board, int player)
         {
             this.player = player;
-            Array.Copy(board, this.board, size*size);
+            Array.Copy(board, this.board, size * size);
         }
 
-        public void RandomGame()
+        public void Move(int i, int j)
+        {
+            board[i, j] = player;
+            player = 3 - player;
+        }
+
+        public void PrintBoard()
+        {
+            Console.WriteLine();
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    Console.Write($"{board[i, j] }");
+                }
+                Console.Write("\n");
+            }
+        }
+
+
+    }
+
+    class RandomGame : Game
+    {
+        public RandomGame()
+        { }
+
+        public RandomGame(int[,] board, int player)
+        {
+            this.player = player;
+            Array.Copy(board, this.board, size * size);
+        }
+
+        Random rnd = new Random();
+
+        public void Play()
         {
             while (CheckResult() == -1)
             {
@@ -40,33 +75,13 @@ namespace Simple_Tic_Tac_Toe
             }
         }
 
-        public void PrintBoard()
-        {
-            Console.WriteLine();
-
-            for (int i=0; i<size; i++)
-            {
-                for (int j=0; j<size; j++)
-                {
-                    Console.Write($"{board[i,j] }");
-                }
-                Console.Write("\n");
-            }
-        }
-
-        public void Move(int i, int j)
-        {
-            board[i,j] = player;
-            player = 3-player;
-        }
-
         int CheckRow(int i)
         {
             HashSet<int> values = new HashSet<int>();
 
-            for (int j=0; j<size; j++)
+            for (int j = 0; j < size; j++)
             {
-                values.Add(board[i,j]);
+                values.Add(board[i, j]);
             }
 
             if (values.Count == 1)
@@ -79,9 +94,9 @@ namespace Simple_Tic_Tac_Toe
         {
             HashSet<int> values = new HashSet<int>();
 
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                values.Add(board[i,j]);
+                values.Add(board[i, j]);
             }
 
             if (values.Count == 1)
@@ -92,7 +107,7 @@ namespace Simple_Tic_Tac_Toe
 
         int CheckRows()
         {
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
                 var res = CheckRow(i);
 
@@ -105,7 +120,7 @@ namespace Simple_Tic_Tac_Toe
 
         int CheckCols()
         {
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
                 var res = CheckCol(i);
 
@@ -120,9 +135,9 @@ namespace Simple_Tic_Tac_Toe
         {
             HashSet<int> values = new HashSet<int>();
 
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                values.Add(board[i,i]);
+                values.Add(board[i, i]);
             }
 
             if (values.Count == 1)
@@ -135,9 +150,9 @@ namespace Simple_Tic_Tac_Toe
         {
             HashSet<int> values = new HashSet<int>();
 
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                values.Add(board[i,size-1]);
+                values.Add(board[i, size - 1]);
             }
 
             if (values.Count == 1)
@@ -160,11 +175,11 @@ namespace Simple_Tic_Tac_Toe
 
         bool IsFull()
         {
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j=0; j<size; j++)
+                for (int j = 0; j < size; j++)
                 {
-                    if (board[i,j] == 0)
+                    if (board[i, j] == 0)
                         return false;
                 }
             }
@@ -172,7 +187,7 @@ namespace Simple_Tic_Tac_Toe
             return true;
         }
 
-        int CheckResult()
+        public int CheckResult()
         {
             var result = -1;
 
@@ -199,32 +214,22 @@ namespace Simple_Tic_Tac_Toe
             return 0;
         }
 
-        List<(int, int)> LegalMoves()
+        public List<(int, int)> LegalMoves()
         {
             var moves = new List<(int, int)>();
 
-            for (int i=0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int j=0; j<size; j++)
+                for (int j = 0; j < size; j++)
                 {
-                    if (board[i,j] == 0)
+                    if (board[i, j] == 0)
                     {
-                        moves.Add((i,j));
+                        moves.Add((i, j));
                     }
                 }
             }
 
             return moves;
-        }
-
-        public (int, int) GetRandomMove()
-        {
-            var moves = LegalMoves();
-
-            if (!moves.Any())
-                return (-1,-1);
-
-            return moves[rnd.Next(moves.Count)];
         }
 
         public bool RandomMove()
@@ -234,74 +239,134 @@ namespace Simple_Tic_Tac_Toe
             if (!moves.Any())
                 return false;
 
-            var (i,j) = moves[rnd.Next(moves.Count)];
-            Move(i,j);
+            var (i, j) = moves[rnd.Next(moves.Count)];
+            Move(i, j);
 
             return true;
         }
     }
 
+    class MoveStats
+    {
+        public (int, int) move;
+        public int games = 0;
+        public int points = 0;
+
+        public MoveStats((int, int) move)
+        {
+            this.move = move;
+        }
+    }
 
     class FlatMC
     {
-        // public (int, int) FindBestMove(int[,] board, int player)
-        // {
-        //     Game game = new Game(board, player);
-        // }
+        RandomGame game;
+        int[,] board = new int[3, 3];
+        int player;
+        List<MoveStats> legalMoves;
+        Random random = new Random();
+
+
+        public FlatMC(Game game)
+        {
+            player = game.player;
+            Array.Copy(game.board, this.board, 9);
+            this.game = new RandomGame(game.board, game.player);
+            legalMoves = this.game.LegalMoves().Select(move => new MoveStats(move)).ToList();
+        }
+
+        public void Simulate()
+        {
+            game.Set(board, player);
+
+            var moveNumber = random.Next(legalMoves.Count);
+            legalMoves[moveNumber].games++;
+
+            var (y, x) = legalMoves[moveNumber].move;
+
+            game.Move(y, x);
+
+            game.Play();
+
+            var result = game.CheckResult();
+
+            if (result == 0)
+                legalMoves[moveNumber].points += 1;
+            else if (result == player)
+                legalMoves[moveNumber].points += 2;
+        }
+
+        public (int, int) BestMove()
+        {
+            return legalMoves.Where(move => move.games > 0)
+                .OrderByDescending(move => (double)move.points / (double)move.games)
+                .First().move;
+        }
+
+        public (int, int) FindBestMove(int msForMove)
+        {
+            DateTime start = DateTime.Now;
+
+            game.Set(board, player);
+
+            while ((DateTime.Now - start).Milliseconds < msForMove)
+            {
+                Simulate();
+            }
+
+            return BestMove();
+        }
+
+        public void PrintStats()
+        {
+            foreach (var moveStats in legalMoves)
+            {
+                var r = (double)moveStats.points / (double)moveStats.games;
+                Console.WriteLine($"{moveStats.move}, G = {moveStats.games}, P = {moveStats.points}, R = {r}");
+            }
+        }
     }
 
     class Player
     {
-        
+
         static void Main(string[] args)
         {
-            int [,] board = new int[3,3] {{1,1,0},{2,2,0},{0,0,0}};
+            Game game = new Game();
 
+            FlatMC flatMC;
 
-            for (int i=0; i<10; i++)
+            string[] inputs;
+
+            while (true)
             {
-                Game game = new Game(board, 1);
-                game.RandomGame();
-                game.PrintBoard();
+                inputs = Console.ReadLine().Split(' ');
+                int opponentRow = int.Parse(inputs[0]);
+                int opponentCol = int.Parse(inputs[1]);
+                int validActionCount = int.Parse(Console.ReadLine());
+                for (int i = 0; i < validActionCount; i++)
+                {
+                    inputs = Console.ReadLine().Split(' ');
+                    int r = int.Parse(inputs[0]);
+                    int c = int.Parse(inputs[1]);
+                }
+
+                if (opponentRow != -1)
+                    game.Move(opponentRow, opponentCol);
+
+                flatMC = new FlatMC(game);
+
+                var (row, col) = flatMC.FindBestMove(98);
+
+                game.Move(row, col);
+
+
+
+                // Write an action using Console.WriteLine()
+                // To debug: Console.Error.WriteLine("Debug messages...");
+
+                Console.WriteLine($"{row} {col}");
             }
-
-            // for (int i=0; i<10; i++)
-            // {
-            //     player = 1;
-
-            //     while (RandomMove(player))
-            //     {
-            //         player = 3 - player;
-            //     }
-
-            //     PrintBoard();
-
-            //     board = new int[size, size];
-            // }
-
-            // string[] inputs;
-
-            // // game loop
-            // while (true)
-            // {
-            //     inputs = Console.ReadLine().Split(' ');
-            //     int opponentRow = int.Parse(inputs[0]);
-            //     int opponentCol = int.Parse(inputs[1]);
-            //     int validActionCount = int.Parse(Console.ReadLine());
-
-
-            //     for (int i = 0; i < validActionCount; i++)
-            //     {
-            //         inputs = Console.ReadLine().Split(' ');
-            //         int row = int.Parse(inputs[0]);
-            //         int col = int.Parse(inputs[1]);
-            //     }
-
-            //     // Write an action using Console.WriteLine()
-            //     // To debug: Console.Error.WriteLine("Debug messages...");
-
-            //     Console.WriteLine("0 0");
-            // }
         }
     }
 }
