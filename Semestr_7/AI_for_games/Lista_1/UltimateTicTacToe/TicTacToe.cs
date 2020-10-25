@@ -10,10 +10,25 @@ class TicTacToe
     int moves = 0;
     public int[,] board = new int[size, size];
 
+    public void Set(TicTacToe src)
+    {
+        // Array.Copy(board, this.board, size * size);
+
+        this.moves = src.moves;
+        this.winner = src.winner;
+
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                this.board[i,j]=src.board[i,j];
+            }
+        }
+    }
+
     public void Reset()
     {
         board = new int[size, size];
-        // player = 1;
     }
 
     public int Move(Action action)
@@ -31,11 +46,21 @@ class TicTacToe
         return winner;
     }
 
-    public bool isFull()
+    public void UndoMove(int row, int col)
+    {
+        board[row, col] = 0;
+        winner = 0;
+    }
+
+    public bool IsFull()
     {
         return moves == 9;
     }
 
+    public bool IsFinished()
+    {
+        return winner > 0 || IsFull();
+    }
 
     private int CheckWinner()
     {
@@ -64,10 +89,13 @@ class TicTacToe
             return board[2, 0];
         }
 
+        if (IsFull())
+            return 3;
+
         return 0;
     }
 
-    public List<(int, int)> LegalMoves()
+    public List<(int, int)> EmptyFields()
     {
         var moves = new List<(int, int)>();
 
@@ -85,20 +113,11 @@ class TicTacToe
         return moves;
     }
 
-    public Action RandomMove(int player)
+    public List<(int, int)> LegalMoves()
     {
         if (winner != 0)
-            return null;
+            return new List<(int, int)>();
 
-        var legalMoves = LegalMoves();
-
-        if (!legalMoves.Any())
-            return null;
-
-        var (i, j) = legalMoves[random.Next(legalMoves.Count)];
-        
-        Action action = new Action(player, i, j);
-
-        return action;
+        return EmptyFields();
     }
 }

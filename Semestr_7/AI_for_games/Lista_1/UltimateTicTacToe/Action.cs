@@ -1,4 +1,4 @@
-public class Action
+class Action
 {
     public int row;
     public int col;
