@@ -22,7 +22,6 @@ class RandomGame: Game
         while (result == 0)
         {
             result = RandomMove();
-            // PrintBoard();
         }
 
         return result;

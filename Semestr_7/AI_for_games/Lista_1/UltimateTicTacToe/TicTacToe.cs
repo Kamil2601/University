@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 class TicTacToe
 {
@@ -12,8 +11,6 @@ class TicTacToe
 
     public void Set(TicTacToe src)
     {
-        // Array.Copy(board, this.board, size * size);
-
         this.moves = src.moves;
         this.winner = src.winner;
 

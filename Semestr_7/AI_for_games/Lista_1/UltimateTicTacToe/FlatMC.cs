@@ -30,17 +30,29 @@ class FlatMC
     {
         DateTime start = DateTime.Now;
 
-        int i=0;
-
         while ((DateTime.Now - start) < time)
         {
-            i++;
             Simulate();
         }
 
-
         return BestMove();
     }
+
+    public int SimulationCount(TimeSpan time)
+    {
+        DateTime start = DateTime.Now;
+
+        int count = 0;
+
+        while ((DateTime.Now - start) < time)
+        {
+            Simulate();
+            count++;
+        }
+
+        return count;
+    }
+
     public void Simulate()
     {
         game.Set(copy);
@@ -52,7 +64,7 @@ class FlatMC
 
         var result = game.Play();
 
-        if (result == 3)
+        if (result == 0)
             legalMoves[moveNumber].points += 1;
         else if (result == player)
             legalMoves[moveNumber].points += 2;

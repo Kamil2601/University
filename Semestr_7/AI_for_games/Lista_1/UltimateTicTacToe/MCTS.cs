@@ -5,12 +5,14 @@ class MCTS
     readonly double c;
     Random random = new Random();
     RandomGame game;
-    Game copy;
-    Node root;
+    Game currentState;
+    public Node root;
 
     public MCTS(Game game)
     {
-        this.copy = game;
+        root = new Node(game);
+        this.currentState = game;
+        this.game = new RandomGame();
         c = Math.Sqrt(2);
     }
 
@@ -23,23 +25,41 @@ class MCTS
             Iteration();
         }
 
-        return BestMove();
+        var (row, col) = BestMove();
+
+        // Move(row, col);
+
+        return (row, col);
+    }
+
+    public void Move(int row, int col)
+    {
+        root = root.NodeWithMove(row, col);
+        currentState.Move(row, col);
+
+        if (root == null)
+            root = new Node(currentState);
     }
 
     public (int, int) BestMove()
     {
-        return root.BestChild(c).lastMove;
+        return root.ChildWithBestRate().lastMove;
     }
 
     public void Iteration()
     {
-        game.Set(copy);
+        game.Set(currentState);
         TreePolicy(root);
     }
 
-    public GameResult TreePolicy(Node v)
+    public int TreePolicy(Node v)
     {
-        if (v.gamesTotal > 0)
+        if (game.winner != 0)
+        {
+            Update(v, game.winner);
+            return game.winner;
+        }
+        if (v.gamesTotal > 0 || v.lastMove == (-1,-1))
         {
             Node next = NextNode(v);
             var result = TreePolicy(next);
@@ -54,21 +74,42 @@ class MCTS
         }
     }
 
-    private GameResult Simulation(Node v)
+    private int Simulation(Node v)
     {
-        throw new NotImplementedException();
+        var res = game.Play();
+        return res;
     }
 
     Node NextNode(Node v)
     {
-        if (v.IsFullyExpanded())
-            return v.Expand();
+        if (!v.IsFullyExpanded())
+            return Expand(v);
         else
-            return v.BestChild(c);
+            return BestChild(v);
     }
 
-    void Update(Node v, GameResult result)
+    private Node BestChild(Node v)
     {
-        throw new NotImplementedException();
+        var res = v.BestChild(c);
+        var (row, col) = res.lastMove;
+        game.Move(row, col);
+        return res;
+    }
+
+    private Node Expand(Node v)
+    {
+        var (row, col) = v.NextUntriedMove();
+        game.Move(row, col);
+        return v.AddChild(game);
+    }
+
+    void Update(Node v, int result)
+    {
+        v.gamesTotal++;
+
+        if (result == v.lastPlayer)
+            v.points+=1;
+        else if (result == 3)
+            v.points+=0.5;
     }
 }

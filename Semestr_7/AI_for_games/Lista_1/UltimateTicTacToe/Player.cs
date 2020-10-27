@@ -11,14 +11,15 @@ class Player
     {
         Game game = new Game();
 
-        FlatMC flatMC;
+        MCTS mcts = new MCTS(game);
 
-        flatMC = new FlatMC(game);
+        TimeSpan time = new TimeSpan(0,0,0,0,95);
+        TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,997);
 
-        TimeSpan time = new TimeSpan(0,0,0,0,98);
-        
+        bool firstMove = true;
+        int row, col;
+
         string[] inputs;
-
 
         // game loop
         while (true)
@@ -36,14 +37,20 @@ class Player
 
             if (opponentRow != -1)
             {
-                game.Move(opponentRow, opponentCol);
+                mcts.Move(opponentRow, opponentCol);
             }
 
-            flatMC = new FlatMC(game);
+            if (firstMove)
+            {
+                (row, col) = mcts.Search(firstMoveTime);
+                firstMove = false;
+            }
+            else
+            {
+                (row, col) = mcts.Search(time);
+            }
 
-             var (row, col) = flatMC.FindBestMove(time);
-
-             game.Move(row, col);
+            mcts.Move(row, col);
 
             // Write an action using Console.WriteLine()
             // To debug: Console.Error.WriteLine("Debug messages...");

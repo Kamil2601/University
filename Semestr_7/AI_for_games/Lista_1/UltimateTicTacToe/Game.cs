@@ -28,6 +28,7 @@ class Game
         this.moves = new List<(int, int)>();
         this.moves.AddRange(game.moves);
         this.player = game.player;
+        this.winner = 0;
 
         for (int i=0; i<size; i++)
         {
