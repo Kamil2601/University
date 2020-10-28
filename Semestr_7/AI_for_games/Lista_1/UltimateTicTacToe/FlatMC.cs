@@ -16,7 +16,7 @@ class FlatMC
         legalMoves = game.LegalMoves().Select(move =>
             new MoveStats(move)).ToList();
         copy = game;
-        this.player = game.player;
+        this.player = game.Player;
     }
 
     public (int, int) BestMove()

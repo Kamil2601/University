@@ -2,18 +2,20 @@ using System;
 
 class MCTS
 {
-    readonly double c;
-    Random random = new Random();
-    RandomGame game;
-    Game currentState;
-    public Node root;
+    protected readonly double c;
+    protected Random random = new Random();
+    protected RandomGame game;
+    protected Game currentState;
+    protected Node root;
+    protected double coefficient;
 
-    public MCTS(Game game)
+    public MCTS(Game game, double c = 1.41, double coefficient = 1)
     {
         root = new Node(game);
         this.currentState = game;
+        this.c = c;
         this.game = new RandomGame();
-        c = Math.Sqrt(2);
+        this.coefficient = coefficient;
     }
 
     public (int, int) Search(TimeSpan time)
@@ -25,11 +27,7 @@ class MCTS
             Iteration();
         }
 
-        var (row, col) = BestMove();
-
-        // Move(row, col);
-
-        return (row, col);
+        return BestMove();
     }
 
     public void Move(int row, int col)
@@ -43,10 +41,10 @@ class MCTS
 
     public (int, int) BestMove()
     {
-        return root.ChildWithBestRate().lastMove;
+        return root.ChildWithBestRate().lastMove.Move;
     }
 
-    public void Iteration()
+    public virtual void Iteration()
     {
         game.Set(currentState);
         TreePolicy(root);
@@ -54,12 +52,12 @@ class MCTS
 
     public int TreePolicy(Node v)
     {
-        if (game.winner != 0)
+        if (game.Winner != 0)
         {
-            Update(v, game.winner);
-            return game.winner;
+            Update(v, game.Winner);
+            return game.Winner;
         }
-        if (v.gamesTotal > 0 || v.lastMove == (-1,-1))
+        if (v.gamesTotal > 0 || v.lastMove.Move == (-1,-1))
         {
             Node next = NextNode(v);
             var result = TreePolicy(next);
@@ -74,13 +72,13 @@ class MCTS
         }
     }
 
-    private int Simulation(Node v)
+    protected virtual int Simulation(Node v)
     {
         var res = game.Play();
         return res;
     }
 
-    Node NextNode(Node v)
+    protected Node NextNode(Node v)
     {
         if (!v.IsFullyExpanded())
             return Expand(v);
@@ -88,28 +86,33 @@ class MCTS
             return BestChild(v);
     }
 
-    private Node BestChild(Node v)
+    protected private Node BestChild(Node v)
     {
         var res = v.BestChild(c);
-        var (row, col) = res.lastMove;
+        var (row, col) = res.lastMove.Move;
         game.Move(row, col);
         return res;
     }
 
-    private Node Expand(Node v)
+    protected private Node Expand(Node v)
     {
         var (row, col) = v.NextUntriedMove();
         game.Move(row, col);
         return v.AddChild(game);
     }
 
-    void Update(Node v, int result)
+    protected void Update(Node v, int result)
     {
         v.gamesTotal++;
 
-        if (result == v.lastPlayer)
+        if (result == v.lastMove.Player)
             v.points+=1;
         else if (result == 3)
             v.points+=0.5;
+    }
+
+    public void DecayStats()
+    {
+        root.Decay(coefficient);
     }
 }

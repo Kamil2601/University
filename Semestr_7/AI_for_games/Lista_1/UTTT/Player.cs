@@ -12,13 +12,20 @@ class Player
         CodinGame();
         // Game game = new Game();
 
-        // MCTSWithMAST mcts = new MCTSWithMAST(game);
+        // MCTSParams mCTSParams = new MCTSParams() {
+        //     TreeDecayCoefficient = 0.5,
+        //     TreePolicyCoefficient = 1,
+        //     UseMAST = true,
+        //     MASTDecayCoefficient = 0.5,
+        //     MASTRandomMoveChance = 0.5
+        // };
+
+        // MCTS mcts = new MCTS(game, mCTSParams);
 
         // TimeSpan time = new TimeSpan(0,0,0,0,95);
+        // TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,995);
 
-        // var move = mcts.Search(time);
-
-        // mcts.PrintActionStats();
+        // mcts.Search(time);
     }
 
 
@@ -26,7 +33,15 @@ class Player
     {
         Game game = new Game();
 
-        MCTSWithMAST mcts = new MCTSWithMAST(game);
+        MCTSParams mCTSParams = new MCTSParams() {
+            TreeDecayCoefficient = 1,
+            TreePolicyCoefficient = 1,
+            UseMAST = false,
+            MASTDecayCoefficient = 0.4,
+            MASTRandomMoveChance = 0.4
+        };
+
+        MCTS mcts = new MCTS(game, mCTSParams);
 
         TimeSpan time = new TimeSpan(0,0,0,0,95);
         TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,995);
