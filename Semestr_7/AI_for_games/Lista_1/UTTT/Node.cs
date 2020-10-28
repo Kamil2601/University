@@ -7,6 +7,8 @@ class Node
     public Action lastMove;
     public double gamesTotal;
     public double points;
+    public double AMAFGamesTotal;
+    public double AMAFPoints;
     protected List<Node> children;
     protected List<(int, int)> legalMoves;
 

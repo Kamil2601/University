@@ -34,17 +34,17 @@ class Player
         Game game = new Game();
 
         MCTSParams mCTSParams = new MCTSParams() {
-            TreeDecayCoefficient = 1,
-            TreePolicyCoefficient = 1,
+            TreeDecayCoefficient = 0.2,
+            TreePolicyCoefficient = 0.7,
             UseMAST = false,
-            MASTDecayCoefficient = 0.4,
+            MASTDecayCoefficient = 0.1,
             MASTRandomMoveChance = 0.4
         };
 
         MCTS mcts = new MCTS(game, mCTSParams);
 
-        TimeSpan time = new TimeSpan(0,0,0,0,95);
-        TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,995);
+        TimeSpan time = new TimeSpan(0,0,0,0,97);
+        TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,997);
 
         bool firstMove = true;
         int row, col;
