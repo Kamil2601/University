@@ -39,6 +39,20 @@ class MCTS
         return BestMove();
     }
 
+    public int IterationCount(TimeSpan time)
+    {
+        DateTime start = DateTime.Now;
+        int res = 0;
+
+        while ((DateTime.Now - start) < time)
+        {
+            res++;
+            Iteration();
+        }
+
+        return res;
+    }
+
     public void Move(int row, int col)
     {
         root = root.NodeWithMove(row, col);
@@ -147,7 +161,8 @@ class MCTS
 
     public void DecayStats()
     {
-        root.Decay(mCTSParams.TreeDecayCoefficient);
+        if (mCTSParams.TreeDecayCoefficient < 1)
+            root.Decay(mCTSParams.TreeDecayCoefficient);
     }
 
 
@@ -230,8 +245,10 @@ class MCTS
     {
         var actions = game.LegalMoves().Select(move => new Action(game.Player, move));
 
-        return actionStats.Where(stat => actions.Contains(stat.Key))
-            .Select(pair => pair.Key).ToList();
+        return actions.Where(action => actionStats.ContainsKey(action)).ToList();
+
+        // return actionStats.Where(stat => actions.Contains(stat.Key))
+        //     .Select(pair => pair.Key).ToList();
     }
 
     // ----------------------------------------------------------------

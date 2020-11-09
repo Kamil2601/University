@@ -20,12 +20,18 @@ class Player
         //     MASTRandomMoveChance = 0.5
         // };
 
-        // MCTS mcts = new MCTS(game, mCTSParams);
-
         // TimeSpan time = new TimeSpan(0,0,0,0,95);
-        // TimeSpan firstMoveTime = new TimeSpan(0,0,0,0,995);
+        // TimeSpan firstMoveTime = new TimeSpan(0,0,1);
 
-        // mcts.Search(time);
+        // int sum = 0;
+
+        // for (int i=0; i<10; i++)
+        // {
+        //     MCTS mcts = new MCTS(game, mCTSParams);
+        //     sum += mcts.IterationCount(firstMoveTime);
+        // }
+
+        // Console.WriteLine((double)sum/10);
     }
 
 
@@ -36,7 +42,7 @@ class Player
         MCTSParams mCTSParams = new MCTSParams() {
             TreeDecayCoefficient = 0.2,
             TreePolicyCoefficient = 0.7,
-            UseMAST = false,
+            UseMAST = true,
             MASTDecayCoefficient = 0.1,
             MASTRandomMoveChance = 0.4
         };
