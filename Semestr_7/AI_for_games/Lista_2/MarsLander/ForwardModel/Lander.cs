@@ -1,5 +1,6 @@
 using System;
 using Geometry;
+using Models;
 
 namespace ForwardModel
 {
@@ -9,8 +10,8 @@ namespace ForwardModel
         public Point Position { get; set; }
         public double VerticalSpeed { get; set; }
         public double HorizontalSpeed { get; set; }
-        public int Rotation { get; set; }
-        public int Thrust { get; set; }
+        public int Angle { get; set; }
+        public int Power { get; set; }
         public int Fuel { get; set; }
 
         public Point Move(int seconds = 1)
@@ -24,17 +25,29 @@ namespace ForwardModel
             return Position;
         }
 
-        public void PerformAction(Action action)
+        public void PerformAction(LanderAction action)
         {
-            Rotation = action.Rotation;
-            Thrust = action.Thrust;
-            Fuel -= action.Thrust;
+            Angle += action.Rotation;
 
-            var radians = Math.PI * action.Rotation / 180.0;
+            if (Angle > 90)
+                Angle = 90;
+            else if (Angle < -90)
+                Angle = -90;
 
-            var horizontalAcc = action.Thrust * Math.Sin(radians);
+            Power += action.Thrust;
 
-            var verticalAcc = action.Thrust * Math.Cos(radians);
+            if (Power < 0)
+                Power = 0;
+            else if (Power > 4)
+                Power = 4;
+
+            Fuel -= Power;
+
+            var radians = Math.PI * Angle / 180.0;
+
+            var horizontalAcc = -Power * Math.Sin(radians);
+
+            var verticalAcc = Power * Math.Cos(radians);
 
             VerticalSpeed += verticalAcc;
             
@@ -44,7 +57,7 @@ namespace ForwardModel
         public void Print()
         {
             Console.WriteLine($"({Position.X}, {Position.Y}), HS: {HorizontalSpeed}, " +
-                $"VS: {VerticalSpeed} A: {Rotation}, F: {Fuel}");
+                $"VS: {VerticalSpeed}, P: {Power}, A: {Angle}, F: {Fuel}");
         }
 
         public void Copy(Lander source)
@@ -52,8 +65,8 @@ namespace ForwardModel
             Position = new Point(source.Position);
             VerticalSpeed = source.VerticalSpeed;
             HorizontalSpeed = source.HorizontalSpeed;
-            Thrust = source.Thrust;
-            Rotation = source.Rotation;
+            Power = source.Power;
+            Angle = source.Angle;
             Fuel = source.Fuel;
         }
     }

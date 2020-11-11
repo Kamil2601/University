@@ -4,64 +4,73 @@ namespace Geometry
 {
     public static class Utilities
     {
-
-        // Source: https://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/
-        // The main function that returns true if line segment 'p1q1' 
-        // and 'p2q2' intersect. 
-        public static bool DoIntersect(Point p1, Point q1, Point p2, Point q2)
+        public static double Distance(Point A, Point B)
         {
-            // Find the four Orientations needed for general and 
-            // special cases 
-            int o1 = Orientation(p1, q1, p2);
-            int o2 = Orientation(p1, q1, q2);
-            int o3 = Orientation(p2, q2, p1);
-            int o4 = Orientation(p2, q2, q1);
+            var leftXDist = Math.Abs(A.X - B.X);
+            var leftYDist = Math.Abs(A.Y - B.Y);
 
-            // General case 
-            if (o1 != o2 && o3 != o4)
-                return true;
-
-            // Special Cases 
-            // p1, q1 and p2 are colinear and p2 lies on segment p1q1 
-            if (o1 == 0 && OnSegment(p1, p2, q1)) return true;
-
-            // p1, q1 and q2 are colinear and q2 lies on segment p1q1 
-            if (o2 == 0 && OnSegment(p1, q2, q1)) return true;
-
-            // p2, q2 and p1 are colinear and p1 lies on segment p2q2 
-            if (o3 == 0 && OnSegment(p2, p1, q2)) return true;
-
-            // p2, q2 and q1 are colinear and q1 lies on segment p2q2 
-            if (o4 == 0 && OnSegment(p2, q1, q2)) return true;
-
-            return false; // Doesn't fall in any of the above cases 
+            return Math.Sqrt(leftXDist*leftXDist + leftYDist*leftYDist);
         }
 
-
-        // Given three colinear points p, q, r, the function checks if 
-        // point q lies on line segment 'pr' 
-        private static bool OnSegment(Point p, Point q, Point r)
+        public static Point LinesIntersection(Point A, Point B, Point C, Point D)
         {
-            if (q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
-                q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y))
-                return true;
+            // Line AB represented as a1x + b1y = c1  
+            double a1 = B.Y - A.Y;
+            double b1 = A.X - B.X;
+            double c1 = a1 * (A.X) + b1 * (A.Y);
 
-            return false;
+            // Line CD represented as a2x + b2y = c2  
+            double a2 = D.Y - C.Y;
+            double b2 = C.X - D.X;
+            double c2 = a2 * (C.X) + b2 * (C.Y);
+
+            double determinant = a1 * b2 - a2 * b1;
+
+            if (determinant == 0)
+            {
+                // The lines are parallel.
+                return null;
+            }
+            else
+            {
+                double x = (b2 * c1 - b1 * c2) / determinant;
+                double y = (a1 * c2 - a2 * c1) / determinant;
+                return new Point(x, y);
+            }
         }
 
-        // To find Orientation of ordered triplet (p, q, r). 
-        // The function returns following values 
-        // 0 --> p, q and r are colinear 
-        // 1 --> Clockwise 
-        // 2 --> Counterclockwise 
-        private static int Orientation(Point p, Point q, Point r)
+        public static Point SegmentsIntersection(Point A, Point B, Point C, Point D)
         {
-            var val = (q.Y - p.Y) * (r.X - q.X) -
-                    (q.X - p.X) * (r.Y - q.Y);
+            Point s = LinesIntersection(A, B, C, D);
 
-            if (val == 0) return 0; // colinear 
+            if (s == null)
+                return null;
+            
+            var minX = Math.Min(A.X, B.X);
+            var maxX = Math.Max(A.X, B.X);
 
-            return (val > 0) ? 1 : 2; // clock or counterclock wise 
+            if (s.X > maxX || s.X < minX)
+                return null;
+
+            minX = Math.Min(C.X, D.X);
+            maxX = Math.Max(C.X, D.X);
+
+            if (s.X > maxX || s.X < minX)
+                return null;
+
+            var minY = Math.Min(A.Y, B.Y);
+            var maxY = Math.Max(A.Y, B.Y);
+
+            if (s.Y > maxY || s.Y < minY)
+                return null;
+
+            minY = Math.Min(C.Y, D.Y);
+            maxY = Math.Max(C.Y, D.Y);
+
+            if (s.Y > maxY || s.Y < minY)
+                return null;
+
+            return s;
         }
     }
 }

@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Evaluation;
 using ForwardModel;
 using Geometry;
+using Models;
+using RHEA;
 
 namespace MarsLander
 {
@@ -9,63 +13,49 @@ namespace MarsLander
     {
         static void Main(string[] args)
         {
-            // CodinGame();
+            EasyOnTheRight();
+        }
 
+        public static void EasyOnTheRight()
+        {
             Lander lander = new Lander()
             {
-                Position = new Point(2100, 1000),
+                Position = new Point(2500, 2700),
                 VerticalSpeed = 0,
                 HorizontalSpeed = 0,
-                Fuel = 100,
-                Rotation = 0,
+                Fuel = 550,
+                Angle = 0,
             };
 
             var points = new List<Point>() {
-                new Point(0,0),
-                new Point(2000, 500),
-                new Point(3000, 500),
-                new Point(7000, 0)
+                new Point(0, 1000),
+                new Point(1000, 500),
+                new Point(1500, 1500),
+                new Point(3000, 1000),
+                new Point(4000, 150),
+                new Point(5500, 150),
+                new Point(6999, 800),
             };
 
             Surface surface = new Surface(points);
 
             Simulator simulator = new Simulator(lander, surface);
 
-            var m = 0;
+            // simulator.EvaluateSequence(actions);
 
-            for (int i=0; i<100; i++)
-            {
-                var seq = simulator.RandomActionSequence(100);
+            // lander.PerformAction(new LanderAction(3))
 
-                m = Math.Max(m, seq.Count);
-            }
+            Evolution evolution = new Evolution(surface, lander, 50);
 
-            Console.WriteLine(m);
-               
 
-            // foreach (var action in seq)
+            evolution.Algorithm();
+            
+            // evolution.Initialize();
+
+            // foreach (Sequence seq in evolution.Population)
             // {
-            //     Console.WriteLine(action);
+            //     Console.WriteLine($"{seq.Score}, {seq}");
             // }
-
-
-            // int sim = 0;
-
-            // TimeSpan time = new TimeSpan(0,0,1);
-
-            // DateTime start = DateTime.Now;
-
-            // while (DateTime.Now - start < time)
-            // {
-            //     simulator.Simulation();
-            //     sim++;
-            // }
-
-            // Console.WriteLine(sim);
-
-            // Console.WriteLine(simulator.seconds);
-
-            // Console.WriteLine(surface.DidCrash(new Point(2100, 550), new Point(2100, 450)));
         }
 
         public static void CodinGame()
@@ -85,17 +75,17 @@ namespace MarsLander
 
             Lander lander = new Lander()
             {
-                Position = new Point(X,Y),
+                Position = new Point(X, Y),
                 HorizontalSpeed = HS,
                 VerticalSpeed = VS,
                 Fuel = F,
-                Rotation = R,
-                Thrust = P
+                Angle = R,
+                Power = P
             };
 
             Simulator simulator = new Simulator(lander, surface);
 
-            for (long i=0; i<10000 ; i++)
+            for (long i = 0; i < 10000; i++)
             {
                 simulator.Simulation();
                 // Console.Error.WriteLine(simulator.seconds);

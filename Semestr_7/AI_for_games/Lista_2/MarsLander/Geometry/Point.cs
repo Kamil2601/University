@@ -18,7 +18,7 @@ namespace Geometry
 
         public override string ToString()
         {
-            return $"({X.ToString("N1")}, {Y.ToString("N1")})";
+            return $"({X}, {Y})";
         }
 
         public bool Equals(Point point)

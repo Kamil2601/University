@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Geometry;
+using Models;
 
 namespace ForwardModel
 {
     public class Surface
     {
-        const int topBound = 3000;
-        const int rightBound = 7000;
+        public const int topBound = 3000;
+        public const int rightBound = 7000;
         public List<Point> points;
         Point flatLeft;
         Point flatRight;
         int flatLeftIndex;
-        
+        public double surfaceLength;
+        public List<double> groundDistanceToLandingZone;
+
         public Surface(List<Point> points = null)
         {
             if (points != null)
@@ -25,6 +29,8 @@ namespace ForwardModel
                 Load();
             }
             FindFlatSurface();
+            CalculateSurfaceLength();
+            CalculateGroundDistance();
         }
 
         public void Load()
@@ -38,22 +44,35 @@ namespace ForwardModel
                 inputs = Console.ReadLine().Split(' ');
                 int landX = int.Parse(inputs[0]); // X coordinate of a surface point. (0 to 6999)
                 int landY = int.Parse(inputs[1]); // Y coordinate of a surface point. By linking all the points together in a sequential fashion, you form the surface of Mars.
-            
+
                 points.Add(new Point(landX, landY));
-            }            
+            }
         }
 
-        public int IntersectionSegment(Point from, Point to)
+        public (int, Point) IntersectionSegment(Point from, Point to)
         {
-            for (int i=0; i < points.Count - 1; i++)
+            Point firstIntersection = null;
+            int index = -1;
+            for (int i = 0; i < points.Count - 1; i++)
             {
-                if (Utilities.DoIntersect(from, to, points[i], points[i+1]))
-                {
-                    return i;
+                Point intersection = Utilities.SegmentsIntersection(from, to, points[i], points[i + 1]);
+                if (intersection != null)
+                {    
+                    if (firstIntersection == null)
+                    {
+                        firstIntersection = intersection;
+                        index = i;
+                    }
+                    else if (Utilities.Distance(from, intersection) < 
+                        Utilities.Distance(from, firstIntersection))
+                    {
+                        firstIntersection = intersection;
+                        index = i;
+                    }
                 }
             }
 
-            return -1;
+            return (index, firstIntersection);
         }
 
         public bool OutOfBounds(Point point)
@@ -62,56 +81,157 @@ namespace ForwardModel
                 point.Y < 0 || point.Y > topBound;
         }
 
-        public LandingResult MoveResult(Lander from, Lander to)
+       public LandingResult MoveResult(Lander previous, Lander current)
         {
-            if (OutOfBounds(to.Position))
-                return LandingResult.Failure;
-
-            int index = IntersectionSegment(from.Position, to.Position);
+            var (index, point) = IntersectionSegment(previous.Position, current.Position);
 
             if (index == -1)
+            {
+                if (OutOfBounds(current.Position))
+                    return LandingResult.Failure;
+
                 return LandingResult.InProgress;
+            }
 
             if (index != flatLeftIndex)
                 return LandingResult.Failure;
 
-            return LandingOnFlatResult(from, to);
+            return LandingOnFlatResult(previous, current);
         }
 
-        private LandingResult LandingOnFlatResult(Lander from, Lander to)
+        public double DistanceToLandingZone(Point point)
         {
-            if (from.Rotation != 0)
-                return LandingResult.Failure;
+            if (point.X >= flatLeft.X && point.X <= flatRight.X)
+                return Math.Abs(point.Y - flatLeft.Y);
 
-            if (Math.Abs(from.HorizontalSpeed) > 20)
-                return LandingResult.Failure;
+            return Math.Min(Utilities.Distance(point, flatLeft),
+                Utilities.Distance(point, flatRight));
+        }
 
-            var s = from.Position.Y - flatLeft.Y;
+        public double HorizontalDistanceToLandingZone(Point point)
+        {
+            if (point.X >= flatLeft.X && point.X <= flatRight.X)
+                return 0;
 
-            var delta = from.VerticalSpeed * from.VerticalSpeed + 2*Lander.MarsGravity*s;
+            else
+                return Math.Min(
+                    Utilities.Distance(point, flatLeft),
+                    Utilities.Distance(point, flatRight)
+                );
+        }
 
-            var t = (-from.VerticalSpeed + Math.Sqrt(delta))/Lander.MarsGravity;
+        public double VerticalDistanceToLandingZone(Point point)
+        {
+            return Math.Abs(point.Y - flatLeft.Y);
+        }
 
-            var landingVSpeed = from.VerticalSpeed + t*Lander.MarsGravity;
+        private LandingResult LandingOnFlatResult(Lander previous, Lander current)
+        {
+            if (Math.Abs(previous.Angle) > 15 || Math.Abs(current.Angle) > 15)
+                return LandingResult.FailureOnLandingZone;
 
-            if (landingVSpeed > 40)
-                return LandingResult.Failure;
-            
+            if (Math.Abs(previous.HorizontalSpeed) > 20 || Math.Abs(current.HorizontalSpeed) > 20)
+                return LandingResult.FailureOnLandingZone;
+
+            if (Math.Abs(previous.VerticalSpeed) > 40 || Math.Abs(current.VerticalSpeed) > 40)
+                return LandingResult.FailureOnLandingZone;
+
+            // return LandingResult.Success;
+
+
+            // var s = previous.Position.Y - flatLeft.Y;
+
+            // var a = -Lander.MarsGravity;
+
+            // var delta = previous.VerticalSpeed * previous.VerticalSpeed + 2*a*s;
+
+            // var t = (-previous.VerticalSpeed + Math.Sqrt(delta))/a;
+
+            // var landingVSpeed = previous.VerticalSpeed + t*a;
+
+            // if (landingVSpeed > 40)
+            //     return LandingResult.Failure;
+
             return LandingResult.Success;
+
+
+        }
+
+        public double GroundDistance(Point point)
+        {
+            Point landingCenter = new Point((flatLeft.X + flatRight.X) / 2, flatLeft.Y);
+
+            var s = GroundDistance(point, flatLeft);
+            s = Math.Min(s, GroundDistance(point, flatRight));
+            s = Math.Min(s, GroundDistance(point, landingCenter));
+
+            return s;
+        }
+
+        private double GroundDistance(Point point, Point pointOnLandingZone)
+        {
+            var (index ,intersection) = IntersectionSegment(point, pointOnLandingZone);
+
+            if (index == -1 || index == flatLeftIndex || index == flatLeftIndex+1)
+                return 0;
+
+            double s = 0;
+
+            if (index < flatLeftIndex)
+                s = Utilities.Distance(intersection, points[index+1]) +
+                    groundDistanceToLandingZone[index+1];
+            else
+                s = Utilities.Distance(intersection, points[index]) +
+                    groundDistanceToLandingZone[index];
+
+            return s;
         }
 
         private void FindFlatSurface()
         {
-            for (int i=0; i<points.Count-1; i++)
+            for (int i = 0; i < points.Count - 1; i++)
             {
-                if (points[i].Y == points[i+1].Y)
+                if (points[i].Y == points[i + 1].Y)
                 {
                     flatLeftIndex = i;
                     flatLeft = points[i];
-                    flatRight = points[i+1];
+                    flatRight = points[i + 1];
 
                     break;
                 }
+            }
+        }
+
+        private void CalculateSurfaceLength()
+        {
+            surfaceLength = 0;
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                surfaceLength += Utilities.Distance(points[i], points[i + 1]);
+            }
+        }
+
+        private void CalculateGroundDistance()
+        {
+            groundDistanceToLandingZone = new List<double>(points.Select(_ => 0.0));
+
+            groundDistanceToLandingZone[flatLeftIndex] = 0;
+            groundDistanceToLandingZone[flatLeftIndex + 1] = 0;
+
+            double dist = 0;
+
+            for (int i = flatLeftIndex - 1; i >= 0; i--)
+            {
+                dist += Utilities.Distance(points[i], points[i + 1]);
+                groundDistanceToLandingZone[i] = dist;
+            }
+
+            dist = 0;
+
+            for (int i = flatLeftIndex + 2; i < points.Count; i++)
+            {
+                dist += Utilities.Distance(points[i], points[i - 1]);
+                groundDistanceToLandingZone[i] = dist;
             }
         }
     }
