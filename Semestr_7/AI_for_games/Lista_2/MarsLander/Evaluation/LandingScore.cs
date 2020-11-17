@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ForwardModel;
 using Models;
 
@@ -6,14 +6,14 @@ namespace Evaluation
 {
     public static class LandingScore
     {
-        const double bestHS = 20;
+        const double bestHS = 30;
         const double worstHS = 40;
         const double aHS = 1 / (bestHS - worstHS);
         const double bHS = -worstHS * aHS;
 
 
-        const double bestVS = 40;
-        const double worstVS = 60;
+        const double bestVS = 20;
+        const double worstVS = 40;
         const double aVS = 1 / (bestVS - worstVS);
         const double bVS = -worstVS * aVS;
 
@@ -23,24 +23,25 @@ namespace Evaluation
 
         public static double Score(double verticalSpeed, double horizontalSpeed, int rotation)
         {
-            return 0.33 * VerticalSpeedScore(verticalSpeed) +
-                0.33 * HorizontalSpeedScore(horizontalSpeed) +
-                0.32 * RotationScore(rotation);
+            return 0.6 * VerticalSpeedScore(verticalSpeed) +
+                0.3 * HorizontalSpeedScore(horizontalSpeed) +
+                0.1 * RotationScore(rotation);
+
+            // return VerticalSpeedScore(verticalSpeed);
         }
 
         public static double Score(Lander lander, LandingResult landingResult)
         {
-            // if (landingResult == LandingResult.Failure ||
-            //     landingResult == LandingResult.InProgress)
-            //     return 0;
-
-            // // return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
-            // //     lander.Angle);
-
-            if (landingResult != LandingResult.Success)
+            if (landingResult == LandingResult.Failure)
                 return 0;
+
+            return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
+                lander.Angle);
+
+            // var verticalDist = surface.VerticalDistanceToLandingZone(lander.Position);
+            // var horizontalDist = surface.VerticalDistanceToLandingZone(lander.Position);
+
             
-            return 1;
         }
 
 
@@ -54,7 +55,7 @@ namespace Evaluation
                 return aR * absR + bR;
         }
 
-        private static double HorizontalSpeedScore(double horizontalSpeed)
+        public static double HorizontalSpeedScore(double horizontalSpeed)
         {
             double absHS = Math.Abs(horizontalSpeed);
 
@@ -66,8 +67,11 @@ namespace Evaluation
                 return 0;
         }
 
-        private static double VerticalSpeedScore(double verticalSpeed)
+        public static double VerticalSpeedScore(double verticalSpeed)
         {
+            if (verticalSpeed >= -10)
+                return 0;
+
             double absVS = Math.Abs(verticalSpeed);
 
             if (absVS <= bestVS)

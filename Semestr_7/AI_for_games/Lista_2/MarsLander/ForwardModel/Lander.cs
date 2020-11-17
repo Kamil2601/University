@@ -6,7 +6,7 @@ namespace ForwardModel
 {
     public class Lander
     {
-        public static double MarsGravity { get; } = -3.711f;
+        public static double MarsGravity { get; } = -3.711;
         public Point Position { get; set; }
         public double VerticalSpeed { get; set; }
         public double HorizontalSpeed { get; set; }
@@ -14,18 +14,7 @@ namespace ForwardModel
         public int Power { get; set; }
         public int Fuel { get; set; }
 
-        public Point Move(int seconds = 1)
-        {
-            Position.X += HorizontalSpeed * seconds;
-
-            Position.Y += VerticalSpeed * seconds + MarsGravity * seconds * seconds / 2;
-
-            VerticalSpeed = VerticalSpeed + MarsGravity * seconds;
-
-            return Position;
-        }
-
-        public void PerformAction(LanderAction action)
+        public void Move(LanderAction action)
         {
             Angle += action.Rotation;
 
@@ -47,7 +36,10 @@ namespace ForwardModel
 
             var horizontalAcc = -Power * Math.Sin(radians);
 
-            var verticalAcc = Power * Math.Cos(radians);
+            var verticalAcc = Power * Math.Cos(radians) + MarsGravity;
+
+            Position.X += HorizontalSpeed + horizontalAcc/2;
+            Position.Y += VerticalSpeed + verticalAcc/2;
 
             VerticalSpeed += verticalAcc;
             

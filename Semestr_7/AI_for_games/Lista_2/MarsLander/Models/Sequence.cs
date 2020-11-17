@@ -6,6 +6,7 @@ namespace Models
     public class Sequence : List<LanderAction>, IComparer<Sequence>
     {
         public double Score { get; set; } = -1;
+        public double CumulativeScore { get; set; } = 0;
 
         public Sequence() : base()
         { }

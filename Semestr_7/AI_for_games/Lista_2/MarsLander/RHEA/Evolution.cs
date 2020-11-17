@@ -13,76 +13,99 @@ namespace RHEA
         Lander lander;
         Simulator simulator;
         List<Sequence> population;
-        const int populationSize = 50;
-        const int sequenceLength = 20;
-        const int selectionSize = 20;
+        const int populationSize = 40;
+        const int sequenceLength = 40; // 80
+        const int selectionSize = 6;
         const int crossoverSize = populationSize - selectionSize;
-        readonly int populationsPerIteration;
-
+        readonly int populationsPerIteration = 20;
         Random random = new Random();
-
         public List<Sequence> Population { get => population; }
+        private readonly bool debug;
 
-        public Evolution(Surface surface, Lander lander, int populations)
+        public Evolution(Surface surface, Lander lander, bool debug = false)
         {
+            this.debug = debug;
             this.surface = surface;
             this.lander = lander;
             this.simulator = new Simulator(lander, surface);
-            this.populationsPerIteration = populations;
+            // this.populationsPerIteration = populations;
         }
 
         public int Algorithm()
         {
             Initialize();
 
-            int i=0;
+            int i = 0;
 
-            for (i=0; Iteration(); i++)
-            { }
+            for (i = 0; Iteration(); i++) {}
 
-            Console.WriteLine(i);
+            // Console.WriteLine(i);
+
+            return i;
+        }
+
+        public int AlgorithmWithInput()
+        {
+            Initialize();
+
+            int i = 0;
+
+            while (Iteration()) {
+                Console.ReadLine();
+            }
 
             return i;
         }
 
         public bool Iteration()
         {
+            // if (debug)
+            //     Console.WriteLine("Iteration start");
+
             SortByScore();
 
-            for (int i=0; i<populationsPerIteration; i++)
+            for (int i = 0; i < populationsPerIteration; i++)
             {
                 Generation();
             }
+
+            // if (debug)
+            //     Console.WriteLine("For (Generation()) end");
 
             SortByScore();
 
             LanderAction best = population[0][0];
 
-            Console.WriteLine($"{best.Rotation}, {best.Thrust}");
 
-
-            Lander previous  = new Lander();
+            Lander previous = new Lander();
             previous.Copy(lander);
 
-            lander.PerformAction(best);
-            lander.Move();
-            lander.Print();
-
-            Roll();
+            lander.Move(best);
+            
 
             var (index, point) = surface.IntersectionSegment(previous.Position, lander.Position);
 
-            Console.WriteLine(index);
-            Console.WriteLine(point);
+            
 
-            return index == -1;
+            if (debug)
+                lander.Print();
+            else
+                Console.WriteLine($"{lander.Angle} {lander.Power}");
+
+            Roll();
+
+            // if (debug)
+            //     Console.WriteLine("Iteration end");
+
+            return surface.MoveResult(previous, lander) == LandingResult.InProgress;
         }
 
         public void Roll()
         {
             foreach (Sequence sequence in population)
             {
-                sequence.Score = 0;
+                sequence.Score = -1;
+                sequence.CumulativeScore = 0;
                 sequence.RemoveAt(0);
                 sequence.Add(simulator.RandomAction());
             }
@@ -96,13 +119,46 @@ namespace RHEA
 
             var crossovers = new List<Sequence>();
 
+            double sum = 0;
+
+            foreach (Sequence seq in population)
+            {
+                // Console.WriteLine(seq.Score);
+                sum += seq.Score;
+            }
+
+            // Console.WriteLine($"sum = {sum}");
+
+            foreach (var sequence in population)
+            {
+                // Console.Write($"{sum}  {sequence.Score} ");
+                sequence.Score /= sum;
+                // Console.WriteLine(sequence.Score);
+            }
+
+            double cs = 0;
+
+            for (int i=populationSize-1; i>=0; i--)
+            {
+                cs += population[i].Score;
+                population[i].CumulativeScore = cs;
+            }
+
+            // if (debug)
+            //     Console.WriteLine("Crossover start");
+
             while (crossovers.Count < crossoverSize)
             {
-                Sequence parent1 = select[random.Next(select.Count)];
-                Sequence parent2 = select[random.Next(select.Count)];
+                // Console.WriteLine(population.Count);
+                // Console.WriteLine(crossovers.Count);
+                Sequence parent1 = RouleteWheel();
+                Sequence parent2 = RouleteWheel();
 
                 while (parent1 == parent2)
-                    parent2 = select[random.Next(select.Count)];
+                {
+                    // Console.WriteLine("while");
+                    parent2 = RouleteWheel();
+                }
 
                 var (child1, child2) = Crossover(parent1, parent2);
 
@@ -110,9 +166,12 @@ namespace RHEA
                 Mutation(child2);
 
                 crossovers.Add(child1);
-                crossovers.Add(child2);                
+                crossovers.Add(child2);
             }
-            
+
+            // if (debug)
+            //     Console.WriteLine("Crossover end");
+
             population = select;
             population.AddRange(crossovers);
 
@@ -135,7 +194,7 @@ namespace RHEA
         {
             foreach (Sequence sequence in population)
             {
-                if (sequence.Score == -1)
+                if (sequence.Score == -1 || double.IsNaN(sequence.Score))
                 {
                     simulator.EvaluateSequence(sequence);
                 }
@@ -149,26 +208,26 @@ namespace RHEA
             Sequence child1 = new Sequence(sequenceLength);
             Sequence child2 = new Sequence(sequenceLength);
 
-            var crossPoint = random.Next(1,sequenceLength-1);
+            var crossPoint = random.Next(1, sequenceLength - 1);
 
-            for (int i=0; i<crossPoint; i++)
+            for (int i = 0; i < crossPoint; i++)
             {
                 child1.Add(new LanderAction(parent1[i]));
                 child2.Add(new LanderAction(parent2[i]));
             }
 
-            for (int i=crossPoint; i<sequenceLength; i++)
+            for (int i = crossPoint; i < sequenceLength; i++)
             {
                 child1.Add(new LanderAction(parent2[i]));
                 child2.Add(new LanderAction(parent1[i]));
             }
-            
+
             return (child1, child2);
         }
 
         public void Mutation(Sequence sequence)
         {
-            double probability = 1.0/sequenceLength;
+            double probability = 0.5 / sequenceLength;
 
             for (int i = 1; i < sequence.Count; i++)
             {
@@ -177,6 +236,41 @@ namespace RHEA
                     sequence[i] = simulator.RandomAction();
                 }
             }
+        }
+
+        private Sequence RouleteWheel()
+        {
+
+            double val = random.NextDouble();
+
+            // Console.WriteLine("1");
+
+            // Console.WriteLine(val);
+
+            for (int i = 0; i < population.Count-1; i++)
+            {
+                // Console.WriteLine($"{population[i].Score} {population[i].CumulativeScore}");
+
+                // if (double.IsNaN(population[i].Score))
+                // {
+                //     // Console.WriteLine("if");
+                //     simulator.EvaluateSequence(population[i]);
+
+                //     // Console.WriteLine(population[i].Score);
+
+                //     Console.ReadLine();
+                // }
+
+                if (val < population[i].CumulativeScore && val > population[i+1].CumulativeScore)
+                {
+                    return population[i];
+                }
+            }
+
+            // Console.WriteLine("2");
+
+
+            return population[population.Count-1];
         }
     }
 }

@@ -5,6 +5,8 @@
         InProgress,
         Failure,
         FailureOnLandingZone,
+        CorrectAngle,
+        CorrectVerticalSpeed,
         Success,
     }
 }

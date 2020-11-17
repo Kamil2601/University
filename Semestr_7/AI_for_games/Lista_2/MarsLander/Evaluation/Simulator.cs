@@ -13,12 +13,14 @@ namespace Evaluation
         Lander startLander;
         Surface surface;
         Random random = new Random();
+        StateEvaluator stateEvaluator;
 
         public Simulator(Lander lander, Surface surface)
         {
             this.startLander = lander;
             this.lander = new Lander();
             this.surface = surface;
+            this.stateEvaluator = new StateEvaluator(surface, startLander);
 
             var points = new List<Point> { 
                 new Point(0,0),
@@ -36,8 +38,7 @@ namespace Evaluation
             {
                 LanderAction action = RandomAction();
                 previous.Copy(lander);
-                lander.PerformAction(action);
-                lander.Move();
+                lander.Move(action);
 
             } while (surface.MoveResult(previous, lander) == LandingResult.InProgress);
         }
@@ -63,61 +64,71 @@ namespace Evaluation
             SetLander();
             Lander previous = new Lander();
 
-            int gameOverState = -1;
+            int moves = 0;
             LandingResult moveResult = LandingResult.InProgress;
+            double res = 0;
+            double c = 1;
+            double bonus = 0;
+            var stop = actions.Count;
 
-            for (int i=0; i<actions.Count; i++)
+            for (int i=0; i<actions.Count-1; i++)
             {
                 previous.Copy(lander);
-                lander.PerformAction(actions[i]);
-                lander.Move();
+                
+                lander.Move(actions[i]);
 
-                // Maybe TODO: Some evaluation of each action
+                actions[i].Rotation = lander.Angle-previous.Angle;
+                actions[i].Thrust = lander.Power - previous.Power;
+
+
+                
 
                 moveResult = surface.MoveResult(previous, lander);
 
+                moves++;
+                res += c*stateEvaluator.EvalState(lander, moveResult);
+                c *= 1;
+
                 if (moveResult != LandingResult.InProgress)
                 {
-                    gameOverState = i;
+                    stop = i;
+                    if (moveResult == LandingResult.Success)
+                    {
+                        actions[i].Rotation = - previous.Angle;
+                        actions[i+1].Rotation = 0;
+                        bonus = 100000;
+                    }
+                    else if (moveResult == LandingResult.CorrectAngle)
+                    {
+                        actions[i].Rotation = - previous.Angle;
+                        // bonus = 100;
+                    }
                     break;
                 }
+                // moves++;
+
+                // res += stateEvaluator.EvalState(lander, moveResult);
             }
 
-            Lander toEval = lander;
+            actions.Score = res; // stateEvaluator.EvalState(lander, moveResult);
 
-            if (gameOverState != -1)
-                toEval = previous;
+            // Console.WriteLine($"{stop}, {actions.Score}");
 
-            // Evaluate last state
-
-            SequenceStats stats = new SequenceStats();
-
-            stats.HorizontalDistanceScore = 1 - surface
-                .HorizontalDistanceToLandingZone(toEval.Position)/Surface.rightBound;
-
-            // Console.WriteLine((stats.HorizontalDistanceScore, stats.Score));
-            
-            stats.VerticalDistanceScore = 1 - surface
-                .VerticalDistanceToLandingZone(toEval.Position)/Surface.topBound;
-
-
-            stats.LandingScore = LandingScore.Score(previous, moveResult);
-            // var distanceToLandingZone = surface.DistanceToLandingZone(lander.Position);
-
-            // stats.DirectDistanceScore = 1 - distanceToLandingZone/maxDistanceToLandingZone;
-
-            // if (moveResult != LandingResult.Success)
-            //     stats.LandingScore = 0;
+            // if (moves == 0)
+            // {
+            //     if (moveResult != LandingResult.Success)
+            //         actions.Score = 0.01;
+            //     else
+            //         actions.Score = 1;
+            // }
             // else
-            //     stats.LandingScore = LandingScore.Score(lander);
+            // {
+            //     actions.Score = res/moves;
+            // }
 
-            stats.FuelScore = previous.Fuel/startLander.Fuel;
+            
 
-            // stats.GroundDistanceScore = 1 - surface.GroundDistance(lander.Position)/surface.surfaceLength;
-
-            actions.Score = stats.Score;
-
-            return stats.Score;
+            return actions.Score;
         }
 
         public LanderAction RandomAction()
@@ -136,5 +147,7 @@ namespace Evaluation
         {
             lander.Copy(startLander);
         }
+
+        
     }
 }

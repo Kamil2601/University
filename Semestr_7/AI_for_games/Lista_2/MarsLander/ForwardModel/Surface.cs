@@ -93,6 +93,9 @@ namespace ForwardModel
                 return LandingResult.InProgress;
             }
 
+            current.Position.X = point.X;
+            current.Position.Y = point.Y;
+
             if (index != flatLeftIndex)
                 return LandingResult.Failure;
 
@@ -110,19 +113,14 @@ namespace ForwardModel
 
         public double HorizontalDistanceToLandingZone(Point point)
         {
-            if (point.X >= flatLeft.X && point.X <= flatRight.X)
-                return 0;
+            var mid = (flatLeft.X + flatRight.X)/2;
 
-            else
-                return Math.Min(
-                    Utilities.Distance(point, flatLeft),
-                    Utilities.Distance(point, flatRight)
-                );
+            return mid - point.X;
         }
 
         public double VerticalDistanceToLandingZone(Point point)
         {
-            return Math.Abs(point.Y - flatLeft.Y);
+            return flatLeft.Y - point.Y;
         }
 
         private LandingResult LandingOnFlatResult(Lander previous, Lander current)
@@ -130,11 +128,11 @@ namespace ForwardModel
             if (Math.Abs(previous.Angle) > 15 || Math.Abs(current.Angle) > 15)
                 return LandingResult.FailureOnLandingZone;
 
-            if (Math.Abs(previous.HorizontalSpeed) > 20 || Math.Abs(current.HorizontalSpeed) > 20)
-                return LandingResult.FailureOnLandingZone;
-
             if (Math.Abs(previous.VerticalSpeed) > 40 || Math.Abs(current.VerticalSpeed) > 40)
-                return LandingResult.FailureOnLandingZone;
+                return LandingResult.CorrectAngle;
+
+            if (Math.Abs(previous.HorizontalSpeed) > 20 || Math.Abs(current.HorizontalSpeed) > 20)
+                return LandingResult.CorrectVerticalSpeed;
 
             // return LandingResult.Success;
 

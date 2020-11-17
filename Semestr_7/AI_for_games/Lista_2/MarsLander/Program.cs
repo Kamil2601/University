@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Evaluation;
 using ForwardModel;
 using Geometry;
 using Models;
@@ -13,7 +12,13 @@ namespace MarsLander
     {
         static void Main(string[] args)
         {
-            EasyOnTheRight();
+            if (args.Length > 0)
+            {
+                if (args[0] == "1")
+                    EasyOnTheRight();
+            }
+            else
+                CodinGame();
         }
 
         public static void EasyOnTheRight()
@@ -32,30 +37,16 @@ namespace MarsLander
                 new Point(1000, 500),
                 new Point(1500, 1500),
                 new Point(3000, 1000),
-                new Point(4000, 150),
+                new Point(4500, 150),
                 new Point(5500, 150),
                 new Point(6999, 800),
             };
 
             Surface surface = new Surface(points);
 
-            Simulator simulator = new Simulator(lander, surface);
-
-            // simulator.EvaluateSequence(actions);
-
-            // lander.PerformAction(new LanderAction(3))
-
-            Evolution evolution = new Evolution(surface, lander, 50);
-
+            Evolution evolution = new Evolution(surface, lander, true);
 
             evolution.Algorithm();
-            
-            // evolution.Initialize();
-
-            // foreach (Sequence seq in evolution.Population)
-            // {
-            //     Console.WriteLine($"{seq.Score}, {seq}");
-            // }
         }
 
         public static void CodinGame()
@@ -73,7 +64,7 @@ namespace MarsLander
             int R = int.Parse(inputs[5]); // the rotation angle in degrees (-90 to 90).
             int P = int.Parse(inputs[6]); // the thrust power (0 to 4).
 
-            Lander lander = new Lander()
+            Lander lander = new Lander
             {
                 Position = new Point(X, Y),
                 HorizontalSpeed = HS,
@@ -83,34 +74,23 @@ namespace MarsLander
                 Power = P
             };
 
-            Simulator simulator = new Simulator(lander, surface);
+            Evolution evolution = new Evolution(surface, lander);
 
-            for (long i = 0; i < 10000; i++)
-            {
-                simulator.Simulation();
-                // Console.Error.WriteLine(simulator.seconds);
-            }
 
-            Console.WriteLine("Hello there");
+            evolution.Initialize();
 
-            // game loop
-            while (true)
-            {
-                inputs = Console.ReadLine().Split(' ');
-                X = int.Parse(inputs[0]);
-                Y = int.Parse(inputs[1]);
-                HS = int.Parse(inputs[2]); // the horizontal speed (in m/s), can be negative.
-                VS = int.Parse(inputs[3]); // the vertical speed (in m/s), can be negative.
-                F = int.Parse(inputs[4]); // the quantity of remaining fuel in liters.
-                R = int.Parse(inputs[5]); // the rotation angle in degrees (-90 to 90).
-                P = int.Parse(inputs[6]); // the thrust power (0 to 4).
+            evolution.AlgorithmWithInput();
 
-                // Write an action using Console.WriteLine()
-                // To debug: Console.Error.WriteLine("Debug messages...");
+            // // game loop
+            // while (true)
+            // {
+            //     evolution.Iteration();
 
-                // R P. R is the desired rotation angle. P is the desired thrust power.
-                Console.WriteLine("0 4");
-            }
+            //     inputs = Console.ReadLine().Split(' ');
+
+            //     // R P. R is the desired rotation angle. P is the desired thrust power.
+            //     // Console.WriteLine("-20 3");
+            // }
         }
     }
 }
