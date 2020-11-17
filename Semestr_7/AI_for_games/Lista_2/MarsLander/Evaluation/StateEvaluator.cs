@@ -8,6 +8,9 @@ namespace Evaluation
     {
         Surface surface;
         private readonly Lander startLander;
+        double horizontalDistance;
+        double verticalDistance;
+        double distance;
 
         public StateEvaluator(Surface surface, Lander startLander)
         {
@@ -22,86 +25,22 @@ namespace Evaluation
                 return 1000000 + lander.Fuel;
             }
 
-            var hDist = surface.HorizontalDistanceToLandingZone(lander.Position);
-            var vDist = surface.VerticalDistanceToLandingZone(lander.Position);
-            var dist = surface.DistanceToLandingZone(lander.Position);
+            horizontalDistance = surface.HorizontalDistanceToLandingZone(lander.Position);
+            verticalDistance = surface.VerticalDistanceToLandingZone(lander.Position);
+            distance = surface.DistanceToLandingZone(lander.Position);
             var lhsScore = LandingHorizontalSpeedScore(lander);
             var lvsScore = LandingVerticalSpeedScore(lander);
             var angleScore = LandingAngleScore(lander);
+            var dirScore = DirectionScore(lander);
 
-            // Console.WriteLine(lhsScore);
-            // return 20000 - 3*Math.Abs(hDist) - Math.Abs(dist) / 10000 + 200 * lhsScore + 500 * lvsScore + 200 * angleScore;
-        
-            return (1-dist/6700) + (1-lander.Fuel/startLander.Fuel) + lhsScore;
-        }
-
-        public double EvalState2(Lander lander, LandingResult lastMoveResult)
-        {
-            var hDist = surface.HorizontalDistanceToLandingZone(lander.Position);
-            var vDist = surface.VerticalDistanceToLandingZone(lander.Position);
-            var rot = Math.Abs(lander.Angle);
-
-            if (Math.Abs(hDist) < 500) hDist = 0;
-
-            var hDScore = 1 - Math.Abs(hDist) / 7000;
-            var vDScore = 1 - Math.Abs(vDist) / 3000;
-            // var vsScore = LandingScore.VerticalSpeedScore(lander.VerticalSpeed);
-            // var hSScore = LandingScore.HorizontalSpeedScore(lander.HorizontalSpeed);
-            var lvsScore = LandingVerticalSpeedScore(lander);
-            var lhsScore = LandingHorizontalSpeedScore(lander);
-            // var laScore = LandingAngleScore(lander);
-            var angleScore = AngleScore(lander);
-
-            // Console.WriteLine($"{hDist}, {vDist}");
-
-            // // double hSScore = HorizontalSpeedToDistance(lander);
-            // double vs1 = VerticalSpeedToDistance(lander);
-            // // var ds = 1 - surface.DistanceToLandingZone(lander.Position)/10000;
-
-            // var vs2 = LandingScore.VerticalSpeedScore(lander.VerticalSpeed);
-
-            // var vsScore = Math.Max(vs1, vs2);
-
-            var res = -lander.VerticalSpeed / 40 + hDScore * (Math.Abs(vDist)) / 500 + vDScore * (Math.Abs(hDist)) / 1000
-                + vDScore * 300 + angleScore * 10;
+            double bonus = 0;
 
             if (lastMoveResult == LandingResult.Success)
-            {
-                res = 1000000 + lander.Fuel;
-            }
+                bonus = 1000;
 
-            return res;
-        }
-
-        public double HorizontalSpeedToDistance(Lander lander)
-        {
-            var horizontalDistance = surface.HorizontalDistanceToLandingZone(lander.Position);
-
-            if (Math.Sign(horizontalDistance) != Math.Sign(lander.HorizontalSpeed))
-            {
-                // TODO
-
-                return 0;
-            }
-            else
-            {
-                // var hs = Math.Abs(lander.HorizontalSpeed)
-
-                double secondsToStop = lander.HorizontalSpeed / 4.0;
-
-                double secondsToReachLanding = horizontalDistance / lander.HorizontalSpeed;
-
-                double ratio = secondsToStop / secondsToReachLanding;
-
-                if (ratio >= 0.9 && ratio <= 1.1)
-                    return 1;
-                else if (ratio < 0.5 || ratio > 1.5)
-                    return 0;
-                else if (ratio < 0.9)
-                    return 2.5 * ratio - 1.25;
-                else
-                    return -2.5 * ratio + 3.75;
-            }
+            // return 20000 - 3*Math.Abs(hDist) - Math.Abs(dist) / 10000 + 200 * lhsScore + 500 * lvsScore + 200 * angleScore;
+        
+            return (1-distance/6700) + (1-lander.Fuel/startLander.Fuel) + 2*lhsScore + 2*lvsScore + 50*dirScore + angleScore;
         }
 
         public double LandingVerticalSpeedScore(Lander lander)
@@ -166,18 +105,17 @@ namespace Evaluation
                 {
                     return 1;
                 }
-                // if (landingSpeed < minSpeedForZero)
-                else
+                if (landingSpeed < minSpeedForZero)
                 {
                     double a = 1 / (maxSpeedForOne - minSpeedForZero);
                     double b = -minSpeedForZero * a;
 
                     return a * landingSpeed + b;
                 }
-                // else
-                // {
-                //     return 0;
-                // }
+                else
+                {
+                    return 0;
+                }
             }
             else
             {
@@ -187,11 +125,6 @@ namespace Evaluation
 
         public double LandingAngleScore(Lander lander)
         {
-            var verticalDistance = surface.VerticalDistanceToLandingZone(lander.Position);
-
-            // Console.WriteLine(verticalDistance);
-            // Console.WriteLine(lander.VerticalSpeed);
-
             if (verticalDistance < 0 && lander.VerticalSpeed < 0)
             {
                 double timeToLand = Math.Floor(Math.Abs(verticalDistance) / Math.Abs(lander.VerticalSpeed));
@@ -224,6 +157,35 @@ namespace Evaluation
 
             else
                 return 1;
+        }
+
+        public double DirectionScore(Lander lander)
+        {
+            var hDist = surface.HorizontalDistanceToLandingZone(lander.Position);
+
+            if (Math.Sign(hDist) == Math.Sign(lander.HorizontalSpeed))
+            {
+                return 1;
+            }
+
+            var av = Math.Abs(lander.HorizontalSpeed);
+            var ad = Math.Abs(hDist);
+
+            return 1/(av+ad);
+        }
+
+        public double GroundDistanceScore(Lander lander, LandingResult moveResult)
+        {
+            if (moveResult >= LandingResult.CrashOnLandingZone)
+            {
+                return 1;
+            }
+
+
+            var dist = surface.GroundDistance(lander.Position);
+
+            return 1-dist/surface.surfaceLength;
+            
         }
     }
 }

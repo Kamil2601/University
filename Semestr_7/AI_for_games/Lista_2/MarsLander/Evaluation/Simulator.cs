@@ -71,7 +71,7 @@ namespace Evaluation
             double bonus = 0;
             var stop = actions.Count;
 
-            for (int i=0; i<actions.Count-1; i++)
+            for (int i=0; i<actions.Count; i++)
             {
                 previous.Copy(lander);
                 
@@ -95,7 +95,7 @@ namespace Evaluation
                     if (moveResult == LandingResult.Success)
                     {
                         actions[i].Rotation = - previous.Angle;
-                        actions[i+1].Rotation = 0;
+                        // actions[i+1].Rotation = 0;
                         bonus = 100000;
                     }
                     else if (moveResult == LandingResult.CorrectAngle)

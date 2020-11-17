@@ -3,8 +3,9 @@
     public enum LandingResult
     {
         InProgress,
-        Failure,
-        FailureOnLandingZone,
+        OutOfBounds,
+        Crash,
+        CrashOnLandingZone,
         CorrectAngle,
         CorrectVerticalSpeed,
         Success,

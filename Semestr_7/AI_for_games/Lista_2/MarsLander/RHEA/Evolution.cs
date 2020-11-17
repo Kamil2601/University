@@ -14,7 +14,7 @@ namespace RHEA
         Simulator simulator;
         List<Sequence> population;
         const int populationSize = 40;
-        const int sequenceLength = 40; // 80
+        const int sequenceLength = 60;
         const int selectionSize = 6;
         const int crossoverSize = populationSize - selectionSize;
         readonly int populationsPerIteration = 20;
@@ -203,7 +203,7 @@ namespace RHEA
             population.Sort((x, y) => y.Score.CompareTo(x.Score));
         }
 
-        public (Sequence, Sequence) Crossover(Sequence parent1, Sequence parent2)
+        public (Sequence, Sequence) Crossover2(Sequence parent1, Sequence parent2)
         {
             Sequence child1 = new Sequence(sequenceLength);
             Sequence child2 = new Sequence(sequenceLength);
@@ -220,6 +220,27 @@ namespace RHEA
             {
                 child1.Add(new LanderAction(parent2[i]));
                 child2.Add(new LanderAction(parent1[i]));
+            }
+
+            return (child1, child2);
+        }
+
+        public (Sequence, Sequence) Crossover(Sequence parent1, Sequence parent2)
+        {
+            var r = random.NextDouble();
+
+            Sequence child1 = new Sequence(sequenceLength);
+            Sequence child2 = new Sequence(sequenceLength);
+
+            for (int i = 0; i < sequenceLength; i++)
+            {
+                int c1R = (int)Math.Round(r*parent1[i].Rotation + (1-r)*parent2[i].Rotation);
+                int c1T = (int)Math.Round(r*parent1[i].Thrust + (1-r)*parent2[i].Thrust); 
+                child1.Add(new LanderAction(c1R, c1T));
+
+                int c2R = (int)Math.Round(r*parent2[i].Rotation + (1-r)*parent1[i].Rotation);
+                int c2T = (int)Math.Round(r*parent2[i].Thrust + (1-r)*parent1[i].Thrust); 
+                child2.Add(new LanderAction(c2R, c2T));
             }
 
             return (child1, child2);

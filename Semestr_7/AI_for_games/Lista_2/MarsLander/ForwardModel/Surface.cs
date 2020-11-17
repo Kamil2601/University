@@ -88,7 +88,7 @@ namespace ForwardModel
             if (index == -1)
             {
                 if (OutOfBounds(current.Position))
-                    return LandingResult.Failure;
+                    return LandingResult.OutOfBounds;
 
                 return LandingResult.InProgress;
             }
@@ -97,7 +97,7 @@ namespace ForwardModel
             current.Position.Y = point.Y;
 
             if (index != flatLeftIndex)
-                return LandingResult.Failure;
+                return LandingResult.Crash;
 
             return LandingOnFlatResult(previous, current);
         }
@@ -126,7 +126,7 @@ namespace ForwardModel
         private LandingResult LandingOnFlatResult(Lander previous, Lander current)
         {
             if (Math.Abs(previous.Angle) > 15 || Math.Abs(current.Angle) > 15)
-                return LandingResult.FailureOnLandingZone;
+                return LandingResult.CrashOnLandingZone;
 
             if (Math.Abs(previous.VerticalSpeed) > 40 || Math.Abs(current.VerticalSpeed) > 40)
                 return LandingResult.CorrectAngle;

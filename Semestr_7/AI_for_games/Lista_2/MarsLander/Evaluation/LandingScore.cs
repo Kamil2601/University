@@ -30,19 +30,19 @@ namespace Evaluation
             // return VerticalSpeedScore(verticalSpeed);
         }
 
-        public static double Score(Lander lander, LandingResult landingResult)
-        {
-            if (landingResult == LandingResult.Failure)
-                return 0;
+        // public static double Score(Lander lander, LandingResult landingResult)
+        // {
+        //     if (landingResult == LandingResult.Failure)
+        //         return 0;
 
-            return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
-                lander.Angle);
+        //     return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
+        //         lander.Angle);
 
-            // var verticalDist = surface.VerticalDistanceToLandingZone(lander.Position);
-            // var horizontalDist = surface.VerticalDistanceToLandingZone(lander.Position);
+        //     // var verticalDist = surface.VerticalDistanceToLandingZone(lander.Position);
+        //     // var horizontalDist = surface.VerticalDistanceToLandingZone(lander.Position);
 
             
-        }
+        // }
 
 
         public static double RotationScore(int rotation)
