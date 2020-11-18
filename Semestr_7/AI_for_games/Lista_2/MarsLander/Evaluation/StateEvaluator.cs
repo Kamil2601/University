@@ -58,23 +58,13 @@ namespace Evaluation
             }
 
 
-
-            // Console.WriteLine((lander.HorizontalSpeed, lhsScore));
-            
-            // return (7000-distance) * LandingScore.HorizontalSpeedScore(lander.HorizontalSpeed)
-            //     * LandingScore.VerticalSpeedScore(lander.VerticalSpeed);
-
-            return dScore * LandingScore.Score(lander) * goUp;
-
-            // return (7000-distance)/7000 + 1.5*angleScore + dirScore + 10*lhsScore + lvsScore;
+            return dScore * SpeedScore.Score(lander) * goUp;
         }
 
         public double LandingVerticalSpeedScore(Lander lander)
         {
             var verticalDistance = surface.VerticalDistanceToLandingZone(lander.Position);
 
-            // Console.WriteLine(verticalDistance);
-            // Console.WriteLine(lander.VerticalSpeed);
 
             if (verticalDistance < 0 && lander.VerticalSpeed < 0)
             {

@@ -63,17 +63,6 @@ namespace MarsLander
             evolution.Initialize();
 
             evolution.AlgorithmWithInput();
-
-            // // game loop
-            // while (true)
-            // {
-            //     evolution.Iteration();
-
-            //     inputs = Console.ReadLine().Split(' ');
-
-            //     // R P. R is the desired rotation angle. P is the desired thrust power.
-            //     // Console.WriteLine("-20 3");
-            // }
         }
     }
 }

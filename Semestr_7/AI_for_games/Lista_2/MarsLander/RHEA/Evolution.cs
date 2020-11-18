@@ -59,18 +59,12 @@ namespace RHEA
 
         public bool Iteration()
         {
-            // if (debug)
-            //     Console.WriteLine("Iteration start");
-
             SortByScore();
 
             for (int i = 0; i < populationsPerIteration; i++)
             {
                 Generation();
             }
-
-            // if (debug)
-            //     Console.WriteLine("For (Generation()) end");
 
             SortByScore();
 
@@ -93,9 +87,6 @@ namespace RHEA
                 Console.WriteLine($"{lander.Angle} {lander.Power}");
 
             Roll();
-
-            // if (debug)
-            //     Console.WriteLine("Iteration end");
 
             return surface.MoveResult(previous, lander) == LandingResult.InProgress;
         }
@@ -123,17 +114,12 @@ namespace RHEA
 
             foreach (Sequence seq in population)
             {
-                // Console.WriteLine(seq.Score);
                 sum += seq.Score;
             }
 
-            // Console.WriteLine($"sum = {sum}");
-
             foreach (var sequence in population)
             {
-                // Console.Write($"{sum}  {sequence.Score} ");
                 sequence.Score /= sum;
-                // Console.WriteLine(sequence.Score);
             }
 
             double cs = 0;
@@ -144,19 +130,14 @@ namespace RHEA
                 population[i].CumulativeScore = cs;
             }
 
-            // if (debug)
-            //     Console.WriteLine("Crossover start");
 
             while (crossovers.Count < crossoverSize)
             {
-                // Console.WriteLine(population.Count);
-                // Console.WriteLine(crossovers.Count);
                 Sequence parent1 = RouleteWheel();
                 Sequence parent2 = RouleteWheel();
 
                 while (parent1 == parent2)
                 {
-                    // Console.WriteLine("while");
                     parent2 = RouleteWheel();
                 }
 
@@ -168,9 +149,6 @@ namespace RHEA
                 crossovers.Add(child1);
                 crossovers.Add(child2);
             }
-
-            // if (debug)
-            //     Console.WriteLine("Crossover end");
 
             population = select;
             population.AddRange(crossovers);
@@ -269,32 +247,13 @@ namespace RHEA
 
             double val = random.NextDouble();
 
-            // Console.WriteLine("1");
-
-            // Console.WriteLine(val);
-
             for (int i = 0; i < population.Count-1; i++)
             {
-                // Console.WriteLine($"{population[i].Score} {population[i].CumulativeScore}");
-
-                // if (double.IsNaN(population[i].Score))
-                // {
-                //     // Console.WriteLine("if");
-                //     simulator.EvaluateSequence(population[i]);
-
-                //     // Console.WriteLine(population[i].Score);
-
-                //     Console.ReadLine();
-                // }
-
                 if (val < population[i].CumulativeScore && val > population[i+1].CumulativeScore)
                 {
                     return population[i];
                 }
             }
-
-            // Console.WriteLine("2");
-
 
             return population[population.Count-1];
         }

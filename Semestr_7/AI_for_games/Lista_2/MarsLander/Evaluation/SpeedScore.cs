@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using ForwardModel;
 using Models;
 
 namespace Evaluation
 {
-    public static class LandingScore
+    public static class SpeedScore
     {
         const double bestHS = 20;
         const double worstHS = 200;
@@ -26,8 +26,6 @@ namespace Evaluation
             return  VerticalSpeedScore(verticalSpeed) *
                  HorizontalSpeedScore(horizontalSpeed);
                 // * RotationScore(rotation);
-
-            // return VerticalSpeedScore(verticalSpeed);
         }
 
         public static double Score(Lander lander)

@@ -63,12 +63,7 @@ namespace Evaluation
         {
             SetLander();
             Lander previous = new Lander();
-
-            int moves = 0;
             LandingResult moveResult = LandingResult.InProgress;
-            double res = 0;
-            double c = 1;
-            double bonus = 0;
             var stop = actions.Count;
 
             for (int i=0; i<actions.Count; i++)
@@ -80,14 +75,7 @@ namespace Evaluation
                 actions[i].Rotation = lander.Angle-previous.Angle;
                 actions[i].Thrust = lander.Power - previous.Power;
 
-
-                
-
                 moveResult = surface.MoveResult(previous, lander);
-
-                moves++;
-                // res += c*stateEvaluator.EvalState(lander, moveResult);
-                c *= 1;
 
                 if (moveResult != LandingResult.InProgress)
                 {
@@ -95,25 +83,16 @@ namespace Evaluation
                     if (moveResult == LandingResult.Success)
                     {
                         actions[i].Rotation = - previous.Angle;
-                        // actions[i+1].Rotation = 0;
-                        bonus = 100000;
                     }
                     else if (moveResult == LandingResult.CorrectAngle)
                     {
                         actions[i].Rotation = - previous.Angle;
-                        // bonus = 100;
                     }
                     break;
                 }
-                // moves++;
-
-                // res += stateEvaluator.EvalState(lander, moveResult);
             }
 
-            actions.Score =  stateEvaluator.EvalState(lander, moveResult);
-
-            // actions.Score = res;
-            
+            actions.Score =  stateEvaluator.EvalState(lander, moveResult);            
 
             return actions.Score;
         }
@@ -123,9 +102,6 @@ namespace Evaluation
             var thrust = random.Next(-1,2);
 
             var rotation = random.Next(-15, 16);
-
-            // if (lander.Fuel < thrust)
-            //     thrust = lander.Fuel;
 
             return new LanderAction(rotation, thrust);
         }
