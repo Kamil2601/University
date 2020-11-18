@@ -6,14 +6,14 @@ namespace Evaluation
 {
     public static class LandingScore
     {
-        const double bestHS = 30;
-        const double worstHS = 40;
+        const double bestHS = 20;
+        const double worstHS = 200;
         const double aHS = 1 / (bestHS - worstHS);
         const double bHS = -worstHS * aHS;
 
 
-        const double bestVS = 20;
-        const double worstVS = 40;
+        const double bestVS = 40;
+        const double worstVS = 120;
         const double aVS = 1 / (bestVS - worstVS);
         const double bVS = -worstVS * aVS;
 
@@ -23,26 +23,19 @@ namespace Evaluation
 
         public static double Score(double verticalSpeed, double horizontalSpeed, int rotation)
         {
-            return 0.6 * VerticalSpeedScore(verticalSpeed) +
-                0.3 * HorizontalSpeedScore(horizontalSpeed) +
-                0.1 * RotationScore(rotation);
+            return  VerticalSpeedScore(verticalSpeed) *
+                 HorizontalSpeedScore(horizontalSpeed);
+                // * RotationScore(rotation);
 
             // return VerticalSpeedScore(verticalSpeed);
         }
 
-        // public static double Score(Lander lander, LandingResult landingResult)
-        // {
-        //     if (landingResult == LandingResult.Failure)
-        //         return 0;
-
-        //     return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
-        //         lander.Angle);
-
-        //     // var verticalDist = surface.VerticalDistanceToLandingZone(lander.Position);
-        //     // var horizontalDist = surface.VerticalDistanceToLandingZone(lander.Position);
-
+        public static double Score(Lander lander)
+        {
+            return Score(lander.VerticalSpeed, lander.HorizontalSpeed,
+                lander.Angle);
             
-        // }
+        }
 
 
         public static double RotationScore(int rotation)

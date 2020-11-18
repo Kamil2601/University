@@ -86,7 +86,7 @@ namespace Evaluation
                 moveResult = surface.MoveResult(previous, lander);
 
                 moves++;
-                res += c*stateEvaluator.EvalState(lander, moveResult);
+                // res += c*stateEvaluator.EvalState(lander, moveResult);
                 c *= 1;
 
                 if (moveResult != LandingResult.InProgress)
@@ -110,22 +110,9 @@ namespace Evaluation
                 // res += stateEvaluator.EvalState(lander, moveResult);
             }
 
-            actions.Score = res; // stateEvaluator.EvalState(lander, moveResult);
+            actions.Score =  stateEvaluator.EvalState(lander, moveResult);
 
-            // Console.WriteLine($"{stop}, {actions.Score}");
-
-            // if (moves == 0)
-            // {
-            //     if (moveResult != LandingResult.Success)
-            //         actions.Score = 0.01;
-            //     else
-            //         actions.Score = 1;
-            // }
-            // else
-            // {
-            //     actions.Score = res/moves;
-            // }
-
+            // actions.Score = res;
             
 
             return actions.Score;

@@ -13,8 +13,8 @@ namespace RHEA
         Lander lander;
         Simulator simulator;
         List<Sequence> population;
-        const int populationSize = 40;
-        const int sequenceLength = 60;
+        const int populationSize = 50;
+        const int sequenceLength = 20;
         const int selectionSize = 6;
         const int crossoverSize = populationSize - selectionSize;
         readonly int populationsPerIteration = 20;
@@ -203,7 +203,12 @@ namespace RHEA
             population.Sort((x, y) => y.Score.CompareTo(x.Score));
         }
 
-        public (Sequence, Sequence) Crossover2(Sequence parent1, Sequence parent2)
+        public (Sequence, Sequence) Crossover(Sequence parent1, Sequence parent2)
+        {
+            return Crossover1(parent1, parent2);
+        }
+
+        public (Sequence, Sequence) Crossover1(Sequence parent1, Sequence parent2)
         {
             Sequence child1 = new Sequence(sequenceLength);
             Sequence child2 = new Sequence(sequenceLength);
@@ -225,7 +230,7 @@ namespace RHEA
             return (child1, child2);
         }
 
-        public (Sequence, Sequence) Crossover(Sequence parent1, Sequence parent2)
+        public (Sequence, Sequence) Crossover2(Sequence parent1, Sequence parent2)
         {
             var r = random.NextDouble();
 

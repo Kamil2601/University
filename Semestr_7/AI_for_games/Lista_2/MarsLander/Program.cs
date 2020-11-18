@@ -17,6 +17,14 @@ namespace MarsLander
             {
                 if (args[0] == "1")
                     Codingame.Test1();
+                if (args[0] == "2")
+                    Codingame.Test2();
+                if (args[0] == "3")
+                    Codingame.Test3();
+                if (args[0] == "4")
+                    Codingame.Test4();
+                if (args[0] == "5")
+                    Codingame.Test5();
             }
             else
                 CodinGame();

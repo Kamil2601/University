@@ -25,6 +25,11 @@ namespace Evaluation
                 return 1000000 + lander.Fuel;
             }
 
+            if (lastMoveResult == LandingResult.OutOfBounds)
+            {
+                return 0;
+            }
+
             horizontalDistance = surface.HorizontalDistanceToLandingZone(lander.Position);
             verticalDistance = surface.VerticalDistanceToLandingZone(lander.Position);
             distance = surface.DistanceToLandingZone(lander.Position);
@@ -33,14 +38,35 @@ namespace Evaluation
             var angleScore = LandingAngleScore(lander);
             var dirScore = DirectionScore(lander);
 
-            double bonus = 0;
+            var dScore = (7000 - distance);
 
-            if (lastMoveResult == LandingResult.Success)
-                bonus = 1000;
+            if (lastMoveResult == LandingResult.InProgress)
+            {
+                dScore *= 0.5;
+            }
+            else if (lastMoveResult != LandingResult.Success)
+            {
+                dScore *= 0.25;
+            }
 
-            // return 20000 - 3*Math.Abs(hDist) - Math.Abs(dist) / 10000 + 200 * lhsScore + 500 * lvsScore + 200 * angleScore;
-        
-            return (1-distance/6700) + (1-lander.Fuel/startLander.Fuel) + 2*lhsScore + 2*lvsScore + 50*dirScore + angleScore;
+            var goUp = 1.0;
+
+
+            if (verticalDistance >= 1)
+            {
+                goUp = 1/verticalDistance;
+            }
+
+
+
+            // Console.WriteLine((lander.HorizontalSpeed, lhsScore));
+            
+            // return (7000-distance) * LandingScore.HorizontalSpeedScore(lander.HorizontalSpeed)
+            //     * LandingScore.VerticalSpeedScore(lander.VerticalSpeed);
+
+            return dScore * LandingScore.Score(lander) * goUp;
+
+            // return (7000-distance)/7000 + 1.5*angleScore + dirScore + 10*lhsScore + lvsScore;
         }
 
         public double LandingVerticalSpeedScore(Lander lander)
@@ -127,7 +153,17 @@ namespace Evaluation
         {
             if (verticalDistance < 0 && lander.VerticalSpeed < 0)
             {
-                double timeToLand = Math.Floor(Math.Abs(verticalDistance) / Math.Abs(lander.VerticalSpeed));
+                double timeToLandV = Math.Abs(verticalDistance) / Math.Abs(lander.VerticalSpeed);
+                
+
+                double timeToLandH = double.MaxValue;
+
+                if (Math.Sign(horizontalDistance) == Math.Sign(lander.HorizontalSpeed))
+                {
+                    timeToLandH = horizontalDistance/lander.HorizontalSpeed;
+                }
+
+                double timeToLand = Math.Min(timeToLandH, timeToLandV);
 
                 double angle = Math.Abs(lander.Angle);
 
