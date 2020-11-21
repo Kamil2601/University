@@ -98,18 +98,28 @@ object Actions {
 
   val ActionA = new Manipulation with Shortening with Doubling with SingleSpacing
 
-  val ActionB = new Mainpulation with Doubling with Shortening with NoSpacing
+  val ActionB = new Manipulation with Doubling with Shortening with NoSpacing
 
-  val ActionC = new Mainpulation with Doubling with LowerCasing
+  val ActionC = new Manipulation with Doubling with LowerCasing
 
   val ActionD = new Manipulation with Rotating with DuplicateRemoval
+
+  val ActionE = new Manipulation with Reverting with Doubling
+    with Shortening with NoSpacing
+
+  val ActionF = new Manipulation with Rotating {
+    override def plugin(s: String): String =
+      (1 to 5).foldLeft(s)((s, _) => super.plugin((s)))
+  }
+
+  val ActionG = new Manipulation {
+    override def plugin(s: String): String = ActionB.plugin(ActionA.plugin(s))
+  }
 }
 
 object lab05 {
   def main(args: Array[String]): Unit = {
     import plugins._
-
-    // val manipulator = new TextManipulation()
 
     object RevertingObj extends Reverting {}
     object LowerCasingObj extends LowerCasing {}
@@ -131,5 +141,11 @@ object lab05 {
 
     println(Actions.ActionA.plugin("123456789"))
     println(ShorteningObj.plugin("1223445667889"))
+
+    println(Actions.ActionB.plugin("Som et  hing   "))
+    println(Actions.ActionC.plugin("UpPeR cAsE"))
+    println(Actions.ActionE.plugin("1  2 3            4 5     6789"))
+    println(Actions.ActionF.plugin("123456"))
+    println(Actions.ActionG.plugin("Hello world"))
   }
 }
