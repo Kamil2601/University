@@ -11,8 +11,8 @@ namespace ForwardModel
         public const int topBound = 3000;
         public const int rightBound = 7000;
         public List<Point> points;
-        Point flatLeft;
-        Point flatRight;
+        public Point flatLeft;
+        public Point flatRight;
         int flatLeftIndex;
         public double surfaceLength;
         public List<double> groundDistanceToLandingZone;

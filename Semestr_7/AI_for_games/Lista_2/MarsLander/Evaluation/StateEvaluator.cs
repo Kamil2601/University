@@ -33,10 +33,10 @@ namespace Evaluation
             horizontalDistance = surface.HorizontalDistanceToLandingZone(lander.Position);
             verticalDistance = surface.VerticalDistanceToLandingZone(lander.Position);
             distance = surface.DistanceToLandingZone(lander.Position);
-            var lhsScore = LandingHorizontalSpeedScore(lander);
-            var lvsScore = LandingVerticalSpeedScore(lander);
-            var angleScore = LandingAngleScore(lander);
-            var dirScore = DirectionScore(lander);
+            // var lhsScore = LandingHorizontalSpeedScore(lander);
+            // var lvsScore = LandingVerticalSpeedScore(lander);
+            // var angleScore = LandingAngleScore(lander);
+            // var dirScore = DirectionScore(lander);
 
             var dScore = (7000 - distance);
 
@@ -57,8 +57,17 @@ namespace Evaluation
                 goUp = 1/verticalDistance;
             }
 
+            var goDown = 1.0;
 
-            return dScore * SpeedScore.Score(lander) * goUp;
+            // if (verticalDistance < 0 && lander.Position.X >= surface.flatLeft.X
+            //     && lander.Position.X <= surface.flatRight.X
+            //     && lander.VerticalSpeed >= -35)
+            // {
+            //     goDown = 15*Math.Abs(lander.VerticalSpeed);
+            // }
+
+
+            return dScore * SpeedScore.Score(lander) * goUp * goDown;
         }
 
         public double LandingVerticalSpeedScore(Lander lander)

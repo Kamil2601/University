@@ -28,7 +28,6 @@ namespace RHEA
             this.surface = surface;
             this.lander = lander;
             this.simulator = new Simulator(lander, surface);
-            // this.populationsPerIteration = populations;
         }
 
         public int Algorithm()
