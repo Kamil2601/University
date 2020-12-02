@@ -6,6 +6,11 @@ namespace ForwardModel.Games
 {
     public class CodinGame: GameBase
     {
+        public CodinGame() : base()
+        {
+
+        }
+
         public void ReadState()
         {
             string line;
@@ -22,6 +27,7 @@ namespace ForwardModel.Games
             for (int i = 0; i < actionCount; i++)
             {
                 line = Console.ReadLine();
+                Console.WriteLine(line);
                 inputs = line.Split(' ');
                 int actionId = int.Parse(inputs[0]); // the unique ID of this spell or recipe
                 string actionType = inputs[1]; // in the first league: BREW; later: CAST, OPPONENT_CAST, LEARN, BREW

@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Models;
+using Greedy.Models;
 
 namespace Greedy
 {
+    // This agent was enough to reach bronze league
     // BREW best possible potion
     // If not possible - CAST random spell
     // If not possible - WAIT

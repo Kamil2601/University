@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ForwardModel.Actions;
 using ForwardModel.Spells;
-using Models;
 
 namespace ForwardModel
 {

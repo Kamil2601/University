@@ -4,10 +4,10 @@ namespace ForwardModel.Spells
     {
         public int Score { get; set; }
 
-        public DeliverySpell(Recipe need, int score)
+        public DeliverySpell(Recipe recipe, int score)
         {
-            this.Recipe = new Recipe(-need.Delta[0], -need.Delta[1],
-                -need.Delta[2], -need.Delta[3]);
+            this.Recipe = new Recipe(recipe.Delta[0], recipe.Delta[1],
+                recipe.Delta[2], recipe.Delta[3]);
             this.Score = score;
         }
 

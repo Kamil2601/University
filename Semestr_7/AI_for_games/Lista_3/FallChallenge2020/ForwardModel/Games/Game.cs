@@ -9,15 +9,10 @@ namespace ForwardModel.Games
     {
         HashSet<int> learntSpells;
         HashSet<int> brewedPotions;
-
-        public Game()
+        
+        public Game(): base()
         {
-            Player = new Player();
-            Opponent = new Player();
-            Players = new List<Player>() { Player, Opponent };
-            Deck = new Deck();
-            Tome = new List<TomeSpell>();
-            Turns = 0;
+            
         }
 
         public void PerformGameUpdate()

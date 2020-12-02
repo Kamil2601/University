@@ -1,4 +1,4 @@
-﻿namespace ForwardModel.Actions
+namespace ForwardModel.Actions
 {
     public abstract class PlayerAction
     {

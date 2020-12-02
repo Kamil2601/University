@@ -1,4 +1,4 @@
-﻿namespace Models
+namespace Greedy.Models
 {
     public abstract class GameAction
     {
