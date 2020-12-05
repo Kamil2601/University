@@ -6,5 +6,10 @@ namespace ForwardModel.Actions
         {
             return true;
         }
+
+        public override string CodingameString()
+        {
+            return "REST";
+        }
     }
 }

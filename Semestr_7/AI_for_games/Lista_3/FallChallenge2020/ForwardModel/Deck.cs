@@ -94,6 +94,12 @@ namespace ForwardModel
             deliveries.Add(new DeliverySpell(new Recipe(-1, -1, -1, -3), 20));
         }
 
+        public Deck(Deck deck)
+        {
+            tome.AddRange(deck.tome);
+            deliveries.AddRange(deck.deliveries);
+        }
+
         public TomeSpell NextTomeSpell()
         {
             if (!tome.Any())

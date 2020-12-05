@@ -43,6 +43,11 @@ namespace ForwardModel.Spells
 
             return Owner.Inventory.Sum() + Recipe.Delta.Sum() <= 10;
         }
+
+        public override string ToString()
+        {
+            return $"({Recipe.ToString()})";
+        }
     }
 
 }

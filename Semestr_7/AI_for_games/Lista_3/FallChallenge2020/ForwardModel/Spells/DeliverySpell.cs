@@ -16,5 +16,10 @@ namespace ForwardModel.Spells
             return base.Equals(other) && Score == other.Score;
         }
 
+        public override string ToString()
+        {
+            return $"({Recipe.ToString()}, {Score})";
+        }
+
     }
 }

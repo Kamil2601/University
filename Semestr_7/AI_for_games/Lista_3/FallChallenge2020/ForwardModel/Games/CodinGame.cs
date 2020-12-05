@@ -50,7 +50,7 @@ namespace ForwardModel.Games
                     if (tomeIndex == 3)
                         BigBonusLeft = taxCount;
                     else if (tomeIndex == 1)
-                        smallBonusLeft = taxCount;
+                        SmallBonusLeft = taxCount;
 
                     DeliverySpell spell = new DeliverySpell(recipe, price);
 

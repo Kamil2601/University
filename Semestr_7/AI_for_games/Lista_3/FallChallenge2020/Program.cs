@@ -7,9 +7,9 @@ namespace FallChallenge2020
     {
         static void Main(string[] args)
         {
-            CodinGame game = new CodinGame();
-            game.ReadState();
-            // CodinGame();
+            RandomGame game = new RandomGame();
+
+            Console.WriteLine(game.Play());
         }
 
         public static void RunCodinGame()

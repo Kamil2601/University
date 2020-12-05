@@ -2,9 +2,7 @@ namespace ForwardModel
 {
     public class Recipe
     {
-        public int[] Delta { get; set; } 
-
-        // public static string[] CHARS = new string[] { "A", "B", "C", "D" };
+        public int[] Delta { get; } 
 
         public Recipe(int a, int b, int c, int d)
         {
@@ -28,6 +26,11 @@ namespace ForwardModel
             }
 
             return true;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Delta[0]}, {Delta[1]}, {Delta[2]}, {Delta[3]}]";
         }
     }
 }

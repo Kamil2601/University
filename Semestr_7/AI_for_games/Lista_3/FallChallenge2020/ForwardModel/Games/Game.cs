@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ForwardModel.Actions;
 using ForwardModel.Spells;
 
@@ -9,10 +10,11 @@ namespace ForwardModel.Games
     {
         HashSet<int> learntSpells;
         HashSet<int> brewedPotions;
-        
-        public Game(): base()
+        List<int> bonuses;
+
+        public Game() : base()
         {
-            
+            RefillSpells();
         }
 
         public void PerformGameUpdate()
@@ -20,9 +22,9 @@ namespace ForwardModel.Games
             Turns++;
             learntSpells = new HashSet<int>();
             brewedPotions = new HashSet<int>();
-            List<int> learnSpellsIndexes = new List<int>();
+            bonuses = new List<int>();
 
-            foreach (Player player in  Players)
+            foreach (Player player in Players)
             {
                 PlayerAction action = player.Action;
 
@@ -34,14 +36,11 @@ namespace ForwardModel.Games
                 {
                     var brew = action as Brew;
 
-                    int index = Deliveries.FindIndex(del => del == brew.Delivery);
+                    int index = brew.DeliveryIndex;
 
-                    int bonus = 0;
+                    int bonus = CalculateBonus(brew);
 
-                    if (index == 0)
-                        bonus = 3;
-                    else if (index == 1)
-                        bonus = 1;
+                    bonuses.Add(bonus);
 
                     brewedPotions.Add(index);
 
@@ -70,7 +69,7 @@ namespace ForwardModel.Games
 
                         player.Inventory[0] -= index;
 
-                        for (int i=0; i<index; i++)
+                        for (int i = 0; i < index; i++)
                         {
                             Tome[i].Stock++;
                         }
@@ -82,16 +81,92 @@ namespace ForwardModel.Games
                 }
             }
 
-            foreach (var index in learntSpells)
+            UpdateBonuses();
+            RemoveUsedSpells();
+            RefillSpells();
+        }
+
+        private int CalculateBonus(Brew brew)
+        {
+            if (brew.DeliveryIndex == 0)
+            {
+                if (BigBonusLeft > 0)
+                {
+                    return 3;
+                }
+                else if (SmallBonusLeft > 0)
+                {
+                    return 1;
+                }
+            }
+            else if (brew.DeliveryIndex == 1)
+            {
+                if (BigBonusLeft > 0 && SmallBonusLeft > 0)
+                {
+                    return 1;
+                }
+            }
+
+            return 0;
+        }
+
+        private void UpdateBonuses()
+        {
+            foreach (int bonus in bonuses)
+            {
+                if (bonus == 3)
+                {
+                    BigBonusLeft--;
+                }
+                else if (bonus == 1)
+                {
+                    SmallBonusLeft--;
+                }
+            }
+
+            BigBonusLeft = Math.Max(BigBonusLeft, 0);
+            SmallBonusLeft = Math.Max(SmallBonusLeft, 0);
+        }
+
+        private void RemoveUsedSpells()
+        {
+
+            var lSpells = learntSpells.OrderByDescending(x => x).ToList();
+
+            foreach (int index in lSpells)
             {
                 Tome.RemoveAt(index);
-                
+            }
+
+
+            var bPotions = brewedPotions.OrderByDescending(x => x).ToList();
+
+            foreach (int index in brewedPotions)
+            {
+                Deliveries.RemoveAt(index);
+            }
+        }
+
+        private void RefillSpells()
+        {
+            while (Tome.Count < 6)
+            {
                 var spell = Deck.NextTomeSpell();
 
-                if (spell != null)
-                {
-                    
-                }
+                if (spell == null)
+                    break;
+
+                Tome.Add(spell);
+            }
+
+            while (Deliveries.Count < 6)
+            {
+                var spell = Deck.NextDeliverySpell();
+
+                if (spell == null)
+                    break;
+
+                Deliveries.Add(spell);
             }
         }
     }

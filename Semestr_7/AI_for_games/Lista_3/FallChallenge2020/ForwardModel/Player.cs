@@ -13,12 +13,14 @@ namespace ForwardModel
         public PlayerAction Action { get; set; }
         public int Score { get; set; }
         public string Name { get; set; } = "";
+        public int BrewedPotions { get; set; }
 
         public Player()
         {
             Inventory = new int[4] {3, 0, 0, 0};
             Spells = new List<PlayerSpell>();
             Score = 0;
+            BrewedPotions = 0;
 
             Spells.Add(new PlayerSpell(new Recipe(2, 0, 0, 0), this));
             Spells.Add(new PlayerSpell(new Recipe(-1, 1, 0, 0), this));
@@ -84,6 +86,7 @@ namespace ForwardModel
             }
 
             Score += spell.Score + bonus;
+            BrewedPotions += 1;
         }
 
         public void Learn(TomeSpell spell)
@@ -100,6 +103,70 @@ namespace ForwardModel
             {
                 Inventory[0] -= (ingredientsCount - 10);
             }
+        }
+
+        public bool CanBrew(DeliverySpell spell)
+        {
+            for (int i=0; i<4; i++)
+            {
+                if (Inventory[i] + spell.Recipe.Delta[i] < 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public int PossibleCasts(PlayerSpell spell)
+        {
+            if (spell.Owner != this || !spell.Active)
+                return 0;
+
+            if (!spell.Repeatable)
+            {
+                var inv = new int[4] {Inventory[0], Inventory[1], Inventory[2], Inventory[3]};
+
+                for (int i=0; i<4; i++)
+                {
+                    inv[i] += spell.Recipe.Delta[i];
+
+                    if (inv[i] < 0)
+                        return 0;
+                }
+
+                if (inv.Sum() > 10)
+                {
+                    return 0;
+                }
+
+                return 1;
+            }
+            else
+            {
+                var inv = new int[4] {Inventory[0], Inventory[1], Inventory[2], Inventory[3]};
+
+                for (int count=0; ; count++)
+                {
+                    for (int i=0; i<4; i++)
+                    {
+                        inv[i] += spell.Recipe.Delta[i];
+
+                        if (inv[i] < 0)
+                            return count;
+                    }
+
+                    if (inv.Sum() > 10)
+                    {
+                        return count;
+                    }
+                }
+            }    
+        }
+
+        public int Points()
+        {
+            return Score + Inventory.Sum() - Inventory[0];
         }
 
         Player Copy() {

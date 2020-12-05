@@ -2,6 +2,7 @@ namespace ForwardModel.Actions
 {
     public abstract class PlayerAction
     {
+        public abstract string CodingameString();
         
         public virtual bool IsBrew()
         {
