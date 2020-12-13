@@ -164,6 +164,52 @@ namespace ForwardModel
             }    
         }
 
+        public void UndoCast(Cast cast)
+        {
+            for (int i=0; i<4; i++)
+            {
+                Inventory[i] -= cast.Spell.Recipe.Delta[i] * cast.Count;
+
+                if (Inventory[i] < 0)
+                {
+                    throw new Exception($"{Name}: undo cast - tier-{i} ingredient is below 0!");
+                }
+            }
+
+            if (Inventory.Sum() > 10)
+            {
+                throw new Exception($"{Name}: Undo cast - inventory over 10");
+            }
+        }
+
+        public void UndoBrew(Brew brew)
+        {
+            Score -= brew.Delivery.Score - brew.Bonus;
+
+            for (int i=0; i<4; i++)
+            {
+                Inventory[i] -= brew.Delivery.Recipe.Delta[i];
+
+                if (Inventory[i] < 0)
+                {
+                    throw new Exception($"{Name}: undo brew - tier-{i} ingredient is below 0!");
+                }
+            }
+            
+            if (Inventory.Sum() > 10)
+            {
+                throw new Exception($"{Name}: Undo cast - inventory over 10");
+            }
+        }
+
+        public void UndoRest(Rest action)
+        {
+            foreach (var spell in action.RefreshedSpells)
+            {
+                spell.Active = false;
+            }
+        }
+
         public int Points()
         {
             return Score + Inventory.Sum() - Inventory[0];

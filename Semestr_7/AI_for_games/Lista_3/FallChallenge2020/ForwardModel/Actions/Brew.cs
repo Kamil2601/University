@@ -6,6 +6,7 @@ namespace ForwardModel.Actions
     {
         public DeliverySpell Delivery { get; set; }
         public int DeliveryIndex { get; set; }
+        public int Bonus { get; set; } = 0;
 
         public override bool IsBrew()
         {

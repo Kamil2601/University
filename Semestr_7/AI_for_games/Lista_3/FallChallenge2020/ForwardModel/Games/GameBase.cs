@@ -120,7 +120,7 @@ namespace ForwardModel.Games
             result.AddRange(LegalLearns(player));
             result.AddRange(LegalBrews(player));
             result.AddRange(LegalCasts(player));
-            result.Add(new Rest());
+            result.Add(new Rest(player));
 
             return result;
         }

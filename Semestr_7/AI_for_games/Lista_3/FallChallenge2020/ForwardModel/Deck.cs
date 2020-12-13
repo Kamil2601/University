@@ -10,6 +10,8 @@ namespace ForwardModel
         public List<TomeSpell> tome = new List<TomeSpell>();
         public List<DeliverySpell> deliveries = new List<DeliverySpell>();
         private Random random = new Random();
+        private int usedTomeSpells = 0;
+        private int usedDeliveries = 0;
 
         public Deck()
         {
@@ -102,56 +104,86 @@ namespace ForwardModel
 
         public TomeSpell NextTomeSpell()
         {
-            if (!tome.Any())
+            if (usedTomeSpells == tome.Count)
                 return null;
 
-            var index = random.Next(tome.Count);
+            var index = random.Next(usedTomeSpells, tome.Count);
             var result = tome[index];
 
-            tome.RemoveAt(index);
+            (tome[index], tome[usedTomeSpells]) = (tome[usedTomeSpells], tome[index]);
+            usedTomeSpells++;
 
             return result;
         }
 
         public DeliverySpell NextDeliverySpell()
         {
-            if (!deliveries.Any())
+            if (usedDeliveries == deliveries.Count)
                 return null;
 
-            var index = random.Next(deliveries.Count);
+            var index = random.Next(usedDeliveries, deliveries.Count);
             var result = deliveries[index];
 
-            deliveries.RemoveAt(index);
+            (deliveries[index], deliveries[usedTomeSpells]) = 
+                (deliveries[usedTomeSpells], deliveries[index]);
+            usedDeliveries++;
 
             return result;
         }
 
         public TomeSpell RemoveTomeSpell(TomeSpell spell)
         {
-            var result = tome.Find(s => spell.Recipe.Equals(s.Recipe));
+            var index = tome.FindIndex(s => spell.Recipe.Equals(s.Recipe));
 
-            tome.Remove(result);
+            var result = tome[index];
+
+            (tome[index], tome[usedTomeSpells]) = (tome[usedTomeSpells], tome[index]);
+            usedTomeSpells++;
 
             return result;
         }
 
         public DeliverySpell RemoveDeliverySpell(DeliverySpell spell)
         {
-            var result = deliveries.Find(s => spell.Recipe.Equals(s.Recipe));
+            var index = deliveries.FindIndex(s => spell.Recipe.Equals(s.Recipe));
 
-            deliveries.Remove(result);
+            var result = deliveries[index];
+
+            (deliveries[index], deliveries[usedTomeSpells]) = 
+                (deliveries[usedTomeSpells], deliveries[index]);
+            usedDeliveries++;
 
             return result;
         }
 
+        public void UndoLastDelivery()
+        {
+            if (usedDeliveries == 0)
+            {
+                throw new Exception("No delivery to undo");
+            }
+
+            usedDeliveries--;
+        }
+
+        public void UndoLastTomeSpell()
+        {
+            if (usedTomeSpells == 0)
+            {
+                throw new Exception("No spell to undo");
+            }
+
+            usedTomeSpells--;
+        }
+
         public bool HasTomeSpell()
         {
-            return tome.Any();
+            return usedTomeSpells < tome.Count;
         }
 
         public bool HasDeliverySpell()
         {
-            return deliveries.Any();
+            return usedDeliveries < deliveries.Count;
         }
     }
 }

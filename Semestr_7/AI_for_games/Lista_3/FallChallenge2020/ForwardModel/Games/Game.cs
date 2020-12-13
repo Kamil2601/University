@@ -11,10 +11,15 @@ namespace ForwardModel.Games
         HashSet<int> learntSpells;
         HashSet<int> brewedPotions;
         List<int> bonuses;
+        List<ActionsInfo> history;
+        private readonly bool refill;
 
-        public Game() : base()
+        public Game(bool refill = true) : base()
         {
-            RefillSpells();
+            history = new List<ActionsInfo>();
+            this.refill = refill;
+            if (refill)
+                RefillSpells();
         }
 
         public void PerformGameUpdate()
@@ -24,9 +29,14 @@ namespace ForwardModel.Games
             brewedPotions = new HashSet<int>();
             bonuses = new List<int>();
 
+            history.Add(new ActionsInfo(Player.Action, Opponent.Action));
+
             foreach (Player player in Players)
             {
                 PlayerAction action = player.Action;
+
+                if (action == null)
+                    continue;
 
                 if (action.IsRest())
                 {
@@ -38,13 +48,13 @@ namespace ForwardModel.Games
 
                     int index = brew.DeliveryIndex;
 
-                    int bonus = CalculateBonus(brew);
+                    brew.Bonus = CalculateBonus(brew);
 
-                    bonuses.Add(bonus);
+                    bonuses.Add(brew.Bonus);
 
                     brewedPotions.Add(index);
 
-                    player.Brew(brew.Delivery, bonus);
+                    player.Brew(brew.Delivery, brew.Bonus);
                 }
                 else if (action.IsCast())
                 {
@@ -83,7 +93,85 @@ namespace ForwardModel.Games
 
             UpdateBonuses();
             RemoveUsedSpells();
-            RefillSpells();
+
+            if (refill)
+                RefillSpells();
+        }
+
+        public void UndoLastActions()
+        {
+            if (history.Count == 0)
+            {
+                throw new Exception("No actions to Undo");
+            }
+
+            learntSpells = new HashSet<int>();
+            brewedPotions = new HashSet<int>();
+            bonuses = new List<int>();
+
+            ActionsInfo actions = history[history.Count-1];
+
+            history.RemoveAt(history.Count - 1);
+
+            var pairs = new List<(Player, PlayerAction)>
+                {(Player, actions.PlayerAction),
+                 (Opponent, actions.OpponentAction)};
+
+            foreach (var (player, action) in pairs)
+            {
+                if (action == null)
+                    continue;
+
+                if (action.IsRest())
+                {
+                    player.UndoRest(action as Rest);
+                }
+                else if (action.IsBrew())
+                {
+                    var brew = action as Brew;
+
+                    int index = brew.DeliveryIndex;
+
+                    int bonus = brew.Bonus;
+
+                    bonuses.Add(bonus);
+
+                    brewedPotions.Add(index);
+
+                    player.UndoBrew(brew);
+                }
+                else if (action.IsCast())
+                {
+                    player.UndoCast(action as Cast);
+                }
+                else if (action.IsLearn())
+                {
+                    var learn = action as Learn;
+
+                    var index = learn.SpellIndex;
+
+                    var spell = Tome[index];
+
+                    if (index > 0)
+                    {
+                        if (player.Inventory[0] < index)
+                        {
+                            throw new Exception("LEARN Exception: Player can't pay tax");
+                        }
+
+                        player.Inventory[0] -= index;
+
+                        for (int i = 0; i < index; i++)
+                        {
+                            Tome[i].Stock++;
+                        }
+                    }
+
+                    learntSpells.Add(index);
+
+                    player.Learn(spell);
+                }
+            }
         }
 
         private int CalculateBonus(Brew brew)
