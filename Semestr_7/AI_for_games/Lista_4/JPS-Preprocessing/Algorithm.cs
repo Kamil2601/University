@@ -19,7 +19,7 @@ namespace JPS_Preprocessing
             RightDistance();
             UpDistance();
             DownDistance();
-            DownLeftDistance();
+            UpLeftDistance();
         }
 
         public void LoadInput()
@@ -232,7 +232,7 @@ namespace JPS_Preprocessing
             }
         }
 
-        public void DownLeftDistance()
+        public void UpLeftDistance()
         {
             for (int r = 1; r <= height; r++)
             {
@@ -244,26 +244,26 @@ namespace JPS_Preprocessing
                             IsWall(r, c - 1) || IsWall(r - 1, c - 1))
                         {
                             //Wall one away
-                            distance[r, c].DownLeft = 0;
+                            distance[r, c].UpLeft = 0;
                         }
                         else if (!IsWall(r - 1, c) && !IsWall(r, c - 1) &&
-                            (distance[r - 1, c - 1].Down > 0 ||
+                            (distance[r - 1, c - 1].Up > 0 ||
                             distance[r - 1,c - 1].Left > 0))
                         {
                             //Straight jump point one away
-                            distance[r, c].DownLeft = 1;
+                            distance[r, c].UpLeft = 1;
                         }
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r - 1,c - 1].DownLeft;
+                            int jumpDistance = distance[r - 1,c - 1].UpLeft;
                             if (jumpDistance > 0)
                             {
-                                distance[r,c].DownLeft = 1 + jumpDistance;
+                                distance[r,c].UpLeft = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r,c].DownLeft = -1 + jumpDistance;
+                                distance[r,c].UpLeft = -1 + jumpDistance;
                             }
                         }
                     }
