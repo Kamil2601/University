@@ -1,4 +1,4 @@
-namespace JPS_Preprocessing.Models
+namespace JPS.Models
 {
     public class Distance
     {
@@ -10,5 +10,10 @@ namespace JPS_Preprocessing.Models
         public int UpRight { get; set; }
         public int DownLeft { get; set; }
         public int DownRight { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Up} {UpRight} {Right} {DownRight} {Down} {DownLeft} {Left} {UpLeft}";
+        }
     }
 }

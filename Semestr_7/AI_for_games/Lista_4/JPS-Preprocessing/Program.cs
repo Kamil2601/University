@@ -1,13 +1,14 @@
-﻿using System;
+using JPS.Algorithm;
 
-namespace JPS_Preprocessing
+namespace JPS
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Algorithm algorithm = new Algorithm();
-            algorithm.Run();
+            // Preprocessing preprocessing = new Preprocessing();
+            // preprocessing.Run();
+            // preprocessing.PrintSolution();
         }
     }
 }

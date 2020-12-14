@@ -1,4 +1,4 @@
-namespace JPS_Preprocessing.Models
+namespace JPS.Models
 {
     public class PrimaryJumpPoint
     {

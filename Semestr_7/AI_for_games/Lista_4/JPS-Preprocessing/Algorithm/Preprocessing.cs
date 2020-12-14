@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using JPS_Preprocessing.Models;
+using JPS.Models;
 
-namespace JPS_Preprocessing
+namespace JPS.Algorithm
 {
-    public class Algorithm
+    public class Preprocessing
     {
         int width, height;
         string[] board;
@@ -20,6 +20,9 @@ namespace JPS_Preprocessing
             UpDistance();
             DownDistance();
             UpLeftDistance();
+            UpRightDistance();
+            DownLeftDistance();
+            DownRightDistance();
         }
 
         public void LoadInput()
@@ -33,7 +36,7 @@ namespace JPS_Preprocessing
 
             board = new string[height + 2];
             primaryJumpPoints = new PrimaryJumpPoint[height + 2, width + 2];
-            distance = new Distance[height+2, width+2];
+            distance = new Distance[height + 2, width + 2];
 
             for (int i = 0; i < height + 2; i++)
             {
@@ -240,7 +243,7 @@ namespace JPS_Preprocessing
                 {
                     if (!IsWall(r, c))
                     {
-                        if (r == 0 || c == 0 || IsWall(r - 1, c) ||
+                        if (IsWall(r - 1, c) ||
                             IsWall(r, c - 1) || IsWall(r - 1, c - 1))
                         {
                             //Wall one away
@@ -248,7 +251,7 @@ namespace JPS_Preprocessing
                         }
                         else if (!IsWall(r - 1, c) && !IsWall(r, c - 1) &&
                             (distance[r - 1, c - 1].Up > 0 ||
-                            distance[r - 1,c - 1].Left > 0))
+                            distance[r - 1, c - 1].Left > 0))
                         {
                             //Straight jump point one away
                             distance[r, c].UpLeft = 1;
@@ -256,14 +259,131 @@ namespace JPS_Preprocessing
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r - 1,c - 1].UpLeft;
+                            int jumpDistance = distance[r - 1, c - 1].UpLeft;
                             if (jumpDistance > 0)
                             {
-                                distance[r,c].UpLeft = 1 + jumpDistance;
+                                distance[r, c].UpLeft = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r,c].UpLeft = -1 + jumpDistance;
+                                distance[r, c].UpLeft = -1 + jumpDistance;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void UpRightDistance()
+        {
+            for (int r = 1; r <= height; r++)
+            {
+                for (int c = width; c >= 1; c--)
+                {
+                    if (!IsWall(r, c))
+                    {
+                        if (IsWall(r - 1, c) ||
+                            IsWall(r, c + 1) || IsWall(r - 1, c + 1))
+                        {
+                            //Wall one away
+                            distance[r, c].UpRight = 0;
+                        }
+                        else if (!IsWall(r - 1, c) && !IsWall(r, c + 1) &&
+                            (distance[r - 1, c + 1].Up > 0 ||
+                            distance[r - 1, c + 1].Right > 0))
+                        {
+                            //Straight jump point one away
+                            distance[r, c].UpRight = 1;
+                        }
+                        else
+                        {
+                            //Increment from last
+                            int jumpDistance = distance[r - 1, c + 1].UpRight;
+                            if (jumpDistance > 0)
+                            {
+                                distance[r, c].UpRight = 1 + jumpDistance;
+                            }
+                            else
+                            {
+                                distance[r, c].UpRight = -1 + jumpDistance;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void DownLeftDistance()
+        {
+            for (int r = height; r >= 1; r--)
+            {
+                for (int c = 1; c <= width; c++)
+                {
+                    if (!IsWall(r, c))
+                    {
+                        if (IsWall(r + 1, c) ||
+                            IsWall(r, c - 1) || IsWall(r + 1, c - 1))
+                        {
+                            //Wall one away
+                            distance[r, c].DownLeft= 0;
+                        }
+                        else if (!IsWall(r + 1, c) && !IsWall(r, c - 1) &&
+                            (distance[r + 1, c - 1].Down > 0 ||
+                            distance[r + 1, c - 1].Left > 0))
+                        {
+                            //Straight jump point one away
+                            distance[r, c].DownLeft = 1;
+                        }
+                        else
+                        {
+                            //Increment from last
+                            int jumpDistance = distance[r + 1, c - 1].DownLeft;
+                            if (jumpDistance > 0)
+                            {
+                                distance[r, c].DownLeft = 1 + jumpDistance;
+                            }
+                            else
+                            {
+                                distance[r, c].DownLeft = -1 + jumpDistance;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void DownRightDistance()
+        {
+            for (int r = height; r >= 1; r--)
+            {
+                for (int c = width; c >= 1; c--)
+                {
+                    if (!IsWall(r, c))
+                    {
+                        if (IsWall(r + 1, c) ||
+                            IsWall(r, c + 1) || IsWall(r + 1, c + 1))
+                        {
+                            //Wall one away
+                            distance[r, c].DownRight = 0;
+                        }
+                        else if (!IsWall(r + 1, c) && !IsWall(r, c + 1) &&
+                            (distance[r + 1, c + 1].Down > 0 ||
+                            distance[r + 1, c + 1].Right > 0))
+                        {
+                            //Straight jump point one away
+                            distance[r, c].DownRight = 1;
+                        }
+                        else
+                        {
+                            //Increment from last
+                            int jumpDistance = distance[r + 1, c + 1].DownRight;
+                            if (jumpDistance > 0)
+                            {
+                                distance[r, c].DownRight = 1 + jumpDistance;
+                            }
+                            else
+                            {
+                                distance[r, c].DownRight = -1 + jumpDistance;
                             }
                         }
                     }
@@ -281,6 +401,18 @@ namespace JPS_Preprocessing
             for (int i = 0; i < height + 2; i++)
             {
                 Console.WriteLine(board[i]);
+            }
+        }
+
+        public void PrintSolution()
+        {
+            for (int i=1; i<=height; i++)
+            {
+                for (int j=1; j<=width; j++)
+                {
+                    if (!IsWall(i,j))
+                        Console.WriteLine($"{j-1} {i-1} {distance[i,j].ToString()}");
+                }
             }
         }
 
