@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using JPS.Models;
 
@@ -16,13 +16,13 @@ namespace JPS.Algorithm
             LoadInput();
             PrimaryJumpPoints();
             LefDistance();
-            RightDistance();
-            UpDistance();
-            DownDistance();
-            UpLeftDistance();
-            UpRightDistance();
-            DownLeftDistance();
-            DownRightDistance();
+            EastDistance();
+            NorthDistance();
+            SouthDistance();
+            NorthWestDistance();
+            NorthEastDistance();
+            SouthWestDistance();
+            SouthEastDistance();
         }
 
         public void LoadInput()
@@ -74,7 +74,7 @@ namespace JPS.Algorithm
                 if (board[row - 1][col - 1] == '#' && board[row - 1][col] == '.' ||
                     board[row + 1][col - 1] == '#' && board[row + 1][col] == '.')
                 {
-                    primaryJumpPoints[row, col].Right = true;
+                    primaryJumpPoints[row, col].East = true;
                 }
             }
             if (board[row][col + 1] == '.')
@@ -82,7 +82,7 @@ namespace JPS.Algorithm
                 if (board[row - 1][col + 1] == '#' && board[row - 1][col] == '.' ||
                     board[row + 1][col + 1] == '#' && board[row + 1][col] == '.')
                 {
-                    primaryJumpPoints[row, col].Left = true;
+                    primaryJumpPoints[row, col].West = true;
                 }
             }
             if (board[row - 1][col] == '.')
@@ -90,7 +90,7 @@ namespace JPS.Algorithm
                 if (board[row - 1][col - 1] == '#' && board[row][col - 1] == '.' ||
                     board[row - 1][col + 1] == '#' && board[row][col + 1] == '.')
                 {
-                    primaryJumpPoints[row, col].Down = true;
+                    primaryJumpPoints[row, col].South = true;
                 }
             }
             if (board[row + 1][col] == '.')
@@ -98,7 +98,7 @@ namespace JPS.Algorithm
                 if (board[row + 1][col - 1] == '#' && board[row][col - 1] == '.' ||
                     board[row + 1][col + 1] == '#' && board[row][col + 1] == '.')
                 {
-                    primaryJumpPoints[row, col].Up = true;
+                    primaryJumpPoints[row, col].North = true;
                 }
             }
         }
@@ -115,19 +115,19 @@ namespace JPS.Algorithm
                     {
                         count = -1;
                         jumpPointLastSeen = false;
-                        distance[r, c].Left = 0;
+                        distance[r, c].West = 0;
                         continue;
                     }
                     count++;
                     if (jumpPointLastSeen)
                     {
-                        distance[r, c].Left = count;
+                        distance[r, c].West = count;
                     }
                     else
                     {
-                        distance[r, c].Left = -count;
+                        distance[r, c].West = -count;
                     }
-                    if (primaryJumpPoints[r, c].Left)
+                    if (primaryJumpPoints[r, c].West)
                     {
                         count = 0;
                         jumpPointLastSeen = true;
@@ -136,7 +136,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void RightDistance()
+        public void EastDistance()
         {
             for (int r = 1; r <= height; r++)
             {
@@ -148,19 +148,19 @@ namespace JPS.Algorithm
                     {
                         count = -1;
                         jumpPointLastSeen = false;
-                        distance[r, c].Right = 0;
+                        distance[r, c].East = 0;
                         continue;
                     }
                     count++;
                     if (jumpPointLastSeen)
                     {
-                        distance[r, c].Right = count;
+                        distance[r, c].East = count;
                     }
                     else
                     {
-                        distance[r, c].Right = -count;
+                        distance[r, c].East = -count;
                     }
-                    if (primaryJumpPoints[r, c].Right)
+                    if (primaryJumpPoints[r, c].East)
                     {
                         count = 0;
                         jumpPointLastSeen = true;
@@ -169,7 +169,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void UpDistance()
+        public void NorthDistance()
         {
             for (int c = 1; c <= width; c++)
             {
@@ -181,19 +181,19 @@ namespace JPS.Algorithm
                     {
                         count = -1;
                         jumpPointLastSeen = false;
-                        distance[r, c].Up = 0;
+                        distance[r, c].North = 0;
                         continue;
                     }
                     count++;
                     if (jumpPointLastSeen)
                     {
-                        distance[r, c].Up = count;
+                        distance[r, c].North = count;
                     }
                     else
                     {
-                        distance[r, c].Up = -count;
+                        distance[r, c].North = -count;
                     }
-                    if (primaryJumpPoints[r, c].Up)
+                    if (primaryJumpPoints[r, c].North)
                     {
                         count = 0;
                         jumpPointLastSeen = true;
@@ -202,7 +202,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void DownDistance()
+        public void SouthDistance()
         {
             for (int c = 1; c <= width; c++)
             {
@@ -214,19 +214,19 @@ namespace JPS.Algorithm
                     {
                         count = -1;
                         jumpPointLastSeen = false;
-                        distance[r, c].Down = 0;
+                        distance[r, c].South = 0;
                         continue;
                     }
                     count++;
                     if (jumpPointLastSeen)
                     {
-                        distance[r, c].Down = count;
+                        distance[r, c].South = count;
                     }
                     else
                     {
-                        distance[r, c].Down = -count;
+                        distance[r, c].South = -count;
                     }
-                    if (primaryJumpPoints[r, c].Down)
+                    if (primaryJumpPoints[r, c].South)
                     {
                         count = 0;
                         jumpPointLastSeen = true;
@@ -235,7 +235,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void UpLeftDistance()
+        public void NorthWestDistance()
         {
             for (int r = 1; r <= height; r++)
             {
@@ -247,26 +247,26 @@ namespace JPS.Algorithm
                             IsWall(r, c - 1) || IsWall(r - 1, c - 1))
                         {
                             //Wall one away
-                            distance[r, c].UpLeft = 0;
+                            distance[r, c].NorthWest = 0;
                         }
                         else if (!IsWall(r - 1, c) && !IsWall(r, c - 1) &&
-                            (distance[r - 1, c - 1].Up > 0 ||
-                            distance[r - 1, c - 1].Left > 0))
+                            (distance[r - 1, c - 1].North > 0 ||
+                            distance[r - 1, c - 1].West > 0))
                         {
                             //Straight jump point one away
-                            distance[r, c].UpLeft = 1;
+                            distance[r, c].NorthWest = 1;
                         }
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r - 1, c - 1].UpLeft;
+                            int jumpDistance = distance[r - 1, c - 1].NorthWest;
                             if (jumpDistance > 0)
                             {
-                                distance[r, c].UpLeft = 1 + jumpDistance;
+                                distance[r, c].NorthWest = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r, c].UpLeft = -1 + jumpDistance;
+                                distance[r, c].NorthWest = -1 + jumpDistance;
                             }
                         }
                     }
@@ -274,7 +274,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void UpRightDistance()
+        public void NorthEastDistance()
         {
             for (int r = 1; r <= height; r++)
             {
@@ -286,26 +286,26 @@ namespace JPS.Algorithm
                             IsWall(r, c + 1) || IsWall(r - 1, c + 1))
                         {
                             //Wall one away
-                            distance[r, c].UpRight = 0;
+                            distance[r, c].NorthEast = 0;
                         }
                         else if (!IsWall(r - 1, c) && !IsWall(r, c + 1) &&
-                            (distance[r - 1, c + 1].Up > 0 ||
-                            distance[r - 1, c + 1].Right > 0))
+                            (distance[r - 1, c + 1].North > 0 ||
+                            distance[r - 1, c + 1].East > 0))
                         {
                             //Straight jump point one away
-                            distance[r, c].UpRight = 1;
+                            distance[r, c].NorthEast = 1;
                         }
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r - 1, c + 1].UpRight;
+                            int jumpDistance = distance[r - 1, c + 1].NorthEast;
                             if (jumpDistance > 0)
                             {
-                                distance[r, c].UpRight = 1 + jumpDistance;
+                                distance[r, c].NorthEast = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r, c].UpRight = -1 + jumpDistance;
+                                distance[r, c].NorthEast = -1 + jumpDistance;
                             }
                         }
                     }
@@ -313,7 +313,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void DownLeftDistance()
+        public void SouthWestDistance()
         {
             for (int r = height; r >= 1; r--)
             {
@@ -325,26 +325,26 @@ namespace JPS.Algorithm
                             IsWall(r, c - 1) || IsWall(r + 1, c - 1))
                         {
                             //Wall one away
-                            distance[r, c].DownLeft= 0;
+                            distance[r, c].SouthWest= 0;
                         }
                         else if (!IsWall(r + 1, c) && !IsWall(r, c - 1) &&
-                            (distance[r + 1, c - 1].Down > 0 ||
-                            distance[r + 1, c - 1].Left > 0))
+                            (distance[r + 1, c - 1].South > 0 ||
+                            distance[r + 1, c - 1].West > 0))
                         {
                             //Straight jump point one away
-                            distance[r, c].DownLeft = 1;
+                            distance[r, c].SouthWest = 1;
                         }
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r + 1, c - 1].DownLeft;
+                            int jumpDistance = distance[r + 1, c - 1].SouthWest;
                             if (jumpDistance > 0)
                             {
-                                distance[r, c].DownLeft = 1 + jumpDistance;
+                                distance[r, c].SouthWest = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r, c].DownLeft = -1 + jumpDistance;
+                                distance[r, c].SouthWest = -1 + jumpDistance;
                             }
                         }
                     }
@@ -352,7 +352,7 @@ namespace JPS.Algorithm
             }
         }
 
-        public void DownRightDistance()
+        public void SouthEastDistance()
         {
             for (int r = height; r >= 1; r--)
             {
@@ -364,26 +364,26 @@ namespace JPS.Algorithm
                             IsWall(r, c + 1) || IsWall(r + 1, c + 1))
                         {
                             //Wall one away
-                            distance[r, c].DownRight = 0;
+                            distance[r, c].SouthEast = 0;
                         }
                         else if (!IsWall(r + 1, c) && !IsWall(r, c + 1) &&
-                            (distance[r + 1, c + 1].Down > 0 ||
-                            distance[r + 1, c + 1].Right > 0))
+                            (distance[r + 1, c + 1].South > 0 ||
+                            distance[r + 1, c + 1].East > 0))
                         {
                             //Straight jump point one away
-                            distance[r, c].DownRight = 1;
+                            distance[r, c].SouthEast = 1;
                         }
                         else
                         {
                             //Increment from last
-                            int jumpDistance = distance[r + 1, c + 1].DownRight;
+                            int jumpDistance = distance[r + 1, c + 1].SouthEast;
                             if (jumpDistance > 0)
                             {
-                                distance[r, c].DownRight = 1 + jumpDistance;
+                                distance[r, c].SouthEast = 1 + jumpDistance;
                             }
                             else
                             {
-                                distance[r, c].DownRight = -1 + jumpDistance;
+                                distance[r, c].SouthEast = -1 + jumpDistance;
                             }
                         }
                     }
