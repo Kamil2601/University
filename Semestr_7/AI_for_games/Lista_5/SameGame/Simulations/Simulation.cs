@@ -6,21 +6,25 @@ namespace Simulations
     public abstract class Simulation
     {
         public GameState GameState { get; set; }
+        protected Random random = new Random();
 
         public int Simulate()
         {
-            Console.WriteLine(GameState);
+            // Console.WriteLine(GameState);
             while (!GameState.Terminal)
             {
-                Move();
+                var move = Move();
 
-                Console.WriteLine("--------------");
-                Console.WriteLine(GameState);
+                GameState.Apply(move);
+
+                // Console.WriteLine("--------------");
+                // Console.WriteLine(move);
+                // Console.WriteLine(GameState);
             }
 
             return GameState.Score;
         }
 
-        protected abstract void Move();
+        protected abstract GameAction Move();
     }
 }

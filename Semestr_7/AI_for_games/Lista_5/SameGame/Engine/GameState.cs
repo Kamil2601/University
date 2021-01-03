@@ -13,7 +13,7 @@ namespace Engine
 
         public void ReadInput()
         {
-            for (int i = 0; i < 15; i++)
+            for (int i = 14; i >= 0; i--)
             {
                 string[] inputs = Console.ReadLine().Split(' ');
                 for (int j = 0; j < 15; j++)
@@ -51,7 +51,7 @@ namespace Engine
             return result;
         }
 
-        public void Apply(Action action)
+        public void Apply(GameAction action)
         {
             foreach (int yyxx in action.Region)
             {
@@ -64,12 +64,12 @@ namespace Engine
             NormalizeVertically();
             NormalizeHorizontaly();
 
-            Terminal = checkTerminal();
+            Terminal = CheckTerminal();
             if (Board[0, 0]==-1)
                 Score += 1000;
         }
 
-        private Action ComputeRegion(int x, int y)
+        private GameAction ComputeRegion(int x, int y)
         {
             int color = Board[y, x];
             HashSet<int> region = new HashSet<int>();
@@ -108,7 +108,7 @@ namespace Engine
                 visited.Add(right);
             }
 
-            Action result = new Action()
+            GameAction result = new GameAction()
             {
                 X = x,
                 Y = y,
@@ -163,7 +163,12 @@ namespace Engine
             }
         }
 
-        private bool checkTerminal()
+        private bool CheckTerminal()
+        {
+            return Legals().Count == 0;
+        }
+
+        private bool CheckTerminal2()
         {
             if (Board[0, 0] == -1)
                 return true;
@@ -224,9 +229,9 @@ namespace Engine
             return true;
         }
 
-        public List<Action> Legals()
+        public List<GameAction> Legals()
         {
-            List<Action> actions = new List<Action>();
+            List<GameAction> actions = new List<GameAction>();
             HashSet<int> closed = new HashSet<int>();
 
             for (int x = 0; x < Constants.COLUMNS; x++)
@@ -236,7 +241,7 @@ namespace Engine
                     if (Board[y, x] == -1 || closed.Contains(y * 100 + x))
                         continue;
 
-                    Action action = ComputeRegion(x, y);
+                    GameAction action = ComputeRegion(x, y);
                     if (action.Region.Count < 2)
                         continue;
                     actions.Add(action);
@@ -251,7 +256,7 @@ namespace Engine
         {
             string result = "";
 
-            for (int i=0; i<15; i++)
+            for (int i=14; i>=0; i--)
             {
                 for (int j=0; j<15; j++)
                 {
