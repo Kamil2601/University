@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Engine;
+using Hashing;
 using MonteCarlo;
 using Simulations;
 
@@ -9,8 +11,16 @@ namespace SameGame
     {
         static void Main(string[] args)
         {
+            HashSet<uint> values = new HashSet<uint>();
             
-            CodinGame();
+            foreach (var x in Zobrist.Key)
+            {
+                values.Add(x);
+            }
+
+            Console.WriteLine(values.Count);
+
+            // CodinGame();
             // Console.WriteLine(game);
 
             // GameAction move = flatMC.FindBestMove(new TimeSpan(0,0,1));
@@ -38,7 +48,7 @@ namespace SameGame
         static void CodinGame()
         {
             GameState game = new GameState();
-            Simulation simulation = new Tabu();
+            Simulation simulation = new RandomRegion();
             simulation.GameState = game;
             FlatMC flatMC = new TabuMC(simulation, game);
 
