@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Engine;
 using Hashing;
+using MCTS;
 using MonteCarlo;
 using Simulations;
 
@@ -11,21 +12,33 @@ namespace SameGame
     {
         static void Main(string[] args)
         {
-            HashSet<uint> values = new HashSet<uint>();
-            
-            foreach (var x in Zobrist.Key)
-            {
-                values.Add(x);
-            }
+            // Test();
+            // Test2();
 
-            Console.WriteLine(values.Count);
+            CodinGame();
+        }
 
-            // CodinGame();
-            // Console.WriteLine(game);
+        static void Test2()
+        {
+            GameState game = new GameState();
 
-            // GameAction move = flatMC.FindBestMove(new TimeSpan(0,0,1));
+            game.RandomInit();
 
-            // Console.WriteLine(move);
+            Simulation simulation = new RandomRegion();
+
+            FlatMC mc = new FlatMC(simulation, game.Copy());
+
+            var time = new TimeSpan(0,0,1);
+
+            var move = mc.FindBestMove(time);
+            mc.GameState.Apply(move);
+
+            SPMCTS mcts = new SPMCTS(game.Copy(), simulation, 0.5, 10000);
+
+            mcts.FindBestMove(time);
+
+            mc.FindBestMove(time);
+            mcts.FindBestMove(time);
         }
 
         static void Test()
@@ -36,37 +49,54 @@ namespace SameGame
 
             Simulation simulation = new RandomRegion();
 
-            simulation.GameState = game;
+            FlatMC mc = new FlatMC(simulation, game);
 
-            FlatMC flatMC = new FlatMC(simulation, game);
+            var time = new TimeSpan(0,0,1);
 
-            TimeSpan time = new TimeSpan(0,0,0,0,200);
+            mc.FindBestMove(time);
+            // SPMCTS sPMCTS = new SPMCTS(game.Copy(), simulation, 1, 0);
 
-            Console.WriteLine(flatMC.PlayGame(time));
+            // var time = new TimeSpan(0,0,1);
+
+            // var root = sPMCTS.Root;
+
+            // sPMCTS.FindBestMove(time);
+
+            // Console.WriteLine(root.Games);
+
+
+            // while (!game.Terminal)
+            // {
+            //     var move = sPMCTS.FindBestMove(time);
+            //     game.Apply(move);
+            // }
         }
 
         static void CodinGame()
         {
             GameState game = new GameState();
-            Simulation simulation = new RandomRegion();
+            Simulation simulation = new Tabu();
             simulation.GameState = game;
-            FlatMC flatMC = new TabuMC(simulation, game);
-
-            var time = new TimeSpan(0,0,19);
-
             game.ReadInput();
+            var ai = new SPMCTS(game.Copy(), simulation, 0.5, 100);
 
-            var move = flatMC.FindBestMove(time);
+            // var ai = new FlatMC(simulation, game);
+
+            var time = new TimeSpan(0,0,0,19,0);
+            
+
+            var move = ai.FindBestMove(time);
 
             Console.WriteLine($"{move.X} {move.Y}");
 
             time = new TimeSpan(0,0,0,0,45);
 
-            while (true)
+            while (!ai.Root.GameState.Terminal)
+            // while (true)
             {
-                game.ReadInput();
+                // game.ReadInput();
 
-                move = flatMC.FindBestMove(time);
+                move = ai.FindBestMove(time);
 
                 Console.WriteLine($"{move.X} {move.Y}");
             }

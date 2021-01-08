@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hashing;
 
 namespace Engine
 {
@@ -10,6 +11,7 @@ namespace Engine
         public int[] ColorQuantity { get; private set; } = new int[5];
         public int Score { get; private set; }
         public bool Terminal { get; private set; }
+        public uint Hash { get; set; }
 
         public void ReadInput()
         {
@@ -22,6 +24,8 @@ namespace Engine
                     Board[i, j] = color;
                 }
             }
+
+            Hash = Zobrist.Hash(this);
         }
 
         public void RandomInit()
@@ -47,6 +51,7 @@ namespace Engine
             result.ColorQuantity = ColorQuantity.Clone() as int[];
             result.Score = Score;
             result.Terminal = Terminal;
+            result.Hash = Hash;
 
             return result;
         }
@@ -67,6 +72,8 @@ namespace Engine
             Terminal = CheckTerminal();
             if (Board[0, 0]==-1)
                 Score += 1000;
+
+            Hash = Zobrist.Hash(this);
         }
 
         private GameAction ComputeRegion(int x, int y)

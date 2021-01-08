@@ -11,9 +11,22 @@ namespace MCTS
         public double C { get; set; }
         public double D { get; set; }
 
+        public SPMCTS(GameState game, Simulation simulation, double c, double d)
+        {
+            Root = new Node(game);
+            Simulation = simulation;
+            C = c;
+            D = d;
+        }
 
-        // Main method - compute best move for gamestate from root
-        public GameAction ComputeBestMove(TimeSpan time)
+        public GameAction FindBestMove(TimeSpan time)
+        {
+            var bestChild = Next(time);
+            Root = bestChild;
+            return Root.LastMove;
+        }
+
+        public Node Next(TimeSpan time)
         {
             var start = DateTime.Now;
 
@@ -22,69 +35,69 @@ namespace MCTS
                 Iteration();
             }
 
-            return BestMove();
+            return BestChild();
         }
 
-        private GameAction BestMove()
+        public Node BestChild()
         {
-            var child = Root.ChildWithBestScore();
+            return Root.BestChildAvg();
+        }
 
-            Root = child;
-            
-            var move = child.LastMove;
-
-            return move;
+        public GameAction BestMove()
+        {
+            return BestChild().LastMove;
         }
 
         private void Iteration()
         {
             Node leaf = TreePolicy(Root);
-            int result = Rollout(leaf);
+            ulong result = Rollout(leaf);
             Backpropagate(leaf, result);
         }
 
-        private void Backpropagate(Node node, int result)
+        private void Backpropagate(Node node, ulong result)
         {
+            Update(node, result);
+            
             if (node == Root)
                 return;
 
-            Update(node, result);
             Backpropagate(node.Parent, result);
         }
 
-        private void Update(Node node, int result)
+        private void Update(Node node, ulong result)
         {
             node.Update(result);
         }
 
-        private int Rollout(Node leaf)
+        private ulong Rollout(Node leaf)
         {
             var game = leaf.GameState.Copy();
             Simulation.GameState = game;
-            return Simulation.Simulate();
+            return (ulong)Simulation.Simulate();
         }
 
-        private Node TreePolicy(Node node)
+        protected virtual Node TreePolicy(Node node)
         {
-            while (!node.IsLeaf)
+            while (node.FullyExpanded && !node.GameState.Terminal)
             {
-                if (!node.FullyExpanded)
-                    return Expand(node);
-                else
-                    node = BestChild(node);
+                node = BestChild(node);
             }
 
-            return node;
+            if (node.GameState.Terminal)
+                return node;
+
+            return Expand(node);
         }
 
-        private Node Expand(Node node)
+        protected virtual Node Expand(Node node)
         {
             return node.Expand();
         }
 
-        private Node BestChild(Node node)
+        protected Node BestChild(Node node)
         {
-            return node.BestChild(C, D);
+            return node.BestChildUCT(C, D);
         }
     }
 }

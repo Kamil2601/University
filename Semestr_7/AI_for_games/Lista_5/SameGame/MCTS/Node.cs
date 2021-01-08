@@ -12,44 +12,65 @@ namespace MCTS
         public List<GameAction> LegalMoves { get; set; }
         public Node Parent { get; set; }
         public List<Node> Children { get; set; }
-        public int Games { get; set; }
-        public int Score { get; set; }
-        public int SquareSum { get; set; }
-        public double AvgScore => (double)Score/(double)Games;
+        public ulong Games { get; set; }
+        public ulong Score { get; set; }
+        public ulong SquareSum { get; set; }
+        public double AvgScore => (double)Score / (double)Games;
         public bool FullyExpanded => Children.Count == LegalMoves.Count;
         public bool IsLeaf => Children.Count == 0;
 
         public Node(GameState gameState)
         {
-            Random random = new Random();
-
             GameState = gameState.Copy();
             LastMove = null;
-            LegalMoves = gameState.Legals().OrderBy(_ => random.Next()).ToList();
-            Children = new List<Node>();
-            Games = 0; 
-            Score = 0;
+
+            Init();
         }
 
-        public Node(GameState previousState, GameAction move, Node parent)
+        public Node(GameState previousState, GameAction move, Node parent = null)
         {
-            Random random = new Random();
-
             Parent = parent;
             GameState = previousState.Copy();
             GameState.Apply(move);
             LastMove = move;
+            Init();
+        }
+
+        private void Init()
+        {
+            Random random = new Random();
             LegalMoves = GameState.Legals().OrderBy(_ => random.Next()).ToList();
+            TabuLegals();
             Children = new List<Node>();
-            Games = 0; 
+            Games = 0;
             Score = 0;
         }
 
-        public void Update(int result)
+        public void TabuLegals()
+        {
+            var color = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (GameState.ColorQuantity[i] > GameState.ColorQuantity[color])
+                {
+                    color = i;
+                }
+            }
+
+            var tabuLegals = LegalMoves.Where(action => action.Color != color).ToList();
+
+            if (tabuLegals.Count > 0)
+                LegalMoves = tabuLegals;
+        }
+
+
+
+        public void Update(ulong result)
         {
             Games++;
-            Score+=result;
-            SquareSum = SquareSum + result*result;
+            Score += result;
+            SquareSum = SquareSum + result * result;
         }
 
         public Node Expand()
@@ -63,7 +84,42 @@ namespace MCTS
             return child;
         }
 
-        public Node BestChild(double c, double d)
+        public Node ZobristExpand(HashTable table)
+        {
+
+            if (FullyExpanded)
+                return null;
+    
+            var nextAction = LegalMoves[Children.Count];
+
+            var game = GameState.Copy();
+
+            game.Apply(nextAction);
+
+            var nodeFromTable = table.Get(game);
+
+            if (nodeFromTable == null)
+            {
+                var child = new Node(game);
+                child.Parent = this;
+                child.LastMove = nextAction;
+                Children.Add(child);
+                return child;
+            }
+
+            if (nodeFromTable.GameState.Score >= GameState.Score)
+            {
+                LegalMoves.RemoveAt(Children.Count);
+                return null;
+            }
+            else
+            {
+                var parent = nodeFromTable.Parent;
+                parent.RemoveChild(this);
+            }
+        }
+
+        public Node BestChildUCT(double c, double d)
         {
             List<Node> bestChildren = new List<Node>();
 
@@ -76,7 +132,7 @@ namespace MCTS
                 var uct = child.UCTValue(Games, c, d);
 
                 if (uct > bestUCT)
-                    bestChildren = new List<Node>() {child};
+                    bestChildren = new List<Node>() { child };
                 else if (uct == bestUCT)
                     bestChildren.Add(child);
             }
@@ -86,7 +142,7 @@ namespace MCTS
             return bestChildren[random.Next(bestChildren.Count)];
         }
 
-        public Node ChildWithBestScore()
+        public Node BestChildAvg()
         {
             List<Node> bestChildren = new List<Node>();
 
@@ -99,7 +155,7 @@ namespace MCTS
                 var score = child.AvgScore;
 
                 if (score > bestScore)
-                    bestChildren = new List<Node>() {child};
+                    bestChildren = new List<Node>() { child };
                 else if (score == bestScore)
                     bestChildren.Add(child);
             }
@@ -109,10 +165,26 @@ namespace MCTS
             return bestChildren[random.Next(bestChildren.Count)];
         }
 
-        private double UCTValue(int parentGames, double c, double d)
+        private double UCTValue(ulong parentGames, double c, double d)
         {
-            return AvgScore + c * Math.Sqrt(Math.Log(parentGames)/Games)
-                + Math.Sqrt((SquareSum - Games * AvgScore * AvgScore + d) / Games);
+            if (Games == 0)
+                return 0;
+
+            return AvgScore + c * Math.Sqrt(Math.Log(parentGames) / Games);
+            // + 0.5* Math.Sqrt((double)(SquareSum+d)/(double)Games - (double)AvgScore * (double)AvgScore);
+        }
+
+        private Node RemoveChild(Node child)
+        {
+            var index = Children.FindIndex(node => node == child);
+
+            if (index == -1)
+                return null;
+
+            LegalMoves.RemoveAt(index);
+            Children.RemoveAt(index);
+
+            return child;
         }
     }
 }

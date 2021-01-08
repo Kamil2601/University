@@ -28,7 +28,7 @@ namespace MonteCarlo
             {
                 Simulate();
             }
-
+            
             return BestMove();
         }
 
@@ -62,6 +62,8 @@ namespace MonteCarlo
                     result = s;
                 }
             }
+
+            GameState.Apply(result.Action);
 
             return result.Action;
         }
