@@ -16,19 +16,17 @@ package games {
         if (v == 1)
           aces += 1
         println(c.toString + ": " + v.toString + (
-            if (v == 1)
-              " / 11"
-            else
-              "" 
-          )
-        )
+          if (v == 1)
+            " / 11"
+          else
+            ""))
       }
 
       print(sum)
 
       for (i <- 1 to aces) {
         sum += 10
-        print( " / " + sum)
+        print(" / " + sum)
       }
 
       print("\n")
@@ -39,7 +37,6 @@ package games {
         println(c)
       }
     }
-
 
     private def allSum(sum: Int, cards: List[Card]): List[List[Card]] = {
       if (sum == 0) return List(List())
@@ -68,7 +65,6 @@ package games {
 
   object Blackjack {
     def apply(numOfDecks: Int) = new Blackjack(
-      new Deck(List.fill(numOfDecks)(Deck().cards).flatten)
-    )
+      new Deck(List.fill(numOfDecks)(Deck().cards).flatten))
   }
 }
