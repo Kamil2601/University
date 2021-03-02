@@ -1,0 +1,50 @@
+
+#board{
+    border: 1px green solid;
+    height: 600px;
+    width: 600px;
+    margin-left: 300px;
+    margin-top:20px;
+}
+#big{
+    float: left;
+    width: 200px;
+    height: 200px;
+    background-color: orange;
+    position: relative;
+    top: 200px;
+    left: 190px;
+}
+.small{
+    width: 45px;
+    height: 45px;
+    background-color: green;
+    position: absolute;
+}
+#timer{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    border: 1px blue solid;
+    top: 50px;
+    left: 950px;
+    font-size: 40px;
+    text-align: center;
+}
+#refresh{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    top: 50px;
+    left: 50px;
+    font-size: 20px;
+}
+#res{
+    position: absolute;
+    top: 150px;
+    left: 950px;
+    border: 1px orange solid;
+    font-size: 50px;
+    width: 200px;
+}

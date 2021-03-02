@@ -1,0 +1,43 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+#top{
+    display: flex;
+    flex-grow: 1;
+}
+#top div{
+    flex-basis: 1px;
+}
+#logo{
+    flex-grow: 1;
+    background-color: blue
+}
+#header{
+    flex-grow: 5;
+    background-color: aqua;
+}
+#mid{
+    clear: both;
+    display: flex;
+    flex-grow: 5;
+}
+#mid div{
+    flex-basis: 1px;
+}
+#menu{
+    flex-shrink: 3;
+    background-color: darksalmon
+}
+#sub_menu{
+    flex-grow: 1;
+}
+#content{
+    flex-grow: 5;
+    background-color: chartreuse;
+}
+#footer{
+    background-color: red;
+    flex-grow: 1;
+}

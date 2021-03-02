@@ -2,8 +2,7 @@
 
 Repozytorium zawiera programy napisane przeze mnie w trakcie studiów, będące rozwiązaniami zadań z przedmiotów, oraz trochę programów udostępnionych na wykładach.
 
-Zawartość poszczególnych folderów
-
+###Studia inżynierskie###
 Semestr_1:
   - C - Wstęp do Programowania w języku C; w folderze Projekt znajduje się gra "Czołgi" wykorzystująca bibliotekę SDL 2.0;
     Wykład: Marek Piotrów, Pracownia: Krystian Bacławski

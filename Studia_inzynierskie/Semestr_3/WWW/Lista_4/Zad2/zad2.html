@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zadanie 2</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td id="account_input">
+                Nr konta
+                <input type="text" id="account" onblur="check_account();" />
+            </td>
+            <td class="info" id="account_info"></td>
+        </tr>
+        <tr>
+            <td id="pesel_input">
+                PESEL
+                <input type="text" id="pesel" onblur="check_pesel();">
+            </td>
+            <td id="pesel_info"></td>
+        </tr>
+        <tr>
+            <td>
+                data urodzenia
+                <input type="date" id="date" onblur="check_date();">
+            </td>
+            <td id="date_info"></td>
+        </tr>
+        <tr>
+            <td>
+                e-mail
+                <input type="email" id="email" onblur="check_email();">
+            </td>
+            <td id="email_info"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Prześlij" onclick="check_all();">
+</body>
+
+</html>

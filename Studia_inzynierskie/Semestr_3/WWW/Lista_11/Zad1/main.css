@@ -1,0 +1,51 @@
+#header{
+    background-color: yellow;
+}
+
+#news{
+    background-color: aqua;
+}
+
+#last{
+    background-color: brown;
+}
+
+#last div{
+    background-color: brown;
+}
+
+#recommended{
+    background-color: green;
+}
+
+#recommended div{
+    background-color: green;
+}
+
+#footer{
+    background-color: darkorchid
+}
+
+#footer div{
+    text-align: center;
+}
+
+
+#logo{
+    max-height: 100px;
+    width: auto;
+}
+
+#logo2{
+    max-height: 50px;
+    width: auto;
+}
+
+
+#name{
+    text-align: center;
+    margin: auto;
+}
+img{
+    margin: auto;
+}

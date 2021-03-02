@@ -1,0 +1,14 @@
+body{
+    background-color: grey;
+}
+
+#photo,#photos{
+    width: 800px;
+    height: 600px;
+}
+
+#slider{
+    width: 800px;
+    background-color: black;
+    margin-bottom: 25px;
+}
