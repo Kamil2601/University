@@ -1,1 +1,0 @@
-python3 Zad3.py

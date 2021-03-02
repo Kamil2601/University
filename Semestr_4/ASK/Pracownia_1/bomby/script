@@ -1,7 +1,0 @@
-#!/bin/bash
-
-while read pass
-do
-	echo "$pass"
-	echo "$pass" | ./bomb solve
-done < strings

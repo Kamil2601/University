@@ -1,8 +1,0 @@
-ZADANIE2:
-
-	i = i - ((i >> 1) & 0x55555555);
-     	i = (i & 0x33333333) + ((i >> 2) & 0x33333333); // gotowe czworki
-	i = (i & 0x0F0F0F0F) + ((i >> 4) & 0x0F0F0F0F); // gotowe co drugie czworki
-	i = i + (i>>8); //mergowanie co drugich czworek
-	i = i + (i>>16); //mergowanie koncowe
-	return i & 0x0000003F;

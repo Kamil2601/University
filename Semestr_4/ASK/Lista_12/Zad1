@@ -1,6 +1,0 @@
-translacja adresów - znalezienie adresu fizycznego na podstawie adresu wirtualnego
-izolacja procesów - każdy proces ma swój osobny blok pamięci wirtualnej
-stronicowanie na żądanie (demand paging) - strona z dysku jest wczytywana do pamięci tylko wtedy, gdy występuje próba odczytania tej strony a nie ma jej w pamięci (np. Page Fault)
-współdzielenie pamięci - kilka procesów korzysta z tych samych danych w pamięci fizycznej (ich adresy wirtualne są tłumaczone na te same adresy fizyczne)
-zbiór rezydentny (resident set) - dane wykorzystywane przez proces, znajdujące się w głównej pamięci
-zbiór roboczy (working set) - dane wykorzystywane przez proces w danym okresie czasu

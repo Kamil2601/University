@@ -1,2 +1,0 @@
-Rozmiary sekcji: objdump -h bar.o
-Symbole readelf -s bar.o
