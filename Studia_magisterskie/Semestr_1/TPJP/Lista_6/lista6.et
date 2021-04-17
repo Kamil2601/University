@@ -1,0 +1,90 @@
+datatype Nat = Suc from Nat | O;
+
+let one = Suc O;
+let two = Suc one;
+let three = Suc two;
+let four = Suc three;
+let five = Suc four;
+let six = Suc five;
+
+(* Zadanie 2 *)
+
+let add = \m n. _Natit m Suc n;
+
+(*            mult O n = O                 *)
+(*    mult (Suc m) n = add n (mult m n)    *)
+
+let mult = \m n. _Natit m (add n) O;
+
+(* Weryfikacja *)
+\n.mult O n = \n.O;
+\m n.mult (Suc m) n = \m n.add n (mult m n);
+
+
+(*  exp m 0 = 1  *)
+(*  exp m (Suc n) = mult m (exp m n) *)
+
+let exp = \m n. _Natit n (mult m) one;
+
+(* Weryfikacja *)
+\m.exp m O = \m.one;
+\m n.exp m (Suc n) = \m n.mult m (exp m n);
+
+
+(* pred 0 = 0 *)
+(* pred (Suc n) = n *)
+
+let pred = \n. _Natrec n fst O;
+(* Weryfikacja *)
+pred 0 = 0;
+\n. pred (Suc n) = \n.n;
+
+
+(*  subtr m 0 = m  *)
+(*  subtr m (Suc n) = pred (subtr m n)  *)
+
+let subtr = \m n. _Natit n pred m;
+
+(* Weryfikacja *)
+\m. subtr m O = \m. m
+\m n. subtr m (Suc n) = \m n. pred (subtr m n)
+
+
+(* Zadanie 4 *)
+
+let nextFib = \p. Pair (snd p) (add (fst p) (snd p));
+
+let fib' = \n. _Natit n nextFib (O, one);
+
+let fib = \n. fst (fib' n);
+
+\n. fib (Suc (Suc n)) = \n. add (fib n) (fib (Suc n));
+
+
+(* Zadanie 6 *)
+
+datatype LIST 'a = Cons from 'a (LIST 'a) | Nil;
+
+(*       length      *)
+let length = \xs. _LISTit xs (\x n. Suc n) O;
+
+length Nil = O
+\x xs. length (Cons x xs) = \x xs. Suc (length xs)
+
+(*       append      *)
+let append = \xs ys. _LISTit xs Cons ys;
+
+\ys. append Nil ys = \ys. ys;
+\x xs ys. append (Cons x xs) ys = \x xs ys. Cons x (append xs ys);
+
+(*    map   *)
+let map = \f xs. _LISTit xs (\x ys. Cons (f x) ys) Nil;
+
+(* Weryfikacja *)
+\f. map f Nil = \f. Nil;
+\f x xs. map f (Cons x xs) = \f x xs. Cons (f x) (map f xs);
+
+
+(*  Zadanie 7  *)
+
+datatype BT 'a = Node from 'a (BT 'a) (BT 'a) | Tip;
