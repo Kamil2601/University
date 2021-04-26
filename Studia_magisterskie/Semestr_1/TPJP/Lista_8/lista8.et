@@ -1,0 +1,57 @@
+(*   Zadanie 2   *)
+
+datatype PAIR 'a 'b = Pair from 'a 'b;
+codatatype PAIRc 'a 'b = Fst to 'a & Snd to 'b;
+
+(* 
+    datatype PAIR
+    con  Pair : 'a -> 'b -> ('a * 'b)
+    iter _PAIRit : ('a * 'b) -> ('a -> 'b -> 'c) -> 'c
+    rec  _PAIRrec = _PAIRit
+    comp _PAIRit (Pair z y) = \x. x z y
+*)
+
+(*
+    codatatype PAIRc
+    des    Fst : (PAIRc 'a 'b) -> 'a
+    des    Snd : (PAIRc 'a 'b) -> 'b
+    coiter _PAIRcci : ('c -> 'a) -> ('c -> 'b) -> 'c -> (PAIRc 'a 'b)
+    corec  _PAIRccr = _PAIRcci
+    comp   Fst (_PAIRcci z y x) = z x
+    comp   Snd (_PAIRcci z y x) = y x
+*)
+
+let fst = \p. _PAIRit p (\x y. x);
+let snd = \p. _PAIRit p (\x y. y);
+
+\x y. fst (Pair x y) = \x y. x;
+\x y. snd (Pair x y) = \x y. y;
+
+let pairc = \f g x. Pair (f x) (g x);
+
+let pair = \x y. _PAIRcci (\_. x) (\_. y) Unit;
+let pairIt = \p f. f (Fst p) (Snd p);
+
+\x y. Fst (pair x y) = \x y. x;
+\x y. Snd (pair x y) = \x y. y;
+
+\f g x. fst (pairc f g x) = \f g x. Fst (_PAIRcci f g x);
+\f g x. snd (pairc f g x) = \f g x. Snd (_PAIRcci f g x);
+
+\f g x. fst (_PAIRit f g x) = \f g x. Fst (pairIt f g x);
+\f g x. snd (_PAIRit f g x) = \f g x. Snd (pairIt f g x);
+
+
+
+(*   Zadanie 3   *)
+
+codatatype STREAM 'a = Shd to 'a & Stl to STREAM 'a;
+
+
+(* Shd (sMap f s) = f (Shd s) *)
+(* Stl (sMap f s) = sMap f (Stl s) *)
+
+let sMap = \f s. _STREAMci (\s'. f (Shd s')) Stl s;
+
+\f s. Shd (sMap f s) = \f s. f (Shd s);
+\f s. Stl (sMap f s) = \f s. sMap f (Stl s);
