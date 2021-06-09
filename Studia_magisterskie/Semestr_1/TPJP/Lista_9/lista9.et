@@ -1,0 +1,73 @@
+datatype Nat = Suc from Nat | O;
+
+let one = Suc O;
+let two = Suc one;
+let three = Suc two;
+
+datatype Letter = A | B | C | D | E | F | G | H;
+
+(*  Zadanie 2  *)
+
+datatype LIST 'a = Cons from 'a (LIST 'a) | Nil;
+
+datatype LIST
+con  Cons : 'a -> (LIST 'a) -> (LIST 'a)
+con  Nil : LIST 'a
+iter _LISTit : (LIST 'a) -> ('a -> 'b -> 'b) -> 'b -> 'b
+rec  _LISTrec : (LIST 'a) -> ('a -> ((LIST 'a) * 'b) -> 'b) -> 'b -> 'b
+comp _LISTit (Cons z y) = \x w. x z (_LISTit y x w)
+comp _LISTit (Nil ) = \z y. y
+comp _LISTrec (Cons z y) = \x w. x z (y, _LISTrec y x w)
+comp _LISTrec (Nil ) = \z y. y
+
+let append = \xs ys. _LISTit xs Cons ys;
+let tail = \l. _LISTrec l (\hd p. fst p) Nil;
+
+
+(* revAppend Nil ys = ys *)
+(* revAppend (Cons h t) ys = revAppend t (Cons h ys) *)
+
+let ra = \xs p. _LISTit xs (\x p'. (append (fst p') (Cons x Nil), (snd p'))) p;
+let ra2 = \xs ys. ra xs (Nil, ys);
+let revAppend = \xs ys. (\p. append (fst p) (snd p)) (ra2 xs ys);
+
+let revAppend2' = \xs ys. _LISTit xs (\x zs. append zs (Cons x Nil)) ys;
+let revAppend2 = \xs ys. append (revAppend2' xs Nil) ys;
+
+
+\ys. revAppend Nil ys = \ys. ys;
+\h t ys. revAppend (Cons h t) ys = \h t ys. revAppend t (Cons h ys)
+
+\ys. revAppend2 Nil ys = \ys. ys;
+\h t ys. revAppend2 (Cons h t) ys = \h t ys. revAppend2 t (Cons h ys);
+
+
+
+(*  Zadanie 4 *)
+
+codatatype BTinf 'a = BTinfRoot to 'a & BTinfL to BTinf 'a & BTinfR to BTinf 'a;
+
+codatatype BTinf
+des    BTinfRoot : (BTinf 'a) -> 'a
+des    BTinfL : (BTinf 'a) -> (BTinf 'a)
+des    BTinfR : (BTinf 'a) -> (BTinf 'a)
+coiter _BTinfci : ('b -> 'a) -> ('b -> 'b) -> ('b -> 'b) -> 'b -> (BTinf 'a)
+corec  _BTinfcr : ('b -> 'a) -> ('b -> ((BTinf 'a) + 'b)) -> ('b -> ((BTinf 'a) + 'b)) -> 'b -> (BTinf 'a)
+comp   BTinfRoot (_BTinfci z y x w) = z w
+comp   BTinfL (_BTinfci z y x w) = _BTinfci z y x (y w)
+comp   BTinfR (_BTinfci z y x w) = _BTinfci z y x (x w)
+comp   BTinfRoot (_BTinfcr z y x w) = z w
+comp   BTinfL (_BTinfcr z y x w) = when (y w) (\v. v) (_BTinfcr z y x)
+comp   BTinfR (_BTinfcr z y x w) = when (x w) (\v. v) (_BTinfcr z y x)
+
+let add = \m n. _Natit m Suc n;
+let mult = \m n. _Natit m (add n) O;
+
+let natBTinf = \n. _BTinfci (\x.x) (mult two) (\n'. Suc (mult two n')) n;
+
+(* BTinfRoot (natBTinf n) = n *)
+(* BTinfL (natBTinf n) = natBTinf (2*n) *)
+(* BTinfR (natBTinf n) = natBTinf (2*n+1)) *)
+
+\n. BTinfRoot (natBTinf n) = \n. n;
+\n. BTinfL (natBTinf n) = \n. natBTinf (mult two n);
