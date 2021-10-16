@@ -29,8 +29,3 @@ if __name__ == '__main__':
         else:
             quit_game = True
     pygame.quit()
-    
-
-
-
-
