@@ -2,8 +2,6 @@ import json
 import sys
 
 def check_word(automata):
-    
-
     sign = sys.stdin.read(1)
     while (sign != ''):
         state = automata['initial']
