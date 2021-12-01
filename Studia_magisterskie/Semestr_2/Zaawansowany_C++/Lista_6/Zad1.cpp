@@ -74,8 +74,7 @@ std::deque<Person> init_deque()
 
 int main()
 {
-    
-
+    // A
     auto deque = init_deque();
 
     auto bmi_cmp = [](Person a, Person b){
@@ -90,6 +89,10 @@ int main()
     };
 
     std::cout << "\n";
+
+
+
+    // B
 
     deque = init_deque();
 
@@ -107,6 +110,8 @@ int main()
 
     std::cout << "\n";
 
+
+    // C
 
     deque = init_deque();
 

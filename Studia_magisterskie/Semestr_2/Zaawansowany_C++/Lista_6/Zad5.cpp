@@ -1,34 +1,48 @@
 #include <iostream>
+#include <list>
 
-void permute(std::string a, int l, int r)
+std::list<std::string> permute(std::string a, int l, int r)
 {
     if (l == r)
     {
-        std::cout << a << "\n";
+        // std::cout << a << "\n";
+        return std::list<std::string> {a};
     }
     else
     {
+        std::list<std::string> res;
+
         for (int i = l; i <= r; i++)
         {
- 
             std::swap(a[l], a[i]);
  
-            permute(a, l+1, r);
+            auto perms = permute(a, l+1, r);
+
+            res.merge(perms);
  
             std::swap(a[l], a[i]);
         }
+
+        return res;
     }
 }
 
-void permute(std::string a)
+std::list<std::string> permute(std::string a)
 {
-    permute(a, 0, a.size()-1);
+    return permute(a, 0, a.size()-1);
 }
  
 int main()
 {
-    std::string str = "ABCDE";
-    permute(str);
-    return 0;
+    std::string str = "ABC";
+
+    std::list<std::string> l = permute(str);
+
+    std::cout << l.size() << "\n";
+
+    for (auto s: l)
+    {
+        std::cout << s << "\n";
+    }
 }
  

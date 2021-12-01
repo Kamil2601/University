@@ -51,6 +51,7 @@ let eval_nbe t = reify (eval t [] [])
 
 (* klasyczny ewaluator wyższego rzędu *)
 
+
 type value = Fun of (value -> value)
 
 let rec eval_cbv t (rs : value env) : value =
@@ -60,3 +61,13 @@ let rec eval_cbv t (rs : value env) : value =
     Fun (fun e -> eval_cbv t (update_env rs x e))
   | App (t1, t2) ->
     let Fun f = eval_cbv t1 rs in f (eval_cbv t2 rs)
+
+type value_cbn = Fun_cbn of (term -> value_cbn)
+
+let rec eval_cbn t (rs : term env) : value_cbn =
+  match t with
+  | Var x -> eval_cbn (lookup_env x rs) rs
+  | Lam (x, t) ->
+    Fun_cbn ((fun t' -> eval_cbn t (update_env rs x t')))
+  | App (t1, t2) ->
+    let Fun_cbn f = eval_cbn t1 rs in f t2

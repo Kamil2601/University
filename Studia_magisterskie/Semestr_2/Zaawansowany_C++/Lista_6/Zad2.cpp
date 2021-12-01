@@ -2,6 +2,7 @@
 #include <list>
 #include <ctime>
 #include <algorithm>
+#include <vector>
 
 class Point
 {
