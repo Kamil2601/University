@@ -17,3 +17,9 @@ complex Rieman(int n, complex z)
 
     return res;
 }
+
+int main()
+{
+
+    return 0;
+}

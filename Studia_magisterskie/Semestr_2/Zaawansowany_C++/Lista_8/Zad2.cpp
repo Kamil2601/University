@@ -37,6 +37,15 @@ complex euler_inv(int n, complex z)
 
 int main()
 {
+    complex x1(1,0);
+    complex x2(3.14, 2.34);
+
+    std::cout << "euler(" << x1 << ") = " << euler(10,x1) << "\n";
+    std::cout << "euler(" << x2 << ") = " << euler(10,x2) << "\n";
+
+
+    std::cout << "euler_inv(" << x1 << ") = " << euler_inv(10,x1) << "\n";
+    std::cout << "euler_inv(" << x2 << ") = " << euler_inv(10,x2) << "\n";
 
 
     return 0;

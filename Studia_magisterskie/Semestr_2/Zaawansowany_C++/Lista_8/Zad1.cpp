@@ -8,8 +8,6 @@
 using complex = std::complex<double>;
 
 
-using namespace std::complex_literals;
-
 complex polynomial_value(std::vector<complex> polynomial, complex x)
 {
     auto plus = [x](std::pair<complex, complex> sum, complex p) {
@@ -24,7 +22,7 @@ int main()
 {
     auto vec = {complex(1.0, 0.0), complex(2.0, 0.0), complex(3.0,0)};
 
-    auto res = polynomial_value(vec, complex(2,0));
+    auto res = polynomial_value(vec, complex(2,5));
 
     std::cout << res.real() << "+" << res.imag() << "i\n";
 
