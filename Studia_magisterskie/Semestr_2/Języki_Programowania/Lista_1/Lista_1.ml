@@ -2,6 +2,8 @@ type exp = True | False | Zero | If of exp * exp * exp | Succ of exp | Pred of e
 
 type symbol = True' | False' | Zero' | If' | Then' | Else' | Succ' | Pred' | IsZero';;
 
+exception Match_fail
+
 
 (* Zadanie 5 *)
 
@@ -18,6 +20,7 @@ let rec parse' (xs: symbol list): exp * symbol list =
             let (resThen, zs2) = (parse' (List.tl zs1)) in
             let (resElse, zs3) = (parse' (List.tl zs2)) in 
                 (If (resIf, resThen, resElse), zs3)
+        | _ -> raise Match_fail
 ;;
 
 let parse (xs: symbol list): exp = fst (parse' xs);;
