@@ -26,3 +26,15 @@ let rec eval t e c =
 
 let rec eval_Krivine (t : term) : mvalue =
   eval t [] E_mt
+
+
+(* let t1 = App (Lam (Var 0), Lam (Var 0));; *)
+
+
+let triple = Lam (App (App (Var 0, Var 0), Var 0));;
+
+let t1 = Lam (App (App (Var 0, Var 0), triple));;
+
+let id = Lam (Var 0);;
+
+let t = App (t1, id);;
