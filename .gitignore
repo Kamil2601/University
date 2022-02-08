@@ -13,6 +13,7 @@
 *~
 out
 in
+*__pycache__*
 *test*
 *.metals
 *[Dd]ebug/
