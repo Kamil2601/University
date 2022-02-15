@@ -1,6 +1,6 @@
 from language import *
 from parser import *
-from converter import *
+# from converter import *
 
 def eval_krivine(term: Term):
     stack = []
@@ -30,8 +30,23 @@ def eval_krivine(term: Term):
                 term, env = env[index]
 
 
+def shift(t, d, c = 0):
+    if t.is_var():
+        if t.var < c:
+            return t
+        else:
+            return Var(t.var + d)
+
+    elif t.is_lambda():
+        return Lambda(t.var, shift(t.t, d, c+1))
+
+    elif t.is_app():
+        return App(shift(t.t1, d, c), shift(t.t2, d, c))
+
+
+
 # [n -> s]t
-def substitution(t,n,s,):
+def substitution(t,n,s):
     if t.is_var():
         if t.var == n:
             return s
@@ -40,15 +55,18 @@ def substitution(t,n,s,):
     elif t.is_app():
         return App(substitution(t.t1, n, s), substitution(t.t2, n, s))
     elif t.is_lambda():
-        return Lambda(t.var, substitution(t.t, n + 1, s))
+        return Lambda(t.var, substitution(t.t, n + 1, shift(s, 1, 0)))
+
 
 
 def normalize_subst_cbn(t):
     if t.is_app():
         t1_norm = normalize_subst_cbn(t.t1)
         if t1_norm.is_lambda():
-            beta_reduced = substitution(t1_norm.t, 0, t.t2)
+            beta_reduced = substitution(t1_norm.t, 0, shift(t.t2, 1))
+            beta_reduced = shift(beta_reduced, -1)
             return normalize_subst_cbn(beta_reduced)
+            # return shift(normalize_subst_cbn(beta_reduced), -1, 0)
         return App(t1_norm, t.t2)
 
     return t

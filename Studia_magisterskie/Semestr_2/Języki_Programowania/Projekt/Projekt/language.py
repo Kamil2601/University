@@ -16,6 +16,7 @@ class Term:
 
 class Var(Term):
     def __init__(self, var):
+        self.info = None
         self.var = var
 
     def __str__(self):
@@ -30,6 +31,7 @@ class Var(Term):
 
 class Lambda(Term):
     def __init__(self, var: str, t: Term):
+        self.info = None
         self.var = var
         self.t = t
 
@@ -45,6 +47,7 @@ class Lambda(Term):
 
 class App(Term):
     def __init__(self, t1: Term, t2: Term):
+        self.info = None
         self.t1 = t1
         self.t2 = t2
 
