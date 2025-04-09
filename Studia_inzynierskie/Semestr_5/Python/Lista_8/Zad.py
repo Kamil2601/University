@@ -1,20 +1,21 @@
-import matplotlib.pyplot as pyplot
-import matplotlib.animation as animation
-
 import random
+
+import matplotlib.animation as animation
+import matplotlib.pyplot as pyplot
+
 
 def onClick(event):
     global pause
     pause ^= True
 
 class Snake:
-    def __init__(self,board_size,board_color,snake_lenght,snake_color, head_color, obstacles_n, obstacles_color):
+    def __init__(self,board_size,board_color,snake_length,snake_color, head_color, obstacles_n, obstacles_color):
         self.board_color = board_color
         self.snake_color = snake_color
         self.head_color = head_color
         self.obstacles_color = obstacles_color
         self.board_size = board_size
-        self.snake_length = 8
+        self.snake_length = snake_length
         self.obstacles = set()
         self.step = 0
 
@@ -87,4 +88,4 @@ class Snake:
             
 
 
-snake = Snake(20,(255,255,100),30,(0,200,00),(200,0,0),5,(0,0,255))
+snake = Snake(20,(255,255,100),5,(0,200,00),(200,0,0),5,(0,0,255))
